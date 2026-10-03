@@ -3,86 +3,761 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SetRack · Registro de gimnasio offline</title>
-<meta name="description" content="SetRack: registro de series de gimnasio offline. Tus datos solo en tu móvil, sin cuenta, sin anuncios, sin permisos de red.">
-<meta name="robots" content="index,follow">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0B0C0E">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<title>SetRack · Apunta la serie, vuelve a la barra</title>
+<meta name="description" content="Registro de gimnasio para Android. Apunta tus series en segundos, con una mano, y tus datos se quedan solo en tu móvil: sin conexión, sin anuncios y sin cuenta.">
+<link rel="canonical" href="https://iggykimi.github.io/setrack-web/">
+<link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/">
+<link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/">
+<link rel="alternate" hreflang="x-default" href="https://iggykimi.github.io/setrack-web/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SetRack" translate="no">
+<meta property="og:title" content="SetRack · Apunta la serie, vuelve a la barra">
+<meta property="og:description" content="Registro de gimnasio para Android. Apunta tus series en segundos, con una mano, y tus datos se quedan solo en tu móvil: sin conexión, sin anuncios y sin cuenta.">
+<meta property="og:url" content="https://iggykimi.github.io/setrack-web/">
+<meta property="og:image" content="https://iggykimi.github.io/setrack-web/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SetRack · Apunta la serie, vuelve a la barra">
+<meta name="twitter:description" content="Registro de gimnasio para Android. Apunta tus series en segundos y tus datos se quedan solo en tu móvil.">
+<meta name="twitter:image" content="https://iggykimi.github.io/setrack-web/assets/og.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SetRack","operatingSystem":"Android","applicationCategory":"HealthApplication","description":"Registro de gimnasio offline. Apunta tus series en segundos: sesión guiada, rutinas, calentamiento, 1RM estimado y exportación CSV. Sin cuenta, sin anuncios, sin permiso de internet.","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"featureList":["Registro de series offline","Sesión guiada","Rutinas con huecos","Calentamiento con discos","1RM estimado (Brzycki)","61 ejercicios base y personalizados","Exportación CSV","Español e inglés","kg/lb"],"author":{"@type":"Person","name":"iggykimi","url":"https://github.com/iggykimi"}}
+</script>
 <style>
-  :root { color-scheme: dark; }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: #000; color: #eceee8; font: 16px/1.6 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
-  main { max-width: 680px; margin: 0 auto; padding: 48px 20px 80px; }
-  h1 { font-size: 44px; letter-spacing: -1px; margin: 8px 0 4px; }
-  h2 { font-size: 22px; margin-top: 40px; }
-  .tag { color: #9ba3ab; margin: 0; }
-  .pill { display: inline-block; border: 1px solid #2c2f33; border-radius: 999px; padding: 2px 12px; font-size: 13px; color: #b9bfc6; margin: 4px 4px 0 0; }
-  a { color: #eceee8; }
-  ul { padding-left: 20px; }
-  li { margin: 6px 0; }
-  footer { margin-top: 56px; color: #7c848d; font-size: 14px; border-top: 1px solid #1f2124; padding-top: 16px; }
-  footer a { color: #9ba3ab; }
+  /* ============ SetRack · negro gimnasio, voz de app ============ */
+  :root {
+    --negro: #0B0C0E;
+    --panel: #121419;
+    --panel-2: #171A20;
+    --borde: #262A31;
+    --borde-suave: #1C1F25;
+    --texto: #F4F5F1;
+    --texto-2: #9BA3AB;
+    --texto-3: #7E868E;
+    --azul: #4A8CFF;
+    --rojo: #F2555A;
+    --rojo-tinta: #16090A;
+    --mono: ui-monospace, "Cascadia Mono", "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --texto-fuente: Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --curva-fuerte: cubic-bezier(.34, 1.3, .4, 1);
+    --curva-suave: cubic-bezier(.16, 1, .3, 1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scrollbar-color: var(--borde) transparent; scrollbar-width: thin; }
+  body {
+    background: var(--negro);
+    color: var(--texto);
+    font: 16px/1.6 var(--texto-fuente);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--azul); color: var(--negro); }
+  a { color: var(--texto); }
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--azul); outline-offset: 3px; border-radius: 8px;
+  }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; margin: -1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  .saltar {
+    position: absolute; left: -9999px;
+    background: var(--rojo); color: var(--rojo-tinta);
+    padding: 10px 16px; font-weight: 700; z-index: 100; text-decoration: none;
+  }
+  .saltar:focus { left: 12px; top: 12px; }
+
+  .envoltura { max-width: 1060px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
+
+  /* ---------- nav isla flotante ---------- */
+  .navegacion {
+    position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+    z-index: 40;
+    display: flex; align-items: center; gap: clamp(14px, 3vw, 28px);
+    background: rgba(11, 12, 14, .94);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    padding: 10px clamp(14px, 2.5vw, 22px);
+    max-width: calc(100vw - 24px);
+  }
+  .navegacion .marca {
+    font: 800 16px/1 var(--texto-fuente);
+    letter-spacing: .2px;
+    color: var(--texto); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .navegacion .marca svg { display: block; }
+  .navegacion nav { display: flex; gap: clamp(10px, 2vw, 20px); }
+  .navegacion nav a {
+    font: 500 13.5px/1 var(--texto-fuente);
+    color: var(--texto-2); text-decoration: none;
+    padding: 8px 4px;
+    transition: color 200ms var(--curva-suave);
+  }
+  .navegacion nav a:hover { color: var(--texto); }
+  .navegacion .cafe {
+    font: 700 13px/1 var(--texto-fuente);
+    text-decoration: none;
+    background: var(--rojo); color: var(--rojo-tinta);
+    border-radius: 999px; padding: 9px 14px;
+    white-space: nowrap;
+    transition: transform 160ms var(--curva-suave), background-color 160ms var(--curva-suave);
+  }
+  .navegacion .cafe:hover { background: #f66a6e; }
+  .navegacion .cafe:active { transform: scale(.96); }
+  @media (max-width: 640px) {
+    .navegacion nav { display: none; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; padding: clamp(120px, 17vh, 190px) 0 clamp(40px, 6vh, 72px); }
+  .hero h1 {
+    font-weight: 900;
+    font-size: clamp(44px, 8vw, 96px);
+    line-height: .98;
+    letter-spacing: -.03em;
+    margin: 22px 0 20px;
+    max-width: 12em;
+  }
+  .linea-mascara { display: block; overflow: hidden; padding-block: .04em; margin-block: -.04em; }
+  .linea { display: block; }
+  .hero .lead, .hero .acciones { opacity: 1; }
+  .hero h1 .linea-2 { color: var(--texto-2); }
+  .hero .lead {
+    max-width: 32em;
+    font-size: clamp(16px, 1.6vw, 19px);
+    color: var(--texto-2);
+  }
+  .hero .lead b { color: var(--texto); font-weight: 700; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .boton {
+    display: inline-block;
+    font: 800 15px/1 var(--texto-fuente);
+    letter-spacing: .1px;
+    text-decoration: none;
+    padding: 16px 26px;
+    border-radius: 999px;
+    touch-action: manipulation;
+    transition: transform 160ms var(--curva-suave), background-color 160ms var(--curva-suave), border-color 160ms var(--curva-suave);
+  }
+  .boton:active { transform: scale(.97); }
+  .boton-rojo { background: var(--rojo); color: var(--rojo-tinta); }
+  .boton-rojo:hover { background: #f66a6e; box-shadow: 0 10px 28px rgba(242, 85, 90, .22); }
+  .boton-fantasma { border: 1.5px solid var(--borde); color: var(--texto); }
+  .boton-fantasma:hover { border-color: var(--texto-3); background: var(--panel); }
+  .boton[aria-disabled="true"] { opacity: .55; cursor: default; }
+  .boton[aria-disabled="true"]:hover { border-color: var(--borde); background: transparent; }
+
+  /* (la captura flotante del hero se retiró: chocaba con el titular) */
+
+  /* ---------- la barra: a sangre, discos de marca ---------- */
+  .escena-barra {
+    margin-top: clamp(36px, 6vh, 64px);
+    width: 100vw; position: relative; left: 50%; right: 50%;
+    margin-left: -50vw; margin-right: -50vw;
+    overflow: hidden;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .escena-barra::before {
+    content: ""; position: absolute; inset: -10% 0; pointer-events: none;
+    background:
+      radial-gradient(38% 55% at 30% 52%, rgba(242, 85, 90, .06), transparent 70%),
+      radial-gradient(38% 55% at 70% 52%, rgba(74, 140, 255, .06), transparent 70%);
+  }
+  .escena-barra svg { width: min(100%, 880px); height: auto; display: block; flex: none; }
+  .lectora {
+    width: min(880px, 100%); margin: 12px auto 0;
+    padding: 0 clamp(20px, 5vw, 56px);
+    display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
+  }
+  .lectora .kg {
+    position: relative; height: 1.3em;
+    font: 700 clamp(20px, 2.6vw, 30px)/1.3 var(--mono);
+    letter-spacing: 1px; color: var(--rojo);
+    font-variant-numeric: tabular-nums;
+  }
+  .lectora .etiqueta-kg {
+    font: 500 11px/1 var(--mono); letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--texto-3);
+  }
+  .lectora .kg span { opacity: 0; position: absolute; right: 0; top: 0; white-space: nowrap; }
+  .lectora .kg .s2 { opacity: 1; }
+
+  @media (max-width: 700px) {
+    .escena-barra svg { width: auto; height: 120px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .linea { transform: translateY(115%); animation: subir-linea 760ms var(--curva-fuerte) forwards; }
+    .linea-mascara:nth-child(2) .linea { animation-delay: 90ms; }
+    .hero .lead { opacity: 0; animation: aparecer 600ms var(--curva-suave) 300ms forwards; }
+    .hero .acciones { opacity: 0; animation: aparecer 600ms var(--curva-suave) 420ms forwards; }
+    .escena-barra { opacity: 0; animation: aparecer 600ms var(--curva-suave) 500ms forwards; }
+    @keyframes subir-linea { to { transform: none; } }
+    @keyframes aparecer { to { opacity: 1; } }
+    .placa { --desde: -260px; animation: cargar 480ms var(--curva-fuerte) 735ms both; transform-box: fill-box; }
+    .p2 { --desde: -400px; animation-delay: 835ms; }
+    .placa.derecha { --desde: 260px; }
+    .placa.derecha.p2 { --desde: 400px; }
+    .lectora .kg .s0 { animation: kg0 1100ms linear 500ms both; }
+    .lectora .kg .s1 { animation: kg1 1100ms linear 500ms both; }
+    .lectora .kg .s2 { animation: kg2 1100ms linear 500ms both; }
+    @keyframes cargar { from { transform: translateX(var(--desde)); opacity: 0; } to { transform: none; opacity: 1; } }
+    @keyframes kg0 { 0%, 60% { opacity: 1; } 65%, 100% { opacity: 0; } }
+    @keyframes kg1 { 0%, 61% { opacity: 0; } 66%, 71% { opacity: 1; } 76%, 100% { opacity: 0; } }
+    @keyframes kg2 { 0%, 72% { opacity: 0; } 77%, 100% { opacity: 1; } }
+  }
+
+  /* ---------- cinta de rasgos (única, con propósito) ---------- */
+  .cinta {
+    border-block: 1px solid var(--borde-suave);
+    overflow: hidden;
+    margin-top: clamp(44px, 7vh, 76px);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .cinta .pista {
+    display: flex; gap: 0; width: max-content;
+    animation: deslizar 36s linear infinite;
+  }
+  .cinta:hover .pista { animation-play-state: paused; }
+  .cinta span {
+    font: 500 14px/1 var(--texto-fuente);
+    color: var(--texto-3);
+    padding: 15px 0; white-space: nowrap;
+  }
+  .cinta span i { font-style: normal; color: var(--rojo); padding: 0 18px; }
+  @keyframes deslizar { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .cinta .pista { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+  }
+
+  /* ---------- secciones ---------- */
+  .seccion { padding: clamp(56px, 9vh, 104px) 0; scroll-margin-top: 88px; }
+  .titulo-seccion {
+    font-weight: 900;
+    font-size: clamp(30px, 4.4vw, 54px);
+    letter-spacing: -.03em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  .subtitulo-seccion { margin-top: 14px; color: var(--texto-2); max-width: 34em; }
+
+  /* ---------- carrusel de scroll: la tira se mueve al bajar ---------- */
+  .pan-seccion { height: 190vh; position: relative; view-timeline-name: --pan; }
+  .pan-pin {
+    position: sticky; top: 0; height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; gap: 18px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+  }
+  .pan-cabecera { padding: 0 clamp(20px, 5vw, 56px); }
+  .pan-pista {
+    display: flex; gap: clamp(18px, 2.5vw, 30px);
+    width: max-content;
+    padding-inline: 6vw;
+    list-style: none;
+  }
+  .tarjeta { flex: 0 0 min(360px, 74vw); }
+  .tarjeta .bisel {
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    padding: 8px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05);
+  }
+  .tarjeta img {
+    display: block; width: 100%; height: auto;
+    border-radius: 14px;
+    background: var(--negro);
+  }
+  .tarjeta figcaption { margin-top: 14px; padding: 0 4px; }
+  .tarjeta .nombre {
+    display: block;
+    font: 600 13.5px/1.3 var(--texto-fuente);
+    color: var(--texto-2); margin-bottom: 5px;
+  }
+  .tarjeta .desc { font-size: 14.5px; color: var(--texto); }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .pan-pista {
+        animation: pan linear both;
+        animation-timeline: --pan;
+        animation-range: entry 100% exit 0%;
+      }
+      @keyframes pan { to { transform: translateX(calc(-100% + 100vw)); } }
+    }
+  }
+  /* sin soporte o con movimiento reducido: carrusel de desplazamiento libre */
+  @supports not (animation-timeline: view()) {
+    .pan-seccion { height: auto; }
+    .pan-pin {
+      position: static; height: auto;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      overscroll-behavior-x: contain;
+      padding-block: 34px 22px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--borde) transparent;
+    }
+    .tarjeta { scroll-snap-align: center; }
+  }  @media (prefers-reduced-motion: reduce) {
+    .pan-seccion { height: auto; }
+    .pan-pin {
+      position: static; height: auto;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      overscroll-behavior-x: contain;
+      padding-block: 34px 22px;
+    }
+  }
+  @media (max-width: 700px) {
+    .pan-seccion { height: 250vh; }
+  }
+
+  /* ---------- funciones: retícula limpia, sin cajas ---------- */
+  .funciones {
+    margin-top: 46px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(22px, 3.5vw, 40px) clamp(24px, 5vw, 72px);
+  }
+  .funciones .termino dt {
+    font-weight: 800; font-size: 17px; letter-spacing: -.01em;
+    margin-bottom: 6px;
+  }
+  .funciones .termino dd { color: var(--texto-2); font-size: 15px; max-width: 26em; }
+  .linea-unidades {
+    margin-top: clamp(30px, 4vh, 44px);
+    font-size: 15px;
+    color: var(--texto-2);
+  }
+  .cero-datos span { white-space: nowrap; }
+
+  /* ---------- privacidad ---------- */
+  .privacidad .lead-priv { margin-top: 16px; max-width: 34em; color: var(--texto-2); font-size: clamp(16px, 1.5vw, 18px); }
+  .cero-datos {
+    margin-top: 20px;
+    font: 600 13.5px/1.7 var(--mono);
+    letter-spacing: .5px;
+    color: var(--texto-2);
+  }
+  .cero-datos b { color: var(--rojo); font-weight: 700; }
+  .puntos-priv { list-style: none; margin-top: 28px; max-width: 620px; }
+  .puntos-priv li {
+    display: flex; gap: 12px; padding: 11px 0; align-items: baseline;
+    color: var(--texto-2); border-bottom: 1px solid var(--borde-suave);
+  }
+  .puntos-priv li:last-child { border-bottom: 0; }
+  .puntos-priv li::before { content: "✓"; color: var(--azul); font-weight: 800; flex: none; }
+  details.legal {
+    max-width: 620px;
+    margin-top: 32px;
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 18px;
+  }
+  details.legal summary {
+    cursor: pointer;
+    padding: 17px 20px;
+    font: 700 14.5px/1.3 var(--texto-fuente);
+    list-style: none;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  }
+  details.legal summary::-webkit-details-marker { display: none; }
+  details.legal summary .chev { transition: transform 200ms var(--curva-suave); color: var(--texto-2); }
+  details.legal[open] summary .chev { transform: rotate(180deg); }
+  details.legal .cuerpo-legal { padding: 2px 20px 20px; border-top: 1px solid var(--borde-suave); }
+  details.legal .cuerpo-legal p { margin: 12px 0; color: var(--texto-2); font-size: 14.5px; }
+  details.legal .cuerpo-legal p:first-of-type { color: var(--texto); }
+  details.legal .cuerpo-legal ul { margin: 12px 0; padding-left: 22px; color: var(--texto-2); font-size: 14.5px; }
+  details.legal .cuerpo-legal li { margin: 7px 0; }
+  details.legal .fecha { font-size: 13px; color: var(--texto-3); font-style: italic; margin-top: 14px; }
+  details.legal .resumen-en {
+    margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--borde);
+    font-size: 13px; color: var(--texto-3); font-style: italic;
+  }
+
+  /* ---------- CTA final con marca fantasma ---------- */
+  .cta-final { text-align: left; padding-top: clamp(36px, 5vh, 64px); }
+  .cta-final .acciones { justify-content: flex-start; }
+  .cta-final .envoltura { position: relative; }
+  .cta-final .titulo-seccion { font-size: clamp(30px, 4.4vw, 54px); }
+  .cta-final .recap { margin-top: 16px; color: var(--texto-2); font-size: 16px; }
+  .cta-final p { color: var(--texto-2); margin-top: 16px; }
+
+  /* ---------- preguntas ---------- */
+  .faq {
+    max-width: 640px;
+    margin-top: 36px;
+    display: grid; gap: 10px;
+  }
+  .faq details {
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+  }
+  .faq summary {
+    cursor: pointer;
+    padding: 16px 20px;
+    font: 700 15px/1.4 var(--texto-fuente);
+    list-style: none;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary .chev { transition: transform 200ms var(--curva-suave); color: var(--texto-3); flex: none; }
+  .faq details[open] summary .chev { transform: rotate(180deg); }
+  .faq .respuesta {
+    padding: 0 20px 16px;
+    color: var(--texto-2);
+    font-size: 15px;
+  }
+
+  /* ---------- pie ---------- */
+  .pie {
+    border-top: 1px solid var(--borde-suave);
+    max-width: calc(1060px + 2 * clamp(20px, 5vw, 56px));
+    margin: 0 auto;
+    padding: 26px clamp(20px, 5vw, 56px) 44px;
+    display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between;
+    font-size: 13.5px; color: var(--texto-3);
+  }
+  .pie nav { display: flex; gap: 18px; }
+  .pie a { color: var(--texto-2); text-decoration: none; }
+  .pie a:hover { color: var(--texto); }
+
+  /* ---------- reveals ---------- */
+  .revelar { opacity: 1; }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .revelar {
+        opacity: 0;
+        animation: revelar 640ms var(--curva-suave) both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 55%;
+      }
+      @keyframes revelar { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+    }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 760px) {
+    .funciones { grid-template-columns: 1fr; }
+    .hero h1 { max-width: 100%; }
+  }
+  @media (max-width: 520px) {
+    .acciones .boton { width: 100%; text-align: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .boton, details.legal summary .chev, .faq summary .chev, .navegacion nav a, .navegacion .cafe { transition: none; }
+    .cinta .pista { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+    .revelar { opacity: 1; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <p class="tag">App de gimnasio · Android</p>
-  <h1>SetRack</h1>
-  <p class="tag">Registro de series offline. Sin cuenta, sin anuncios, sin nube.</p>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 
-  <h2>Qué hace</h2>
-  <ul>
-    <li>Apunta tus series en segundos, pensado para una mano entre serie y serie.</li>
-    <li>Te dice qué toca hoy y cuánto levantaste la última vez.</li>
-    <li>Récords automáticos (1RM estimado), volumen semanal y series por músculo.</li>
-    <li>Calentamiento sugerido y descanso por ti entre series.</li>
-    <li>Copias de seguridad que controlas tú: Descargas, CSV y restauración.</li>
-  </ul>
+<header class="navegacion">
+  <a class="marca" href="#" translate="no" aria-label="SetRack, inicio">
+    <svg width="26" height="14" viewBox="0 0 108 40" aria-hidden="true">
+      <rect x="2" y="18" width="104" height="4" rx="2" fill="#8E969E"/>
+      <rect x="34" y="17" width="20" height="6" fill="#c9cdc6"/>
+      <rect x="26" y="13" width="4" height="14" rx="1.6" fill="#8E969E"/>
+      <rect x="78" y="13" width="4" height="14" rx="1.6" fill="#8E969E"/>
+      <rect x="16" y="2" width="9" height="36" rx="2.8" fill="#F2555A"/>
+      <rect x="8"  y="8" width="7" height="24" rx="2.2" fill="#4A8CFF"/>
+      <rect x="83" y="2" width="9" height="36" rx="2.8" fill="#F2555A"/>
+      <rect x="93" y="8" width="7" height="24" rx="2.2" fill="#4A8CFF"/>
+    </svg>
+    SetRack
+  </a>
+  <nav aria-label="Secciones">
+    <a href="#app">La app</a>
+    <a href="#privacidad">Privacidad</a>
+  </nav>
+  <a href="en/" lang="en" hreflang="en" title="English">EN</a><a class="cafe" href="https://ko-fi.com/iggykimi">Invitar un café</a>
+</header>
 
-  <p>
-    <span class="pill">Offline</span>
-    <span class="pill">Sin cuenta</span>
-    <span class="pill">Sin anuncios</span>
-    <span class="pill">Sin permisos de red</span>
-    <span class="pill">Español · English</span>
-    <span class="pill">kg / lb</span>
-  </p>
+<div class="envoltura">
 
-  <h2>Política de privacidad</h2>
-  <p><em>Última actualización: 3 de octubre de 2026.</em></p>
-  <p>
-    SetRack <strong>no recoge, transmite ni comparte ningún dato personal</strong>.
-    La app no tiene permiso de internet: la información que registras (ejercicios,
-    series, pesos) se guarda únicamente en el almacenamiento local de tu dispositivo.
-  </p>
-  <p>Tú controlas tus datos:</p>
-  <ul>
-    <li>«Guardar copia» escribe un archivo en la carpeta Descargas cuando tú lo pides.</li>
-    <li>La copia de seguridad de Android (si está activa en el sistema) puede incluir
-        los datos de la app; se gestiona desde los ajustes de tu dispositivo.</li>
-    <li>Desinstalar la app borra todos los datos.</li>
-  </ul>
-  <p>
-    No hay analítica, anuncios, rastreadores ni servicios de terceros. La app
-    tampoco solicita permisos de ubicación, cámara, contactos ni ningún otro
-    además del almacenamiento local.
-  </p>
-  <p><em>English summary: SetRack collects no data. It works fully offline, has no
-  internet permission, no ads, no analytics and no third-party services. All data
-  stays on your device; uninstalling removes everything.</em></p>
+  <section class="hero" aria-label="Presentación">
+    <h1>
+      <span class="linea-mascara"><span class="linea">Apunta la serie.</span></span>
+      <span class="linea-mascara"><span class="linea linea-2">Vuelve a la barra.</span></span>
+    </h1>
+    <p class="lead">
+      Tus series en segundos, con una mano entre serie y serie.
+      <b>Sin permiso de internet: los datos se quedan en tu móvil.</b>
+    </p>
+    <div class="acciones">
+      <a class="boton boton-rojo" href="https://ko-fi.com/iggykimi">Invitar un café</a>
+      <span class="boton boton-fantasma" aria-disabled="true">Próximamente en Google Play</span>
+    </div>
+    <div class="escena-barra">
+      <svg class="barra-icono" viewBox="0 -33 1200 553" aria-hidden="true">
+        <defs>
+          <linearGradient id="acero" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f4f5f1"/>
+            <stop offset="1" stop-color="#8e969e"/>
+          </linearGradient>
+          <linearGradient id="rojog" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ff7a7e"/>
+            <stop offset=".12" stop-color="#F2555A"/>
+            <stop offset="1" stop-color="#c93b40"/>
+          </linearGradient>
+          <linearGradient id="azulg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7fadff"/>
+            <stop offset=".12" stop-color="#4A8CFF"/>
+            <stop offset="1" stop-color="#2f6ad6"/>
+          </linearGradient>
+        </defs>
 
-  <h2>Contacto y apoyo</h2>
-  <p>
-    SetRack es gratis, sin anuncios y sin rastreadores. Si te sirve cada día,
-    <a href="https://ko-fi.com/iggykimi">invítame a un café en Ko-fi</a> — se agradece
-    y mantiene el proyecto independiente.
-  </p>
-  <p>
-    Dudas o incidencias:
-    <a href="https://github.com/iggykimi/setrack-web/issues">abre una incidencia en el repositorio del proyecto</a>.
-  </p>
+        <g class="grupo-barra">
+          <!-- eje con empuñadura central, como en el icono -->
+          <rect x="156" y="175" width="888" height="50" rx="25" fill="url(#acero)"/>
+          <rect x="489" y="178" width="222" height="44" fill="#c9cdc6"/>
+        </g>
 
-  <footer>
-    SetRack · © 2026 · Privacidad primero: tus series son tuyas.
-  </footer>
+        <!-- collares fijos -->
+        <rect class="collar" x="400" y="128" width="39" height="144" rx="16" fill="url(#acero)"/>
+        <rect class="collar" x="761" y="128" width="39" height="144" rx="16" fill="url(#acero)"/>
+
+        <!-- discos: rojo grande contra el collar, azul pequeño fuera -->
+        <g class="placa izquierda p1"><rect x="294" y="-33" width="94" height="466" rx="29" fill="url(#rojog)"/></g>
+        <g class="placa izquierda p2"><rect x="211" y="66" width="72" height="268" rx="24" fill="url(#azulg)"/></g>
+        <g class="placa derecha p1"><rect x="812" y="-33" width="94" height="466" rx="29" fill="url(#rojog)"/></g>
+        <g class="placa derecha p2"><rect x="917" y="66" width="72" height="268" rx="24" fill="url(#azulg)"/></g>
+      </svg>
+
+      <p class="lectora">
+        <span class="sr-only">La barra carga hasta 100 kilos.</span>
+        <span class="kg">
+          <span class="s0" aria-hidden="true">20&nbsp;kg</span>
+          <span class="s1" aria-hidden="true">60&nbsp;kg</span>
+          <span class="s2 final" aria-hidden="true">100&nbsp;kg</span>
+        </span>
+        <span class="etiqueta-kg" aria-hidden="true">en la barra</span>
+      </p>
+    </div>
+  </section>
+</div>
+
+<div class="cinta" aria-hidden="true">
+  <div class="pista">
+    <span>Sin cuenta<i>·</i>61 ejercicios<i>·</i>1RM estimado<i>·</i>Series por músculo<i>·</i>Calentamiento con discos<i>·</i>Exporta CSV<i>·</i>kg/lb<i>·</i>es/en<i>·</i></span>
+    <span>Sin cuenta<i>·</i>61 ejercicios<i>·</i>1RM estimado<i>·</i>Series por músculo<i>·</i>Calentamiento con discos<i>·</i>Exporta CSV<i>·</i>kg/lb<i>·</i>es/en<i>·</i></span>
+  </div>
+</div>
+
+<main id="contenido" tabindex="-1">
+
+  <section class="pan-seccion" id="app" aria-labelledby="t-app">
+    <div class="pan-pin" role="region" tabindex="0" aria-label="Capturas de la app">
+      <div class="pan-cabecera">
+        <h2 class="titulo-seccion" id="t-app">Cómo se entrena</h2>
+      </div>
+
+      <ul class="pan-pista">
+        <li class="tarjeta">
+          <figure>
+            <div class="bisel">
+              <img src="assets/img/01-entrenar.webp" alt="Pantalla Entrenar: la rutina de hoy con sus ejercicios, músculos y el botón para empezar." width="560" height="1141">
+            </div>
+            <figcaption><span class="nombre">Entrenar</span><span class="desc">Qué toca hoy, según tu rutina.</span></figcaption>
+          </figure>
+        </li>
+        <li class="tarjeta">
+          <figure>
+            <div class="bisel">
+              <img loading="lazy" decoding="async" src="assets/img/02-sesion.webp" alt="Sesión en curso: la lista de series de hoy con pesos y repeticiones." width="560" height="1141">
+            </div>
+            <figcaption><span class="nombre">Sesión</span><span class="desc">Cada serie, apuntada al momento.</span></figcaption>
+          </figure>
+        </li>
+        <li class="tarjeta">
+          <figure>
+            <div class="bisel">
+              <img loading="lazy" decoding="async" src="assets/img/23-calentamiento.webp" alt="Calentamiento sugerido con las series de aproximación y los discos necesarios." width="560" height="1141">
+            </div>
+            <figcaption><span class="nombre">Calentamiento</span><span class="desc">Los discos que vas a necesitar, antes de empezar.</span></figcaption>
+          </figure>
+        </li>
+        <li class="tarjeta">
+          <figure>
+            <div class="bisel">
+              <img loading="lazy" decoding="async" src="assets/img/18-progreso-3m.webp" alt="Progreso de tres meses: sesiones, volumen acumulado y gráfico por semana." width="560" height="1141">
+            </div>
+            <figcaption><span class="nombre">Progreso</span><span class="desc">1RM estimado (Brzycki) y progreso por semana, mes, trimestre o año.</span></figcaption>
+          </figure>
+        </li>
+        <li class="tarjeta">
+          <figure>
+            <div class="bisel">
+              <img loading="lazy" decoding="async" src="assets/img/09-ejercicios.webp" alt="Catálogo de ejercicios con buscador, filtros por músculo y material, y botón para añadir ejercicios propios." width="560" height="1141">
+            </div>
+            <figcaption><span class="nombre">Catálogo</span><span class="desc">61 ejercicios base, con músculo y material. Y añade los tuyos.</span></figcaption>
+          </figure>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="envoltura">
+
+  <section class="seccion" aria-label="Funciones">
+    <dl class="funciones revelar">
+      <div class="termino">
+        <dt>Sesión guiada</dt>
+        <dd>Te recuerda cuánto pesaste la última vez y descansa por ti entre series.</dd>
+      </div>
+      <div class="termino">
+        <dt>Rutinas reutilizables</dt>
+        <dd>Con huecos para elegir la máquina que esté libre.</dd>
+      </div>
+      <div class="termino">
+        <dt>Catálogo de ejercicios</dt>
+        <dd>61 base, con músculo y material. Y añade los tuyos.</dd>
+      </div>
+      <div class="termino">
+        <dt>CSV y copias</dt>
+        <dd>Exporta e importa CSV; guarda copias en Descargas cuando quieras.</dd>
+      </div>
+      <div class="termino">
+        <dt>Idiomas y unidades</dt>
+        <dd>En español e inglés. Kilos o libras.</dd>
+      </div>
+      <div class="termino">
+        <dt>Calentamiento</dt>
+        <dd>Con los discos que vas a necesitar.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="seccion privacidad" id="privacidad" aria-labelledby="t-privacidad">
+    <h2 class="titulo-seccion revelar" id="t-privacidad">Tus datos no salen del móvil</h2>
+    <p class="lead-priv revelar">
+      La app no tiene permiso de internet. No puede enviar tus datos
+      a ningún sitio.
+    </p>
+    <p class="cero-datos revelar">
+      <span><b>0</b> datos recogidos</span> · <span><b>0</b> anuncios</span> · <span><b>0</b> rastreadores</span> · <span><b>0</b> servicios de terceros</span>
+    </p>
+
+    <ul class="puntos-priv revelar">
+      <li>«Guardar copia» escribe un archivo en Descargas solo cuando tú lo pides.</li>
+      <li>La copia de seguridad de Android, si la activas, se gestiona desde los ajustes del sistema.</li>
+      <li>Desinstalar la app borra todos los datos.</li>
+    </ul>
+
+    <details class="legal revelar">
+      <summary>
+        Política de privacidad · texto íntegro
+        <span class="chev" aria-hidden="true">▾</span>
+      </summary>
+      <div class="cuerpo-legal">
+        <p class="fecha">Última actualización: 3 de octubre de 2026.</p>
+        <p>SetRack no recoge, transmite ni comparte ningún dato personal.
+           La app no tiene permiso de internet: la información que registras
+           (ejercicios, series, pesos) se guarda únicamente en el almacenamiento
+           local de tu dispositivo.</p>
+        <p>Tú controlas tus datos:</p>
+        <ul>
+          <li>«Guardar copia» escribe un archivo en la carpeta Descargas cuando tú lo pides.</li>
+          <li>La copia de seguridad de Android (si está activa en el sistema) puede incluir los datos de la app; se gestiona desde los ajustes de tu dispositivo.</li>
+          <li>Desinstalar la app borra todos los datos.</li>
+        </ul>
+        <p>No hay analítica, anuncios, rastreadores ni servicios de terceros.
+           La app tampoco solicita permisos de ubicación, cámara, contactos ni
+           ningún otro además del almacenamiento local.</p>
+        <p class="resumen-en" lang="en">English summary: SetRack collects no data. It works fully offline, has no
+           internet permission, no ads, no analytics and no third-party services. All data
+           stays on your device; uninstalling removes everything.</p>
+      </div>
+    </details>
+  </section>
+  <section class="seccion" id="preguntas" aria-labelledby="t-preguntas">
+    <h2 class="titulo-seccion revelar" id="t-preguntas">Preguntas</h2>
+
+    <div class="faq revelar">
+      <details>
+        <summary>
+          ¿Necesito crear una cuenta?
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <p class="respuesta">No. Abres la app y entrenas. No hay registro, ni correo, ni contraseñas.</p>
+      </details>
+      <details>
+        <summary>
+          ¿Funciona sin conexión?
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <p class="respuesta">Sí. Es 100% offline: la app ni siquiera tiene permiso de internet.
+           Sirve igual en un sótano sin cobertura.</p>
+      </details>
+      <details>
+        <summary>
+          ¿Dónde están mis datos?
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <p class="respuesta">En tu móvil y solo en tu móvil. Sin nube, sin analítica y sin rastreadores.
+           La copia la haces tú: exportación CSV o archivo en Descargas.</p>
+      </details>
+      <details>
+        <summary>
+          ¿Puedo añadir mis propios ejercicios?
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <p class="respuesta">Sí. Los 61 ejercicios son la base: crea los tuyos con su músculo y su material.</p>
+      </details>
+      <details>
+        <summary>
+          ¿Cuánto cuesta?
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <p class="respuesta">Nada. Gratis, sin anuncios y sin compras dentro de la app.</p>
+      </details>
+      <details>
+        <summary>
+          ¿Cuándo estará en Google Play?
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <p class="respuesta">Está en fase de prueba interna. Cuando salga la versión pública,
+           el enlace estará aquí.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="seccion cta-final" id="descargar" aria-labelledby="t-cta">
+    <h2 class="titulo-seccion revelar" id="t-cta">Gratis. Sin anuncios. Sin cuenta.</h2>
+    <p class="recap revelar">Sesión guiada, rutinas, calentamiento, 1RM estimado y CSV. Tú levantas.</p>
+    <div class="acciones revelar">
+      <a class="boton boton-rojo" href="https://ko-fi.com/iggykimi">Invitar un café</a>
+      <span class="boton boton-fantasma" aria-disabled="true">Próximamente en Google Play</span>
+    </div>
+    <p class="revelar">Está en prueba interna de Google Play. Si te resulta útil, puedes invitar un café.</p>
+  </section>
+  </div>
 </main>
+
+<footer class="pie">
+  <p>SetRack · © 2026</p>
+  <nav aria-label="Enlaces del sitio">
+    <a href="https://ko-fi.com/iggykimi">Ko-fi</a>
+    <a href="https://github.com/iggykimi/setrack-web/issues">Incidencias</a>
+    <a href="#privacidad">Privacidad</a>
+  </nav>
+</footer>
 </body>
 </html>
