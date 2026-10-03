@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iggykimi.github.io/setrack-web/sitemap.xml

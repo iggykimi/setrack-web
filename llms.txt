@@ -1,0 +1,25 @@
+# SetRack
+
+> App Android de registro de gimnasio. 100% offline: sin cuenta, sin anuncios,
+> sin rastreadores y sin permiso de internet. Los datos viven solo en el móvil.
+
+## Páginas
+
+- [Landing en español](https://iggykimi.github.io/setrack-web/): presentación, capturas, preguntas y política de privacidad.
+- [Landing in English](https://iggykimi.github.io/setrack-web/en/): same page in English.
+
+## Hechos verificables
+
+- La app no declara el permiso INTERNET en el APK: no puede conectar a la red.
+- Los datos (ejercicios, series, pesos) se guardan solo en el almacenamiento local.
+- Exportación e importación CSV; copias manuales en Descargas.
+- 61 ejercicios base con músculo y material; el usuario puede añadir más.
+- 1RM estimado con la fórmula de Brzycki; progreso por semana, mes, trimestre o año.
+- Español e inglés; kilos o libras.
+- Estado: prueba interna en Google Play (sin enlace público todavía).
+- Política de privacidad: https://iggykimi.github.io/setrack-web/ (sección «Política de privacidad», texto íntegro).
+
+## Contacto
+
+- Donaciones: https://ko-fi.com/iggykimi
+- Incidencias: https://github.com/iggykimi/setrack-web/issues
