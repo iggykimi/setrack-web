@@ -26,157 +26,239 @@
 <meta name="twitter:title" content="SetRack · Log the set, get back to the bar">
 <meta name="twitter:description" content="Workout tracker for Android. Log your sets in seconds and your data stays on your phone.">
 <meta name="twitter:image" content="https://iggykimi.github.io/setrack-web/assets/og-en.jpg">
+<link rel="preload" href="../fonts/anton-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/spacemono-latin-400.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"SetRack","operatingSystem":"Android","applicationCategory":"HealthApplication","description":"Offline workout tracker for Android. Log your sets in seconds: guided session, routines, warm-up, estimated 1RM and CSV export. No account, no ads, no internet permission.","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"featureList":["Offline set logging","Guided session","Routines with open slots","Warm-up plates","Estimated 1RM (Brzycki)","61 base exercises, customizable","CSV export","Spanish and English","kg/lb"],"author":{"@type":"Person","name":"iggykimi","url":"https://github.com/iggykimi"}}
 </script>
 <style>
-  /* ============ SetRack · gym black, app voice ============ */
+  /* ============ SetRack · fusion A+B: iron poster + three-act session ============ */
+  @font-face {
+    font-family: "Anton";
+    src: url("../fonts/anton-latin-400.woff2") format("woff2");
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "Space Mono";
+    src: url("../fonts/spacemono-latin-400.woff2") format("woff2");
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "Space Mono";
+    src: url("../fonts/spacemono-latin-700.woff2") format("woff2");
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
   :root {
     --negro: #0B0C0E;
     --panel: #121419;
-    --panel-2: #171A20;
-    --borde: #262A31;
-    --borde-suave: #1C1F25;
-    --texto: #F4F5F1;
-    --texto-2: #9BA3AB;
-    --texto-3: #7E868E;
-    --azul: #4A8CFF;
+    --borde: #23262D;
+    --hueso: #EDE8E1;
+    --acero: #9BA3AB;
+    --apagado: #6E767F;
     --rojo: #F2555A;
-    --rojo-tinta: #16090A;
-    --mono: ui-monospace, "Cascadia Mono", "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-    --texto-fuente: Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
-    --curva-fuerte: cubic-bezier(.34, 1.3, .4, 1);
-    --curva-suave: cubic-bezier(.16, 1, .3, 1);
+    --mono: "Space Mono", ui-monospace, Menlo, Consolas, monospace;
+    --cuerpo: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --display: "Anton", "Arial Narrow", sans-serif;
+    --fuerte: cubic-bezier(.34, 1.3, .4, 1);
+    --suave: cubic-bezier(.16, 1, .3, 1);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; scrollbar-color: var(--borde) transparent; scrollbar-width: thin; }
-  :root { color-scheme: dark; }
+  html { scroll-behavior: smooth; }
   body {
     background: var(--negro);
-    color: var(--texto);
-    font: 16px/1.6 var(--texto-fuente);
+    color: var(--hueso);
+    font: 16px/1.6 var(--cuerpo);
     -webkit-font-smoothing: antialiased;
-    -webkit-tap-highlight-color: transparent;
     overflow-x: hidden;
   }
-  ::selection { background: var(--azul); color: #0B0C0E; }
-  a { color: var(--texto); }
+  /* Film grain: one fixed layer over the background, no repaints on scroll */
+  body::after {
+    content: ""; position: fixed; inset: 0; z-index: 60;
+    pointer-events: none; opacity: .08;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+  ::selection { background: var(--rojo); color: var(--negro); }
+  a { color: var(--hueso); }
   a:focus-visible, button:focus-visible, summary:focus-visible {
-    outline: 3px solid var(--azul); outline-offset: 3px; border-radius: 8px;
+    outline: 3px solid var(--rojo); outline-offset: 3px; border-radius: 6px;
   }
   .sr-only {
     position: absolute; width: 1px; height: 1px; margin: -1px;
     overflow: hidden; clip-path: inset(50%); white-space: nowrap;
   }
   .saltar {
-    position: absolute; left: -9999px;
-    background: var(--rojo); color: var(--rojo-tinta);
-    padding: 10px 16px; font-weight: 700; z-index: 100; text-decoration: none;
+    position: absolute; left: -9999px; z-index: 100;
+    background: var(--rojo); color: var(--negro);
+    padding: 10px 16px; font-weight: 700; text-decoration: none;
   }
   .saltar:focus { left: 12px; top: 12px; }
 
   .envoltura { max-width: 1060px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
 
-  /* ---------- floating island nav ---------- */
+  /* ---------- nav: solid plate ---------- */
   .navegacion {
-    position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
-    z-index: 40;
-    display: flex; align-items: center; gap: clamp(14px, 3vw, 28px);
-    background: rgba(11, 12, 14, .94);
-    -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--borde);
-    border-radius: 999px;
-    padding: 10px clamp(14px, 2.5vw, 22px);
-    max-width: calc(100vw - 24px);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+    background: var(--negro);
+    border-bottom: 1px solid var(--borde);
   }
-  .navegacion .marca {
-    font: 800 16px/1 var(--texto-fuente);
-    letter-spacing: .2px;
-    color: var(--texto); text-decoration: none;
-    display: inline-flex; align-items: center; gap: 9px;
+  .navegacion .cinta-nav {
+    max-width: 1060px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px);
+    height: 56px; display: flex; align-items: center; gap: clamp(14px, 3vw, 26px);
   }
-  .navegacion .marca svg { display: block; }
-  .navegacion nav { display: flex; gap: clamp(10px, 2vw, 20px); }
+  .marca {
+    font: 400 19px/1 var(--display); letter-spacing: .04em; text-transform: uppercase;
+    color: var(--hueso); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .marca svg { display: block; }
+  .navegacion nav { display: flex; gap: clamp(10px, 2vw, 20px); margin-left: auto; }
   .navegacion nav a {
-    font: 500 13.5px/1 var(--texto-fuente);
-    color: var(--texto-2); text-decoration: none;
-    padding: 8px 4px;
-    transition: color 200ms var(--curva-suave);
+    font-size: 13.5px; color: var(--acero); text-decoration: none; padding: 8px 2px;
   }
-  .navegacion nav a:hover { color: var(--texto); }
+  .navegacion nav a:hover { color: var(--hueso); }
+  .navegacion .en {
+    font: 700 12px/1 var(--mono); letter-spacing: 1px;
+    color: var(--acero); text-decoration: none;
+    border: 1px solid var(--borde); border-radius: 999px; padding: 8px 12px;
+  }
+  .navegacion .en:hover { color: var(--hueso); border-color: var(--apagado); }
   .navegacion .cafe {
-    font: 700 13px/1 var(--texto-fuente);
-    text-decoration: none;
-    background: var(--rojo); color: var(--rojo-tinta);
-    border-radius: 999px; padding: 9px 14px;
-    white-space: nowrap;
-    transition: transform 160ms var(--curva-suave), background-color 160ms var(--curva-suave);
+    font-size: 13px; font-weight: 800; text-decoration: none;
+    background: var(--rojo); color: var(--negro);
+    border-radius: 999px; padding: 9px 15px; white-space: nowrap;
   }
-  .navegacion .cafe:hover { background: #f66a6e; }
+  .navegacion .cafe:hover { background: #ff6b70; }
   .navegacion .cafe:active { transform: scale(.96); }
-  @media (max-width: 640px) {
+  @media (max-width: 680px) {
     .navegacion nav { display: none; }
+    .navegacion .cinta-nav { gap: 12px; }
+    .navegacion .en { margin-left: auto; }
   }
 
-  /* ---------- hero ---------- */
-  .hero { position: relative; padding: clamp(120px, 17vh, 190px) 0 clamp(40px, 6vh, 72px); }
+  /* ---------- hero: poster, everything in the first viewport ---------- */
+  .hero { padding-top: 88px; padding-bottom: 30px; }
+  .kicker {
+    display: flex; align-items: center; gap: 10px;
+    font: 700 12px/1.5 var(--mono); letter-spacing: 2px; text-transform: uppercase;
+    color: var(--acero);
+  }
+  .kicker::before { content: ""; width: 10px; height: 10px; background: var(--rojo); flex: none; }
   .hero h1 {
-    font-weight: 900;
-    font-size: clamp(44px, 8vw, 96px);
-    line-height: .98;
-    letter-spacing: -.03em;
-    margin: 22px 0 20px;
-    max-width: 12em;
+    font-family: var(--display);
+    font-size: clamp(38px, 11vw, 118px);
+    line-height: 1; letter-spacing: .002em; text-transform: uppercase;
+    margin: 14px 0 0; color: var(--hueso);
   }
-  .linea-mascara { display: block; overflow: hidden; padding-block: .06em .14em; margin-block: -.06em -.14em; }
+  .linea-mascara { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
   .linea { display: block; }
-  .hero h1 .linea-2 { color: var(--texto-2); }
+  .hero h1 .rojo { color: var(--rojo); }
   .hero .lead {
-    max-width: 32em;
-    font-size: clamp(16px, 1.6vw, 19px);
-    color: var(--texto-2);
+    margin-top: 12px; max-width: 34em;
+    font-size: clamp(16px, 1.6vw, 19px); color: var(--acero);
   }
-  .hero .lead b { color: var(--texto); font-weight: 700; }
-  .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .hero .lead b { color: var(--hueso); font-weight: 700; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
   .boton {
     display: inline-block;
-    font: 800 15px/1 var(--texto-fuente);
-    letter-spacing: .1px;
-    text-decoration: none;
-    padding: 16px 26px;
-    border-radius: 999px;
-    touch-action: manipulation;
-    transition: transform 160ms var(--curva-suave), background-color 160ms var(--curva-suave), border-color 160ms var(--curva-suave);
+    font-size: 15px; font-weight: 800; letter-spacing: .1px; text-decoration: none;
+    padding: 16px 26px; border-radius: 999px; touch-action: manipulation;
   }
   .boton:active { transform: scale(.97); }
-  .boton-rojo { background: var(--rojo); color: var(--rojo-tinta); }
-  .boton-rojo:hover { background: #f66a6e; box-shadow: 0 10px 28px rgba(242, 85, 90, .22); }
-  .boton-fantasma { border: 1.5px solid var(--borde); color: var(--texto); }
-  .boton-fantasma:hover { border-color: var(--texto-3); background: var(--panel); }
-  .boton[aria-disabled="true"] { opacity: .55; cursor: default; }
-  .boton[aria-disabled="true"]:hover { border-color: var(--borde); background: transparent; }
+  .boton-rojo { background: var(--rojo); color: var(--negro); }
+  .boton-rojo:hover { background: #ff6b70; }
+  /* Coming soon: waiting plate, not a broken button (dashed border + steel tone) */
+  span.boton-fantasma {
+    border: 1.5px dashed var(--apagado); color: var(--acero);
+    cursor: default; font-weight: 700;
+  }
 
-  /* ---------- the bar: full bleed, brand plates ---------- */
+  /* The bar lives INSIDE the hero */
   .escena-barra {
-    margin-top: clamp(36px, 6vh, 64px);
+    margin-top: clamp(26px, 4vh, 44px);
     width: 100vw; position: relative; left: 50%; right: 50%;
     margin-left: -50vw; margin-right: -50vw;
     overflow: hidden;
-    display: flex; flex-direction: column; align-items: center;
   }
-  .escena-barra::before {
-    content: ""; position: absolute; inset: -10% 0; pointer-events: none;
-    background:
-      radial-gradient(38% 55% at 30% 52%, rgba(242, 85, 90, .06), transparent 70%),
-      radial-gradient(38% 55% at 70% 52%, rgba(74, 140, 255, .06), transparent 70%);
+  .escena-barra svg { width: min(100%, 960px); height: auto; display: block; margin: 0 auto; }
+  .suelo {
+    height: 3px; background: var(--borde);
+    width: min(100%, 960px); margin: 0 auto;
   }
-  .escena-barra svg { width: min(100%, 880px); height: auto; display: block; flex: none; position: relative; }
+  @media (max-width: 700px) {
+    .escena-barra svg { width: 620px; max-width: none; margin-left: 50%; transform: translateX(-50%); }
+    .suelo { width: 100%; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .linea { transform: translateY(112%); animation: subir-linea 700ms var(--fuerte) forwards; }
+    .linea-mascara + .linea-mascara .linea { animation-delay: 90ms; }
+    .hero .lead, .hero .acciones { animation: aparecer 600ms var(--suave) 320ms both; }
+    .hero .acciones { animation-delay: 430ms; }
+    .escena-barra { animation: aparecer 600ms var(--suave) 520ms both; }
+    @keyframes subir-linea { to { transform: none; } }
+    @keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+    /* The plates slide in from the sides: the bar loads before your eyes */
+    .placa { transform-box: fill-box; animation: cargar 460ms var(--fuerte) 720ms both; }
+    .placa.p2 { animation-delay: 830ms; }
+    .placa.izq { --desde: -180px; }
+    .placa.der { --desde: 180px; }
+    @keyframes cargar { from { transform: translateX(var(--desde)); opacity: 0; } to { transform: none; opacity: 1; } }
+  }
+
+  /* ---------- proof strip: static content, Space Mono ---------- */
+  .strip {
+    border-top: 1px solid var(--borde); border-bottom: 1px solid var(--borde);
+    background: var(--negro);
+  }
+  .strip p {
+    max-width: 1060px; margin: 0 auto; padding: 13px clamp(20px, 5vw, 56px);
+    font: 700 clamp(11.5px, 1.6vw, 13.5px)/1.8 var(--mono);
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--acero);
+    text-wrap: balance;
+  }
+  .strip b { color: var(--hueso); }
+  .strip i { font-style: normal; color: var(--rojo); padding: 0 10px; }
+
+  /* Knurled dividers */
+  .moleteado {
+    height: 10px; border: 0;
+    background: repeating-linear-gradient(45deg, var(--borde) 0 2px, transparent 2px 7px);
+  }
+
+  /* ---------- sections ---------- */
+  #app { scroll-margin-top: 70px; }
+  .seccion { padding: clamp(48px, 7vh, 84px) 0; scroll-margin-top: 70px; }
+  .titulo-seccion {
+    font-family: var(--display);
+    font-size: clamp(34px, 5.4vw, 62px);
+    line-height: 1.05; letter-spacing: .002em; text-transform: uppercase;
+    text-wrap: balance; color: var(--hueso);
+  }
+  .subtitulo-seccion { margin-top: 12px; color: var(--acero); max-width: 34em; }
+  .titulo-menor {
+    font-family: var(--display);
+    font-size: clamp(22px, 2.6vw, 32px);
+    line-height: 1.05; letter-spacing: .002em; text-transform: uppercase;
+    color: var(--hueso);
+  }
+
+  /* ---------- act 01 · warm up: the bar loads as you scroll ---------- */
+  .fase {
+    font: 700 11.5px/1.6 var(--mono);
+    letter-spacing: 2px; text-transform: uppercase; color: var(--acero);
+  }
+  .fase b { color: var(--rojo); }
+  .calentar-intro { padding: clamp(40px, 6vh, 72px) 0 8px; }
+  .calentar-pin { padding: 18px 0 8px; }
+  .calentar-pin .titulo-seccion { margin-top: 10px; }
+  .barra-escena { margin-top: 14px; }
+  .barra-escena svg {
+    width: min(100%, 760px); height: clamp(150px, 32svh, 300px);
+    display: block; margin: 0 auto;
+  }
   .lectora {
-    width: min(880px, 100%); margin: 12px auto 0;
-    padding: 0 clamp(20px, 5vw, 56px);
+    width: min(760px, 100%); margin: 10px auto 0;
     display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
-    position: relative;
   }
   .lectora .kg {
     position: relative; height: 1.3em;
@@ -186,254 +268,315 @@
   }
   .lectora .etiqueta-kg {
     font: 500 11px/1 var(--mono); letter-spacing: 2.5px;
-    text-transform: uppercase; color: var(--texto-3);
+    text-transform: uppercase; color: var(--apagado);
   }
   .lectora .kg span { opacity: 0; position: absolute; right: 0; top: 0; white-space: nowrap; }
   .lectora .kg .s2 { opacity: 1; }
+  .pasos-calentar {
+    list-style: none; margin: 18px auto 0; max-width: 760px;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    border-top: 1px solid var(--borde);
+    padding-top: 16px;
+  }
+  .pasos-calentar li { font-size: 14.5px; color: var(--acero); }
+  .pasos-calentar .n { display: block; font: 700 13px/1.6 var(--mono); color: var(--rojo); letter-spacing: 1px; }
+  .progreso-sesion { margin: 18px auto 0; max-width: 760px; }
+  .progreso-sesion .extremos {
+    display: flex; justify-content: space-between; gap: 12px;
+    font: 700 11.5px/1.6 var(--mono); letter-spacing: 1.5px;
+    color: var(--apagado); text-transform: uppercase;
+  }
+  .progreso-sesion .extremos b { color: var(--rojo); }
+  .progreso-sesion .raiz {
+    height: 6px; margin-top: 8px; border-radius: 999px;
+    background: var(--borde); overflow: hidden;
+  }
+  .progreso-sesion .raiz i { display: block; height: 100%; background: var(--rojo); transform-origin: 0 50%; transform: scaleX(1); }
+  .calentar-fin {
+    display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 48px);
+    align-items: center; padding: 34px 0 0;
+  }
+  .calentar-fin p { color: var(--acero); margin-top: 12px; max-width: 26em; }
+  .calentar-fin figure img {
+    display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto;
+    border-radius: 18px; border: 2px solid var(--borde); background: var(--panel);
+  }
+  .calentar-fin figcaption { text-align: center; margin-top: 10px; font-size: 13.5px; color: var(--apagado); }
 
-  @media (max-width: 700px) {
-    .escena-barra svg { width: auto; height: 120px; }
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .linea { transform: translateY(115%); animation: subir-linea 760ms var(--curva-fuerte) forwards; }
-    .linea-mascara:nth-child(2) .linea { animation-delay: 90ms; }
-    .hero .lead { opacity: 0; animation: aparecer 600ms var(--curva-suave) 300ms forwards; }
-    .hero .acciones { opacity: 0; animation: aparecer 600ms var(--curva-suave) 420ms forwards; }
-    .escena-barra { opacity: 0; animation: aparecer 600ms var(--curva-suave) 500ms forwards; }
-    @keyframes subir-linea { to { transform: none; } }
-    @keyframes aparecer { to { opacity: 1; } }
-    .placa { --desde: -260px; animation: cargar 480ms var(--curva-fuerte) 735ms both; transform-box: fill-box; }
-    .p2 { --desde: -400px; animation-delay: 835ms; }
-    .placa.derecha { --desde: 260px; }
-    .placa.derecha.p2 { --desde: 400px; }
-    .lectora .kg .s0 { animation: kg0 1100ms linear 500ms both; }
-    .lectora .kg .s1 { animation: kg1 1100ms linear 500ms both; }
-    .lectora .kg .s2 { animation: kg2 1100ms linear 500ms both; }
-    @keyframes cargar { from { transform: translateX(var(--desde)); opacity: 0; } to { transform: none; opacity: 1; } }
-    @keyframes kg0 { 0%, 60% { opacity: 1; } 65%, 100% { opacity: 0; } }
-    @keyframes kg1 { 0%, 61% { opacity: 0; } 66%, 71% { opacity: 1; } 76%, 100% { opacity: 0; } }
-    @keyframes kg2 { 0%, 72% { opacity: 0; } 77%, 100% { opacity: 1; } }
-  }
-
-  /* ---------- traits strip (single, with a purpose) ---------- */
-  .cinta {
-    border-block: 1px solid var(--borde-suave);
-    overflow: hidden;
-    margin-top: clamp(44px, 7vh, 76px);
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  }
-  .cinta .pista {
-    display: flex; gap: 0; width: max-content;
-    animation: deslizar 36s linear infinite;
-  }
-  .cinta:hover .pista { animation-play-state: paused; }
-  .cinta span {
-    font: 500 14px/1 var(--texto-fuente);
-    color: var(--texto-3);
-    padding: 15px 0; white-space: nowrap;
-  }
-  .cinta span i { font-style: normal; color: var(--rojo); padding: 0 18px; }
-  @keyframes deslizar { to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) {
-    .cinta .pista { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
-  }
-
-  /* ---------- sections ---------- */
-  .seccion { padding: clamp(56px, 9vh, 104px) 0; scroll-margin-top: 88px; }
-  .titulo-seccion {
-    font-weight: 900;
-    font-size: clamp(30px, 4.4vw, 54px);
-    letter-spacing: -.03em;
-    line-height: 1.02;
-    text-wrap: balance;
-  }
-  .subtitulo-seccion { margin-top: 14px; color: var(--texto-2); max-width: 34em; }
-
-    /* ---------- scroll carousel: the strip moves as you scroll down ---------- */
-  .pan-seccion { height: 190vh; position: relative; view-timeline-name: --pan; }
-  .pan-pin {
-    position: sticky; top: 0; height: 100vh;
-    display: flex; flex-direction: column; justify-content: center; gap: 18px;
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
-  }
-  .pan-cabecera { padding: 0 clamp(20px, 5vw, 56px); }
-  .pan-pista {
-    display: flex; gap: clamp(18px, 2.5vw, 30px);
-    width: max-content;
-    padding-inline: 6vw;
-    list-style: none;
-  }
-  .tarjeta { flex: 0 0 min(360px, 74vw); }
-  .tarjeta .bisel {
-    background: var(--panel);
-    border: 1px solid var(--borde);
-    border-radius: 20px;
-    padding: 8px;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05);
-  }
-  .tarjeta img {
-    display: block; width: 100%; height: auto;
-    border-radius: 14px;
-    background: var(--negro);
-  }
-  .tarjeta figcaption { margin-top: 14px; padding: 0 4px; }
-  .tarjeta .nombre {
-    display: block;
-    font: 600 13.5px/1.3 var(--texto-fuente);
-    color: var(--texto-2); margin-bottom: 5px;
-  }
-  .tarjeta .desc { font-size: 14.5px; color: var(--texto); }
-
+  /* Compact directed scroll (~160vh): desktop only, transform/opacity only, with support and no reduced motion */
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
-      .pan-pista {
-        animation: pan linear both;
-        animation-timeline: --pan;
-        animation-range: entry 100% exit 0%;
+      @media (min-width: 761px) {
+        .calentar-stage { height: 160vh; position: relative; view-timeline-name: --calentar; }
+        .calentar-pin {
+          position: sticky; top: 0; height: 100svh;
+          display: flex; flex-direction: column; justify-content: center;
+          overflow: hidden;
+        }
+        .calentar-pin .placa { transform-box: fill-box; animation: cd-placa linear both; animation-timeline: --calentar; animation-range: entry 0% exit 100%; }
+        .calentar-pin .placa.p1 { --desde: -260px; }
+        .calentar-pin .placa.p1d { --desde: 260px; }
+        .calentar-pin .placa.p2 { --desde: -420px; }
+        .calentar-pin .placa.p2d { --desde: 420px; }
+        @keyframes cd-placa {
+          0%, 9% { transform: translateX(var(--desde)); opacity: 0; }
+          24%, 100% { transform: none; opacity: 1; }
+        }
+        .calentar-pin .placa.p2, .calentar-pin .placa.p2d { animation-name: cd-placa-2; }
+        @keyframes cd-placa-2 {
+          0%, 22% { transform: translateX(var(--desde)); opacity: 0; }
+          37%, 100% { transform: none; opacity: 1; }
+        }
+        .calentar-pin .lectora .kg .s2 { opacity: 0; }
+        .calentar-pin .lectora .kg span { animation: cd-kg linear both; animation-timeline: --calentar; animation-range: entry 0% exit 100%; }
+        .calentar-pin .lectora .kg .s0 { animation-name: cd-kg0; }
+        .calentar-pin .lectora .kg .s1 { animation-name: cd-kg1; }
+        .calentar-pin .lectora .kg .s2 { animation-name: cd-kg2; }
+        @keyframes cd-kg0 { 0%, 12% { opacity: 1; } 18%, 100% { opacity: 0; } }
+        @keyframes cd-kg1 { 0%, 18% { opacity: 0; } 24%, 44% { opacity: 1; } 50%, 100% { opacity: 0; } }
+        @keyframes cd-kg2 { 0%, 50% { opacity: 0; } 56%, 100% { opacity: 1; } }
+        .progreso-sesion .raiz i { transform: scaleX(0); animation: cd-raiz linear both; animation-timeline: --calentar; animation-range: entry 0% exit 100%; }
+        @keyframes cd-raiz { to { transform: scaleX(1); } }
+        .pasos-calentar li { animation: cd-paso linear both; animation-timeline: --calentar; animation-range: entry 0% exit 100%; }
+        .pasos-calentar li:nth-child(1) { animation-name: cd-paso1; }
+        .pasos-calentar li:nth-child(2) { animation-name: cd-paso2; }
+        .pasos-calentar li:nth-child(3) { animation-name: cd-paso3; }
+        @keyframes cd-paso1 { 0%, 6% { opacity: .25; } 12%, 100% { opacity: 1; } }
+        @keyframes cd-paso2 { 0%, 20% { opacity: .25; } 26%, 100% { opacity: 1; } }
+        @keyframes cd-paso3 { 0%, 34% { opacity: .25; } 40%, 100% { opacity: 1; } }
       }
-      @keyframes pan { to { transform: translateX(calc(-100% + 100vw)); } }
     }
-  }
-  @supports not (animation-timeline: view()) {
-    .pan-seccion { height: auto; }
-    .pan-pin {
-      position: static; height: auto;
-      overflow-x: auto;
-      scroll-snap-type: x proximity;
-      overscroll-behavior-x: contain;
-      padding-block: 34px 22px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--borde) transparent;
-    }
-    .tarjeta { scroll-snap-align: center; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .pan-seccion { height: auto; }
-    .pan-pin {
-      position: static; height: auto;
-      overflow-x: auto;
-      scroll-snap-type: x proximity;
-      overscroll-behavior-x: contain;
-      padding-block: 34px 22px;
-    }
-  }
-  @media (max-width: 700px) {
-    .pan-seccion { height: 250vh; }
   }
 
-/* ---------- features: clean grid, no boxes ---------- */
-  .funciones {
-    margin-top: 46px;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: clamp(22px, 3.5vw, 40px) clamp(24px, 5vw, 72px);
+  /* ---------- act 02 · train: working demo (a real component, not a drawing) ---------- */
+  .entrenar-rejilla {
+    margin-top: 30px;
+    display: grid; grid-template-columns: 7fr 5fr; gap: clamp(22px, 4vw, 48px);
+    align-items: start;
   }
-  .funciones .termino dt {
-    font-weight: 800; font-size: 17px; letter-spacing: -.01em;
-    margin-bottom: 6px;
-  }
-  .funciones .termino dd { color: var(--texto-2); font-size: 15px; max-width: 26em; }
-
-  /* ---------- privacy ---------- */
-  .privacidad .lead-priv { margin-top: 16px; max-width: 34em; color: var(--texto-2); font-size: clamp(16px, 1.5vw, 18px); }
-  .cero-datos {
-    margin-top: 20px;
-    font: 600 13.5px/1.7 var(--mono);
-    letter-spacing: .5px;
-    color: var(--texto-2);
-  }
-  .cero-datos span { white-space: nowrap; }
-  .cero-datos b { color: var(--rojo); font-weight: 700; }
-  .puntos-priv { list-style: none; margin-top: 28px; max-width: 620px; }
-  .puntos-priv li {
-    display: flex; gap: 12px; padding: 11px 0; align-items: baseline;
-    color: var(--texto-2); border-bottom: 1px solid var(--borde-suave);
-  }
-  .puntos-priv li:last-child { border-bottom: 0; }
-  .puntos-priv li::before { content: "✓"; color: var(--azul); font-weight: 800; flex: none; }
-  details.legal {
-    max-width: 620px;
-    margin-top: 32px;
+  .demo {
     background: var(--panel);
     border: 1px solid var(--borde);
-    border-radius: 18px;
+    border-radius: 22px;
+    padding: clamp(20px, 3vw, 32px);
+  }
+  .demo .demo-kicker { font: 700 11.5px/1.6 var(--mono); letter-spacing: 2px; color: var(--acero); text-transform: uppercase; }
+  .demo .demo-kicker b { color: var(--rojo); }
+  .demo .demo-ej { margin-top: 10px; font-size: 17px; font-weight: 800; }
+  .demo .demo-ej small { display: block; font-weight: 400; font-size: 14px; color: var(--acero); margin-top: 2px; }
+  .demo .demo-ej .mono { font-family: var(--mono); color: var(--rojo); }
+  .demo-controles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+  .paso-control {
+    border: 1px solid var(--borde); border-radius: 16px;
+    padding: 12px 14px;
+  }
+  .paso-control .etiqueta { font-size: 12.5px; color: var(--acero); }
+  .paso-control .fila { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
+  .paso-control .valor { font: 700 22px/1 var(--mono); font-variant-numeric: tabular-nums; }
+  .paso-control button {
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid var(--borde); background: var(--negro);
+    color: var(--hueso); font: 700 20px/1 var(--cuerpo); cursor: pointer;
+    touch-action: manipulation;
+  }
+  .paso-control button:hover { border-color: var(--apagado); }
+  .paso-control button:active { transform: scale(.94); background: var(--rojo); color: var(--negro); border-color: var(--rojo); }
+  .demo-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .demo-chips button {
+    font: 700 13.5px/1 var(--mono);
+    color: var(--hueso); background: transparent;
+    border: 1px solid var(--borde); border-radius: 999px; padding: 11px 16px; cursor: pointer;
+  }
+  .demo-chips button:hover { border-color: var(--apagado); }
+  .demo-chips button[aria-pressed="true"] { border-color: var(--rojo); color: var(--rojo); }
+  .demo-guardar {
+    width: 100%; margin-top: 14px;
+    font: 800 15px/1 var(--cuerpo);
+    background: var(--rojo); color: var(--negro);
+    border: 0; border-radius: 999px; padding: 17px 26px; cursor: pointer;
+    touch-action: manipulation;
+  }
+  .demo-guardar:hover { background: #ff6b70; }
+  .demo-guardar:active { transform: scale(.98); }
+  .demo-lista { list-style: none; margin-top: 16px; display: grid; gap: 8px; }
+  .demo-lista li {
+    display: flex; justify-content: space-between; gap: 12px;
+    font: 700 14px/1.5 var(--mono);
+    border-bottom: 1px solid var(--borde); padding-bottom: 8px;
+  }
+  .demo-lista li:last-child { border-bottom: 0; }
+  .demo-lista .vacio { font-family: var(--cuerpo); font-weight: 400; color: var(--apagado); }
+  .demo-descanso {
+    margin-top: 14px; border: 1px solid var(--borde); border-radius: 16px;
+    padding: 14px 16px;
+  }
+  .demo-descanso .fila { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .demo-descanso .t { font-size: 13px; color: var(--acero); }
+  .demo-descanso .reloj { font: 700 28px/1 var(--mono); font-variant-numeric: tabular-nums; }
+  .demo-descanso .raiz { height: 6px; margin-top: 10px; border-radius: 999px; background: var(--borde); overflow: hidden; }
+  .demo-descanso .raiz i { display: block; height: 100%; background: var(--rojo); transform: scaleX(1); transform-origin: 0 50%; }
+  .demo-descanso .saltar-descanso {
+    margin-top: 10px; background: none; border: 0; padding: 6px 0; cursor: pointer;
+    color: var(--acero); font: 600 13.5px/1.4 var(--cuerpo); text-decoration: underline;
+  }
+  .demo-descanso .saltar-descanso:hover { color: var(--hueso); }
+  .demo-rm { margin-top: 14px; font-size: 15px; color: var(--acero); }
+  .demo-rm b { color: var(--rojo); font-family: var(--mono); }
+  .demo-aviso { margin-top: 10px; font-size: 14px; color: var(--acero); min-height: 1.6em; }
+  .demo-nota { margin-top: 6px; font-size: 12.5px; color: var(--apagado); }
+  .figura-app img {
+    display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto;
+    border-radius: 18px; border: 2px solid var(--borde); background: var(--panel);
+  }
+  .figura-app figcaption { margin-top: 12px; font-size: 14px; color: var(--acero); max-width: 300px; margin-inline: auto; }
+  .figura-app figcaption .nombre { display: block; font-weight: 700; color: var(--hueso); margin-bottom: 2px; }
+
+  /* ---------- act 03 · progress: mono figures + screenshot ---------- */
+  .cifras {
+    margin-top: 28px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+  }
+  .cifras .cifra-bloque { border-top: 2px solid var(--borde); padding-top: 12px; }
+  .cifras .cifra { display: block; font: 700 clamp(34px, 4.5vw, 52px)/1.1 var(--mono); color: var(--hueso); font-variant-numeric: tabular-nums; }
+  .cifras .cifra em { font-style: normal; color: var(--rojo); }
+  .cifras p { font-size: 14px; color: var(--acero); margin-top: 4px; }
+  .grafico {
+    margin-top: 26px; background: var(--panel);
+    border: 1px solid var(--borde); border-radius: 22px;
+    padding: clamp(18px, 3vw, 30px);
+  }
+  .grafico .grafico-cab { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; justify-content: space-between; }
+  .grafico .grafico-cab p { font-size: 14.5px; color: var(--acero); }
+  .grafico .grafico-cab p b { color: var(--hueso); }
+  .rangos { font: 700 12.5px/1.6 var(--mono); letter-spacing: 1px; color: var(--apagado); }
+  .rangos .actual { color: var(--rojo); text-decoration: underline; text-underline-offset: 4px; }
+  .grafico svg { display: block; width: 100%; height: auto; margin-top: 14px; }
+  .grafico .pie-grafico { margin-top: 10px; font-size: 12.5px; color: var(--apagado); }
+  .progreso-rejilla {
+    margin-top: 26px;
+    display: grid; grid-template-columns: 5fr 7fr; gap: clamp(22px, 4vw, 48px);
+    align-items: center;
+  }
+  .progreso-rejilla figure img {
+    display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto;
+    border-radius: 18px; border: 2px solid var(--borde); background: var(--panel);
+  }
+  .progreso-rejilla figcaption { margin-top: 12px; font-size: 14px; color: var(--acero); max-width: 300px; margin-inline: auto; }
+  .progreso-rejilla figcaption .nombre { display: block; font-weight: 700; color: var(--hueso); margin-bottom: 2px; }
+  .progreso-rejilla .texto p { color: var(--acero); margin-top: 12px; max-width: 26em; }
+  .progreso-rejilla .texto p b { color: var(--hueso); }
+
+  /* ---------- features: asymmetric ledger, zero cards ---------- */
+  .libro { margin-top: 34px; border-bottom: 1px solid var(--borde); }
+  .asiento {
+    display: grid; grid-template-columns: repeat(12, 1fr);
+    gap: 6px 24px; padding: 22px 0;
+    border-top: 1px solid var(--borde);
+  }
+  .asiento dt {
+    font-size: 18px; font-weight: 800; letter-spacing: -.01em; color: var(--hueso);
+  }
+  .asiento dd { color: var(--acero); font-size: 15px; max-width: 30em; }
+  .asiento .marca-fila { font: 700 12px/2 var(--mono); color: var(--rojo); }
+  .a1 dt, .a1 dd { grid-column: 1 / 9; }
+  .a2 dt, .a2 dd { grid-column: 6 / 13; }
+  .a3 dt, .a3 dd { grid-column: 1 / 8; }
+  .a4 { align-items: end; }
+  .a4 dt, .a4 dd { grid-column: 5 / 13; }
+  .a4 .cifra {
+    grid-column: 1 / 5; grid-row: span 2;
+    font: 700 clamp(56px, 8vw, 92px)/1 var(--mono); color: var(--rojo);
+    font-variant-numeric: tabular-nums;
+  }
+  .a5 dt, .a5 dd { grid-column: 1 / 10; }
+  .a6 dt, .a6 dd { grid-column: 7 / 13; }
+  .asiento .marca-fila { grid-column: 1 / -1; }
+  .a2 .marca-fila, .a4 .marca-fila, .a6 .marca-fila { text-align: right; }
+  @media (max-width: 700px) {
+    .a1 dt, .a1 dd, .a2 dt, .a2 dd, .a3 dt, .a3 dd,
+    .a4 dt, .a4 dd, .a5 dt, .a5 dd, .a6 dt, .a6 dd { grid-column: 1 / -1; }
+    .a4 .cifra { grid-column: 1 / -1; grid-row: auto; }
+    .a2 .marca-fila, .a4 .marca-fila, .a6 .marca-fila { text-align: left; }
+  }
+
+  /* ---------- privacy ---------- */
+  .privacidad .lead-priv { margin-top: 14px; max-width: 34em; color: var(--acero); font-size: clamp(16px, 1.5vw, 18px); }
+  .cero-datos {
+    margin-top: 18px;
+    font: 700 13.5px/1.9 var(--mono); letter-spacing: .5px; color: var(--acero);
+  }
+  .cero-datos b { color: var(--rojo); }
+  .cero-datos span { white-space: nowrap; }
+  .puntos-priv { list-style: none; margin-top: 24px; max-width: 620px; }
+  .puntos-priv li {
+    display: flex; gap: 12px; padding: 11px 0; align-items: baseline;
+    color: var(--acero); border-bottom: 1px solid var(--borde);
+  }
+  .puntos-priv li:last-child { border-bottom: 0; }
+  .puntos-priv li::before { content: "✓"; color: var(--rojo); font-weight: 800; flex: none; }
+  details.legal {
+    max-width: 620px; margin-top: 28px;
+    background: var(--panel); border: 1px solid var(--borde); border-radius: 16px;
   }
   details.legal summary {
-    cursor: pointer;
-    padding: 17px 20px;
-    font: 700 14.5px/1.3 var(--texto-fuente);
+    cursor: pointer; padding: 17px 20px;
+    font-size: 14.5px; font-weight: 700;
     list-style: none;
     display: flex; justify-content: space-between; align-items: center; gap: 12px;
   }
   details.legal summary::-webkit-details-marker { display: none; }
-  details.legal summary .chev { transition: transform 200ms var(--curva-suave); color: var(--texto-2); }
-  details.legal[open] summary .chev { transform: rotate(180deg); }
-  details.legal .cuerpo-legal { padding: 2px 20px 20px; border-top: 1px solid var(--borde-suave); }
-  details.legal .cuerpo-legal p { margin: 12px 0; color: var(--texto-2); font-size: 14.5px; }
-  details.legal .cuerpo-legal p:first-of-type { color: var(--texto); }
-  details.legal .cuerpo-legal ul { margin: 12px 0; padding-left: 22px; color: var(--texto-2); font-size: 14.5px; }
+  details.legal summary .chev { color: var(--acero); }
+  details.legal .cuerpo-legal { padding: 2px 20px 20px; border-top: 1px solid var(--borde); }
+  details.legal .cuerpo-legal p { margin: 12px 0; color: var(--acero); font-size: 14.5px; }
+  details.legal .cuerpo-legal p:first-of-type { color: var(--hueso); }
+  details.legal .cuerpo-legal ul { margin: 12px 0; padding-left: 22px; color: var(--acero); font-size: 14.5px; }
   details.legal .cuerpo-legal li { margin: 7px 0; }
-  details.legal .fecha { font-size: 13px; color: var(--texto-3); font-style: italic; margin-top: 14px; }
+  details.legal .fecha { font-size: 13px; color: var(--apagado); font-style: italic; margin-top: 14px; }
   details.legal .resumen-en {
     margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--borde);
-    font-size: 13px; color: var(--texto-3); font-style: italic;
+    font-size: 13px; color: var(--apagado); font-style: italic;
   }
 
-  /* ---------- FAQ ---------- */
-  .faq {
-    max-width: 640px;
-    margin-top: 36px;
-    display: grid; gap: 10px;
-  }
-  .faq details {
-    background: var(--panel);
-    border: 1px solid var(--borde);
-    border-radius: 14px;
-  }
+  /* ---------- questions ---------- */
+  .faq { max-width: 640px; margin-top: 30px; display: grid; gap: 10px; }
+  .faq details { background: var(--panel); border: 1px solid var(--borde); border-radius: 14px; }
+  .faq details[open] { border-color: var(--apagado); }
   .faq summary {
-    cursor: pointer;
-    padding: 16px 20px;
-    font: 700 15px/1.4 var(--texto-fuente);
+    cursor: pointer; padding: 16px 20px;
+    font-size: 15px; font-weight: 700;
     list-style: none;
     display: flex; justify-content: space-between; align-items: center; gap: 12px;
   }
   .faq summary::-webkit-details-marker { display: none; }
-  .faq summary .chev { transition: transform 200ms var(--curva-suave); color: var(--texto-3); flex: none; }
-  .faq details[open] summary .chev { transform: rotate(180deg); }
-  .faq .respuesta {
-    padding: 0 20px 16px;
-    color: var(--texto-2);
-    font-size: 15px;
-  }
+  .faq summary .chev { color: var(--rojo); flex: none; }
+  .faq .respuesta { padding: 0 20px 16px; color: var(--acero); font-size: 15px; }
 
   /* ---------- final CTA ---------- */
-  .cta-final { text-align: left; padding-top: clamp(36px, 5vh, 64px); }
-  .cta-final .acciones { justify-content: flex-start; }
-  .cta-final .titulo-seccion { font-size: clamp(30px, 4.4vw, 54px); }
-  .cta-final .recap { margin-top: 16px; color: var(--texto-2); font-size: 16px; }
-  .cta-final p { color: var(--texto-2); margin-top: 16px; }
+  .cta-final .regla { width: 72px; height: 8px; background: var(--rojo); margin-bottom: 18px; }
+  .cta-final .recap { margin-top: 14px; color: var(--acero); font-size: 16px; max-width: 32em; }
+  .cta-final .nota { margin-top: 16px; color: var(--acero); font-size: 15px; }
+  .cta-final .version { font-family: var(--mono); font-size: 13px; color: var(--apagado); margin-top: 10px; letter-spacing: 1px; }
 
   /* ---------- footer ---------- */
   .pie {
-    border-top: 1px solid var(--borde-suave);
-    padding: 26px 0 44px;
+    border-top: 1px solid var(--borde);
+    max-width: calc(1060px + 2 * clamp(20px, 5vw, 56px));
+    margin: 0 auto;
+    padding: 24px clamp(20px, 5vw, 56px) 44px;
     display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between;
-    font-size: 13.5px; color: var(--texto-3);
+    font: 400 13px/1.6 var(--mono); color: var(--apagado);
   }
   .pie nav { display: flex; gap: 18px; }
-  .pie a { color: var(--texto-2); text-decoration: none; }
-  .pie a:hover { color: var(--texto); }
+  .pie a { color: var(--acero); text-decoration: none; }
+  .pie a:hover { color: var(--hueso); }
 
-  /* ---------- reveals ---------- */
+  /* ---------- reveals: visible by default, only with no-preference ---------- */
   .revelar { opacity: 1; }
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
       .revelar {
-        opacity: 0;
-        animation: revelar 640ms var(--curva-suave) both;
+        animation: revelar 640ms var(--suave) both;
         animation-timeline: view();
         animation-range: entry 0% entry 55%;
       }
@@ -441,19 +584,21 @@
     }
   }
 
-  /* ---------- responsive ---------- */
   @media (max-width: 760px) {
-    .funciones { grid-template-columns: 1fr; }
-    .hero h1 { max-width: 100%; }
+    .entrenar-rejilla, .progreso-rejilla, .calentar-fin { grid-template-columns: 1fr; }
+    .cifras { grid-template-columns: 1fr 1fr; }
+    .pasos-calentar { grid-template-columns: 1fr; gap: 10px; }
+    .barra-escena svg { height: 150px; }
   }
   @media (max-width: 520px) {
-    .acciones .boton { width: 100%; text-align: center; }
+    .acciones .boton, .demo-guardar { width: 100%; text-align: center; }
+    .cifras { grid-template-columns: 1fr; }
+    .demo-controles { grid-template-columns: 1fr; }
+    .kicker { font-size: 10.5px; letter-spacing: 1.4px; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .boton, details.legal summary .chev, .faq summary .chev, .navegacion nav a, .navegacion .cafe { transition: none; }
-    .cinta .pista { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
-    .revelar { opacity: 1; }
+    .linea { transform: none; }
   }
 </style>
 </head>
@@ -461,294 +606,513 @@
 <a class="saltar" href="#contenido">Skip to content</a>
 
 <header class="navegacion">
-  <a class="marca" href="#" translate="no" aria-label="SetRack, home">
-    <svg width="26" height="14" viewBox="0 0 108 40" aria-hidden="true">
-      <rect x="2" y="18" width="104" height="4" rx="2" fill="#8E969E"/>
-      <rect x="34" y="17" width="20" height="6" fill="#c9cdc6"/>
-      <rect x="26" y="13" width="4" height="14" rx="1.6" fill="#8E969E"/>
-      <rect x="78" y="13" width="4" height="14" rx="1.6" fill="#8E969E"/>
-      <rect x="16" y="2" width="9" height="36" rx="2.8" fill="#F2555A"/>
-      <rect x="8"  y="8" width="7" height="24" rx="2.2" fill="#4A8CFF"/>
-      <rect x="83" y="2" width="9" height="36" rx="2.8" fill="#F2555A"/>
-      <rect x="93" y="8" width="7" height="24" rx="2.2" fill="#4A8CFF"/>
-    </svg>
-    SetRack
-  </a>
-  <nav aria-label="Sections">
-    <a href="#app">The app</a>
-    <a href="#privacidad">Privacy</a>
-  </nav>
-  <a href="../" lang="es" hreflang="es" title="Español">ES</a><a class="cafe" href="https://ko-fi.com/iggykimi">Buy me a coffee</a>
+  <div class="cinta-nav">
+    <a class="marca" href="#" translate="no" aria-label="SetRack, home">
+      <svg width="30" height="16" viewBox="0 0 108 40" aria-hidden="true">
+        <rect x="2" y="18" width="104" height="4" rx="2" fill="#9BA3AB"/>
+        <rect x="16" y="2" width="9" height="36" rx="2.8" fill="#F2555A"/>
+        <rect x="83" y="2" width="9" height="36" rx="2.8" fill="#F2555A"/>
+        <rect x="28" y="10" width="6" height="20" rx="2" fill="#EDE8E1"/>
+        <rect x="74" y="10" width="6" height="20" rx="2" fill="#EDE8E1"/>
+      </svg>
+      SetRack
+    </a>
+    <nav aria-label="Sections">
+      <a href="#app">The app</a>
+      <a href="#privacidad">Privacy</a>
+      <a href="#preguntas">Questions</a>
+    </nav>
+    <a class="en" href="../" lang="es" hreflang="es" title="Versión en español">ES</a>
+    <a class="cafe" href="https://ko-fi.com/iggykimi">Buy me a coffee</a>
+  </div>
 </header>
 
 <div class="envoltura">
-
   <section class="hero" aria-label="Intro">
+    <p class="kicker">Workout log · Android · v0.21</p>
     <h1>
       <span class="linea-mascara"><span class="linea">Log the set.</span></span>
-      <span class="linea-mascara"><span class="linea linea-2">Back to the bar.</span></span>
+      <span class="linea-mascara"><span class="linea">Back to the <span class="rojo">bar.</span></span></span>
     </h1>
-    <p class="lead">
-      Your sets in seconds, one hand between sets.
-      <b>No internet permission: your data stays on your phone.</b>
-    </p>
+    <p class="lead">Log every set one-handed. <b>No internet permission: nothing leaves your phone.</b></p>
     <div class="acciones">
       <a class="boton boton-rojo" href="https://ko-fi.com/iggykimi">Buy me a coffee</a>
-      <span class="boton boton-fantasma" aria-disabled="true">Coming soon to Google Play</span>
+      <span class="boton boton-fantasma">Coming soon to Google Play</span>
     </div>
-
-    <div class="escena-barra">
-      <svg class="barra-icono" viewBox="0 -33 1200 553" aria-hidden="true">
+    <div class="escena-barra" aria-hidden="true">
+      <svg viewBox="0 0 1200 220" role="presentation">
         <defs>
-          <linearGradient id="acero" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#f4f5f1"/>
-            <stop offset="1" stop-color="#8e969e"/>
-          </linearGradient>
-          <linearGradient id="rojog" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#ff7a7e"/>
-            <stop offset=".12" stop-color="#F2555A"/>
-            <stop offset="1" stop-color="#c93b40"/>
-          </linearGradient>
-          <linearGradient id="azulg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#7fadff"/>
-            <stop offset=".12" stop-color="#4A8CFF"/>
-            <stop offset="1" stop-color="#2f6ad6"/>
-          </linearGradient>
+          <pattern id="mo" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="7" height="7" fill="#9BA3AB"/>
+            <line x1="0" y1="0" x2="0" y2="7" stroke="#0B0C0E" stroke-width="2.4"/>
+          </pattern>
         </defs>
-
-        <g class="grupo-barra">
-          <rect x="156" y="175" width="888" height="50" rx="25" fill="url(#acero)"/>
-          <rect x="489" y="178" width="222" height="44" fill="#c9cdc6"/>
-        </g>
-
-        <rect class="collar" x="400" y="128" width="39" height="144" rx="16" fill="url(#acero)"/>
-        <rect class="collar" x="761" y="128" width="39" height="144" rx="16" fill="url(#acero)"/>
-
-        <g class="placa izquierda p1"><rect x="294" y="-33" width="94" height="466" rx="29" fill="url(#rojog)"/></g>
-        <g class="placa izquierda p2"><rect x="211" y="66" width="72" height="268" rx="24" fill="url(#azulg)"/></g>
-        <g class="placa derecha p1"><rect x="812" y="-33" width="94" height="466" rx="29" fill="url(#rojog)"/></g>
-        <g class="placa derecha p2"><rect x="917" y="66" width="72" height="268" rx="24" fill="url(#azulg)"/></g>
+        <rect x="60" y="100" width="1080" height="20" rx="10" fill="#EDE8E1"/>
+        <rect x="520" y="100" width="160" height="20" fill="url(#mo)"/>
+        <rect x="392" y="72" width="26" height="76" rx="10" fill="#9BA3AB"/>
+        <rect x="782" y="72" width="26" height="76" rx="10" fill="#9BA3AB"/>
+        <g class="placa izq p1"><rect x="322" y="14" width="58" height="192" rx="14" fill="#F2555A"/></g>
+        <g class="placa der p1"><rect x="820" y="14" width="58" height="192" rx="14" fill="#F2555A"/></g>
+        <g class="placa izq p2"><rect x="256" y="52" width="54" height="116" rx="12" fill="#EDE8E1"/></g>
+        <g class="placa der p2"><rect x="890" y="52" width="54" height="116" rx="12" fill="#EDE8E1"/></g>
       </svg>
-
-      <p class="lectora">
-        <span class="sr-only">The bar loads up to 100 kilos.</span>
-        <span class="kg">
-          <span class="s0" aria-hidden="true">20&nbsp;kg</span>
-          <span class="s1" aria-hidden="true">60&nbsp;kg</span>
-          <span class="s2 final" aria-hidden="true">100&nbsp;kg</span>
-        </span>
-        <span class="etiqueta-kg" aria-hidden="true">on the bar</span>
-      </p>
+      <div class="suelo"></div>
     </div>
+    <p class="sr-only">Bar loaded with red plates.</p>
   </section>
 </div>
 
-<div class="cinta" aria-hidden="true">
-  <div class="pista">
-    <span>No account<i>·</i>61 exercises<i>·</i>Estimated 1RM<i>·</i>Sets per muscle<i>·</i>Warm-up plates<i>·</i>CSV export<i>·</i>kg/lb<i>·</i>en/es<i>·</i></span>
-    <span>No account<i>·</i>61 exercises<i>·</i>Estimated 1RM<i>·</i>Sets per muscle<i>·</i>Warm-up plates<i>·</i>CSV export<i>·</i>kg/lb<i>·</i>en/es<i>·</i></span>
-  </div>
+<div class="strip" aria-label="App summary">
+  <p><b>0</b> data collected<i>·</i><b>0</b> ads<i>·</i><b>0</b> trackers<i>·</i><b>61</b> exercises<i>·</i>en/es<i>·</i>kg/lb</p>
 </div>
 
 <main id="contenido" tabindex="-1">
 
-<section class="pan-seccion" id="app" aria-labelledby="t-app">
-    <div class="pan-pin" role="region" tabindex="0" aria-label="App screenshots">
-      <div class="pan-cabecera">
-        <h2 class="titulo-seccion" id="t-app">How you train</h2>
-      </div>
+  <div id="app">
 
-      <ul class="pan-pista">
-        <li class="tarjeta">
-          <figure>
-            <div class="bisel">
-              <img src="../assets/img/en-01-entrenar.webp" alt="Train screen: today's routine with its exercises, muscles and the start button." width="560" height="1140">
+    <div class="envoltura">
+      <section class="calentar" aria-labelledby="t-calentar">
+        <div class="calentar-intro">
+          <p class="fase"><b>01 · Warm up</b> — the bar loads as you scroll</p>
+        </div>
+        <div class="calentar-stage">
+          <div class="calentar-pin">
+            <h2 class="titulo-seccion" id="t-calentar">First, the plates</h2>
+            <p class="subtitulo-seccion">The app works out the ramp-up and tells you which plates to load per side before your first work set.</p>
+            <div class="barra-escena" aria-label="The bar loads as you scroll: from 20 to 100 kilos">
+              <svg viewBox="0 -33 1200 553" aria-hidden="true">
+                <defs>
+                  <pattern id="mo2" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                    <rect width="7" height="7" fill="#9BA3AB"/>
+                    <line x1="0" y1="0" x2="0" y2="7" stroke="#0B0C0E" stroke-width="2.4"/>
+                  </pattern>
+                </defs>
+                <rect x="156" y="175" width="888" height="50" rx="25" fill="#EDE8E1"/>
+                <rect x="489" y="178" width="222" height="44" fill="url(#mo2)"/>
+                <rect x="400" y="128" width="39" height="144" rx="16" fill="#9BA3AB"/>
+                <rect x="761" y="128" width="39" height="144" rx="16" fill="#9BA3AB"/>
+                <g class="placa p1"><rect x="294" y="-33" width="94" height="466" rx="29" fill="#F2555A"/></g>
+                <g class="placa p2"><rect x="211" y="66" width="72" height="268" rx="24" fill="#EDE8E1"/></g>
+                <g class="placa p1d p1"><rect x="812" y="-33" width="94" height="466" rx="29" fill="#F2555A"/></g>
+                <g class="placa p2d p2"><rect x="917" y="66" width="72" height="268" rx="24" fill="#EDE8E1"/></g>
+              </svg>
+              <p class="lectora">
+                <span class="sr-only">The bar loads up to 100 kilos.</span>
+                <span class="kg">
+                  <span class="s0" aria-hidden="true">20&nbsp;kg</span>
+                  <span class="s1" aria-hidden="true">60&nbsp;kg</span>
+                  <span class="s2" aria-hidden="true">100&nbsp;kg</span>
+                </span>
+                <span class="etiqueta-kg" aria-hidden="true">on the bar</span>
+              </p>
             </div>
-            <figcaption><span class="nombre">Today</span><span class="desc">What's next, from your routine.</span></figcaption>
-          </figure>
-        </li>
-        <li class="tarjeta">
-          <figure>
-            <div class="bisel">
-              <img loading="lazy" decoding="async" src="../assets/img/en-02-sesion.webp" alt="Workout in progress: today's set list with weights and reps." width="560" height="1140">
+            <ol class="pasos-calentar">
+              <li><span class="n">20 KG</span>Bar alone for the first ramp-up set.</li>
+              <li><span class="n">60 KG</span>Plates per side, already counted by the app.</li>
+              <li><span class="n">100 KG</span>Ready for the first work set.</li>
+            </ol>
+            <div class="progreso-sesion" aria-hidden="true">
+              <div class="extremos"><span>Starts · <b>20 kg</b></span><span>Ends · <b>100 kg</b> — time to train</span></div>
+              <div class="raiz"><i></i></div>
             </div>
-            <figcaption><span class="nombre">Session</span><span class="desc">Every set, logged in a moment.</span></figcaption>
+          </div>
+        </div>
+        <div class="calentar-fin">
+          <div class="revelar">
+            <h3 class="titulo-menor">No head maths</h3>
+            <p>Every ramp-up set lists its kilos and the plates each side takes. You load, the app logs.</p>
+          </div>
+          <figure class="revelar">
+            <img loading="lazy" decoding="async" src="../assets/img/en-23-calentamiento.webp" alt="Suggested warm-up with ramp-up sets and the plates you need." width="560" height="1140">
+            <figcaption>The warm-up in the app.</figcaption>
           </figure>
-        </li>
-        <li class="tarjeta">
-          <figure>
-            <div class="bisel">
-              <img loading="lazy" decoding="async" src="../assets/img/en-23-calentamiento.webp" alt="Suggested warm-up with ramp-up sets and the plates you need." width="560" height="1140">
-            </div>
-            <figcaption><span class="nombre">Warm-up</span><span class="desc">The plates you'll need, before you start.</span></figcaption>
-          </figure>
-        </li>
-        <li class="tarjeta">
-          <figure>
-            <div class="bisel">
-              <img loading="lazy" decoding="async" src="../assets/img/en-18-progreso-3m.webp" alt="Three-month progress: sessions, total volume and weekly chart." width="560" height="1140">
-            </div>
-            <figcaption><span class="nombre">Progress</span><span class="desc">Estimated 1RM (Brzycki) and progress by week, month, quarter or year.</span></figcaption>
-          </figure>
-        </li>
-        <li class="tarjeta">
-          <figure>
-            <div class="bisel">
-              <img loading="lazy" decoding="async" src="../assets/img/en-09-ejercicios.webp" alt="Exercise catalog with search, muscle and equipment filters, and a button to add your own." width="560" height="1140">
-            </div>
-            <figcaption><span class="nombre">Catalog</span><span class="desc">61 base exercises with muscle and equipment. Add your own.</span></figcaption>
-          </figure>
-        </li>
-      </ul>
+        </div>
+      </section>
     </div>
-  </section>
+
+    <hr class="moleteado" aria-hidden="true">
+
+    <div class="envoltura">
+      <section class="seccion" aria-labelledby="t-app">
+        <p class="fase revelar"><b>02 · Train</b> — between sets</p>
+        <h2 class="titulo-seccion revelar" id="t-app">What happens between sets</h2>
+        <p class="subtitulo-seccion revelar">Two taps and back to the bar: the app logs the weight, times your rest and updates your estimated 1RM.</p>
+        <div class="entrenar-rejilla">
+          <div class="demo revelar" role="group" aria-labelledby="t-demo">
+            <p class="demo-kicker" id="t-demo"><b>Try it</b> — log a set</p>
+            <p class="demo-ej">Squat<small>Last time: <span class="mono" id="d-ultima">100 kg × 5</span> · Nudge a dial and save: two taps.</small></p>
+            <div class="demo-controles">
+              <div class="paso-control">
+                <span class="etiqueta" id="et-peso">Weight (kg)</span>
+                <div class="fila" role="group" aria-labelledby="et-peso">
+                  <button type="button" id="d-peso-menos" aria-label="Take off 2.5 kilos">−</button>
+                  <span class="valor" id="d-peso" aria-live="off">100 kg</span>
+                  <button type="button" id="d-peso-mas" aria-label="Add 2.5 kilos">+</button>
+                </div>
+              </div>
+              <div class="paso-control">
+                <span class="etiqueta" id="et-reps">Reps</span>
+                <div class="fila" role="group" aria-labelledby="et-reps">
+                  <button type="button" id="d-reps-menos" aria-label="Take off one rep">−</button>
+                  <span class="valor" id="d-reps" aria-live="off">5</span>
+                  <button type="button" id="d-reps-mas" aria-label="Add one rep">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="demo-chips" role="group" aria-label="Shortcuts: your last time">
+              <button type="button" data-peso="100" data-reps="5" aria-pressed="true">100 × 5</button>
+              <button type="button" data-peso="100" data-reps="3" aria-pressed="false">100 × 3</button>
+            </div>
+            <button type="button" class="demo-guardar" id="d-guardar">Log set</button>
+            <ol class="demo-lista" id="d-lista" aria-label="Logged sets">
+              <li class="vacio">No sets yet. Log the first one.</li>
+            </ol>
+            <div class="demo-descanso">
+              <div class="fila">
+                <span class="t">Rest</span>
+                <span class="reloj" id="d-reloj">1:30</span>
+              </div>
+              <div class="raiz" aria-hidden="true"><i id="d-barra"></i></div>
+              <button type="button" class="saltar-descanso" id="d-saltar">End rest</button>
+            </div>
+            <p class="demo-rm">Estimated 1RM (Brzycki): <b id="d-rm">—</b></p>
+            <p class="demo-aviso" id="d-aviso" aria-live="polite"></p>
+            <p class="demo-nota">Mini-demo with sample data. In the app, everything stays saved on your phone.</p>
+          </div>
+          <figure class="figura-app revelar">
+            <img loading="lazy" decoding="async" src="../assets/img/en-02-sesion.webp" alt="Workout in progress: today's set list with weights and reps." width="560" height="1140">
+            <figcaption><span class="nombre">Session</span>Every set, logged in the moment.</figcaption>
+          </figure>
+        </div>
+      </section>
+    </div>
+
+    <hr class="moleteado" aria-hidden="true">
+
+    <div class="envoltura">
+      <section class="seccion" aria-labelledby="t-progreso">
+        <p class="fase revelar"><b>03 · Progress</b> — every session adds up</p>
+        <h2 class="titulo-seccion revelar" id="t-progreso">Every session adds up</h2>
+        <p class="subtitulo-seccion revelar">Volume and estimated 1RM stay logged. Check them by week, month, quarter or year.</p>
+        <div class="cifras revelar">
+          <div class="cifra-bloque">
+            <span class="cifra"><em>61</em></span>
+            <p>base exercises, plus yours with their muscle and equipment</p>
+          </div>
+          <div class="cifra-bloque">
+            <span class="cifra"><em>4</em></span>
+            <p>ranges to check progress: week, month, quarter and year</p>
+          </div>
+          <div class="cifra-bloque">
+            <span class="cifra">kg/lb</span>
+            <p>kilos or pounds, Spanish or English, all on your phone</p>
+          </div>
+        </div>
+        <div class="grafico revelar" role="img" aria-label="Sample chart: weekly volume for the quarter, trending up.">
+          <div class="grafico-cab">
+            <p><b>Sample volume by week</b> · quarter</p>
+            <p class="rangos">Week · Month · <span class="actual">Quarter</span> · Year</p>
+          </div>
+          <svg viewBox="0 0 560 220" aria-hidden="true">
+            <g font-family="Space Mono, monospace" font-size="11" fill="#6E767F">
+              <text x="0" y="52">100</text>
+              <text x="0" y="122">50</text>
+              <text x="0" y="192">0</text>
+            </g>
+            <g stroke="#23262D" stroke-width="1">
+              <line x1="34" y1="45" x2="556" y2="45"/>
+              <line x1="34" y1="115" x2="556" y2="115"/>
+              <line x1="34" y1="185" x2="556" y2="185"/>
+            </g>
+            <g fill="#F2555A">
+              <rect x="44" y="152" width="30" height="33" rx="3"/>
+              <rect x="84" y="140" width="30" height="45" rx="3"/>
+              <rect x="124" y="146" width="30" height="39" rx="3"/>
+              <rect x="164" y="133" width="30" height="52" rx="3"/>
+              <rect x="204" y="140" width="30" height="45" rx="3"/>
+              <rect x="244" y="124" width="30" height="61" rx="3"/>
+              <rect x="284" y="130" width="30" height="55" rx="3"/>
+              <rect x="324" y="116" width="30" height="69" rx="3"/>
+              <rect x="364" y="122" width="30" height="63" rx="3"/>
+              <rect x="404" y="108" width="30" height="77" rx="3"/>
+              <rect x="444" y="114" width="30" height="71" rx="3"/>
+              <rect x="484" y="100" width="30" height="85" rx="3"/>
+            </g>
+            <g font-family="Space Mono, monospace" font-size="11" fill="#6E767F">
+              <text x="44" y="204">S1</text><text x="124" y="204">S3</text><text x="204" y="204">S5</text><text x="284" y="204">S7</text><text x="364" y="204">S9</text><text x="444" y="204">S11</text>
+            </g>
+          </svg>
+          <p class="pie-grafico">Fixed sample bars. In the app, the chart is drawn from your sets.</p>
+        </div>
+        <div class="progreso-rejilla">
+          <figure class="revelar">
+            <img loading="lazy" decoding="async" src="../assets/img/en-18-progreso-3m.webp" alt="Three-month progress: sessions, total volume and weekly chart." width="560" height="1140">
+            <figcaption><span class="nombre">Progress</span>Estimated 1RM (Brzycki) and progress by week, month, quarter or year.</figcaption>
+          </figure>
+          <div class="texto revelar">
+            <h3 class="titulo-menor">No loose sheets</h3>
+            <p>Sets per muscle and total volume on the same screen. <b>Export to CSV</b> whenever you want to take your data with you.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+  <hr class="moleteado" aria-hidden="true">
 
   <div class="envoltura">
+    <section class="seccion" aria-labelledby="t-funciones">
+      <h2 class="titulo-seccion revelar" id="t-funciones">Everything stays on your phone</h2>
+      <p class="subtitulo-seccion revelar">The whole session fits in one hand: guide, rest, plates and backup.</p>
+      <dl class="libro revelar">
+        <div class="asiento a1">
+          <span class="marca-fila" aria-hidden="true">— during the session</span>
+          <dt>Guided session</dt>
+          <dd>Shows last time's weight and times your rest between sets.</dd>
+        </div>
+        <div class="asiento a2">
+          <span class="marca-fila" aria-hidden="true">— setting up the day</span>
+          <dt>Reusable routines</dt>
+          <dd>With open slots for whichever machine is free.</dd>
+        </div>
+        <div class="asiento a3">
+          <span class="marca-fila" aria-hidden="true">— before the first set</span>
+          <dt>Warm-up with plates</dt>
+          <dd>Ramp-up sets and the plates that fit your bar.</dd>
+        </div>
+        <div class="asiento a4">
+          <span class="cifra" aria-hidden="true">61</span>
+          <span class="marca-fila" aria-hidden="true">— base plus yours</span>
+          <dt>Exercise library</dt>
+          <dd>61 base exercises with muscle and equipment. Add your own.</dd>
+        </div>
+        <div class="asiento a5">
+          <span class="marca-fila" aria-hidden="true">— your data, your file</span>
+          <dt>CSV and backups</dt>
+          <dd>Export and import CSV. Save copies to Downloads anytime.</dd>
+        </div>
+        <div class="asiento a6">
+          <span class="marca-fila" aria-hidden="true">— however you train</span>
+          <dt>Languages and units</dt>
+          <dd>Spanish and English. Kilos or pounds.</dd>
+        </div>
+      </dl>
+    </section>
 
-
-  <section class="seccion" aria-label="Features">
-    <dl class="funciones revelar">
-      <div class="termino">
-        <dt>Guided session</dt>
-        <dd>Reminds you what you lifted last time and rests for you between sets.</dd>
-      </div>
-      <div class="termino">
-        <dt>Reusable routines</dt>
-        <dd>With open slots so you can pick whichever machine is free.</dd>
-      </div>
-      <div class="termino">
-        <dt>Exercise catalog</dt>
-        <dd>61 base exercises with muscle and equipment. Add your own.</dd>
-      </div>
-      <div class="termino">
-        <dt>CSV and backups</dt>
-        <dd>Export and import CSV; save backups to Downloads anytime.</dd>
-      </div>
-      <div class="termino">
-        <dt>Languages and units</dt>
-        <dd>Spanish and English. Kilos or pounds.</dd>
-      </div>
-      <div class="termino">
-        <dt>Warm-up</dt>
-        <dd>With the plates you're going to need.</dd>
-      </div>
-    </dl>
-  </section>
-
-  <section class="seccion" id="preguntas" aria-labelledby="t-preguntas">
-    <h2 class="titulo-seccion revelar" id="t-preguntas">Questions</h2>
-
-    <div class="faq revelar">
-      <details>
+    <section class="seccion privacidad" id="privacidad" aria-labelledby="t-privacidad">
+      <h2 class="titulo-seccion revelar" id="t-privacidad">It cannot send your data</h2>
+      <p class="lead-priv revelar">The app asks for no internet permission. What you log stays on your phone.</p>
+      <p class="cero-datos revelar">
+        <span><b>0</b> data collected</span> · <span><b>0</b> ads</span> · <span><b>0</b> trackers</span> · <span><b>0</b> third-party services</span>
+      </p>
+      <ul class="puntos-priv revelar">
+        <li>“Save backup” writes a file to Downloads only when you ask for it.</li>
+        <li>Android cloud backup, if you turn it on, is managed from your system settings.</li>
+        <li>Uninstalling the app erases all your data.</li>
+      </ul>
+      <details class="legal revelar">
         <summary>
-          Do I need an account?
+          Privacy policy · full text
           <span class="chev" aria-hidden="true">▾</span>
         </summary>
-        <p class="respuesta">No. Open the app and train. No sign-up, no email, no passwords.</p>
+        <div class="cuerpo-legal">
+          <p class="fecha">Última actualización: 3 de octubre de 2026.</p>
+          <p>SetRack no recoge, transmite ni comparte ningún dato personal.
+             La app no tiene permiso de internet: la información que registras
+             (ejercicios, series, pesos) se guarda únicamente en el almacenamiento
+             local de tu dispositivo.</p>
+          <p>Tú controlas tus datos:</p>
+          <ul>
+            <li>«Guardar copia» escribe un archivo en la carpeta Descargas cuando tú lo pides.</li>
+            <li>La copia de seguridad de Android (si está activa en el sistema) puede incluir los datos de la app; se gestiona desde los ajustes de tu dispositivo.</li>
+            <li>Desinstalar la app borra todos los datos.</li>
+          </ul>
+          <p>No hay analítica, anuncios, rastreadores ni servicios de terceros.
+             La app tampoco solicita permisos de ubicación, cámara, contactos ni
+             ningún otro además del almacenamiento local.</p>
+          <p class="resumen-en" lang="en">English summary: SetRack collects no data. It works fully offline, has no
+             internet permission, no ads, no analytics and no third-party services. All data
+             stays on your device; uninstalling removes everything.</p>
+        </div>
       </details>
-      <details>
-        <summary>
-          Does it work offline?
-          <span class="chev" aria-hidden="true">▾</span>
-        </summary>
-        <p class="respuesta">Yes. It is 100% offline: the app doesn't even have the internet permission.
-           It works the same in a basement with no signal.</p>
-      </details>
-      <details>
-        <summary>
-          Where is my data?
-          <span class="chev" aria-hidden="true">▾</span>
-        </summary>
-        <p class="respuesta">On your phone and only on your phone. No cloud, no analytics, no trackers.
-           You make the backup: CSV export or a file in Downloads.</p>
-      </details>
-      <details>
-        <summary>
-          Can I add my own exercises?
-          <span class="chev" aria-hidden="true">▾</span>
-        </summary>
-        <p class="respuesta">Yes. The 61 exercises are the base: create your own with their muscle and equipment.</p>
-      </details>
-      <details>
-        <summary>
-          How much does it cost?
-          <span class="chev" aria-hidden="true">▾</span>
-        </summary>
-        <p class="respuesta">Nothing. Free, no ads and no in-app purchases.</p>
-      </details>
-      <details>
-        <summary>
-          When will it be on Google Play?
-          <span class="chev" aria-hidden="true">▾</span>
-        </summary>
-        <p class="respuesta">It is in internal testing now. When the public version ships,
-           the link will be right here.</p>
-      </details>
-    </div>
-  </section>
+    </section>
 
-  <section class="seccion privacidad" id="privacidad" aria-labelledby="t-privacidad">
-    <h2 class="titulo-seccion revelar" id="t-privacidad">Your data never leaves your phone</h2>
-    <p class="lead-priv revelar">
-      The app has no internet permission. It cannot send your data anywhere:
-      there is nowhere to send it.
-    </p>
-    <p class="cero-datos revelar">
-      <span><b>0</b> data collected</span> · <span><b>0</b> ads</span> · <span><b>0</b> trackers</span> · <span><b>0</b> third-party services</span>
-    </p>
-
-    <ul class="puntos-priv revelar">
-      <li>“Save backup” writes a file to Downloads only when you ask for it.</li>
-      <li>Android cloud backup, if you turn it on, is managed from your system settings.</li>
-      <li>Uninstalling the app erases all your data.</li>
-    </ul>
-
-    <details class="legal revelar">
-      <summary>
-        Privacy policy · full text
-        <span class="chev" aria-hidden="true">▾</span>
-      </summary>
-      <div class="cuerpo-legal">
-        <p class="fecha">Última actualización: 3 de octubre de 2026.</p>
-        <p>SetRack no recoge, transmite ni comparte ningún dato personal.
-           La app no tiene permiso de internet: la información que registras
-           (ejercicios, series, pesos) se guarda únicamente en el almacenamiento
-           local de tu dispositivo.</p>
-        <p>Tú controlas tus datos:</p>
-        <ul>
-          <li>«Guardar copia» escribe un archivo en la carpeta Descargas cuando tú lo pides.</li>
-          <li>La copia de seguridad de Android (si está activa en el sistema) puede incluir los datos de la app; se gestiona desde los ajustes de tu dispositivo.</li>
-          <li>Desinstalar la app borra todos los datos.</li>
-        </ul>
-        <p>No hay analítica, anuncios, rastreadores ni servicios de terceros.
-           La app tampoco solicita permisos de ubicación, cámara, contactos ni
-           ningún otro además del almacenamiento local.</p>
-        <p class="resumen-en" lang="en">English summary: SetRack collects no data. It works fully offline, has no
-           internet permission, no ads, no analytics and no third-party services. All data
-           stays on your device; uninstalling removes everything.</p>
+    <section class="seccion" id="preguntas" aria-labelledby="t-preguntas">
+      <h2 class="titulo-seccion revelar" id="t-preguntas">Before you install</h2>
+      <div class="faq revelar">
+        <details>
+          <summary>
+            Do I need an account?
+            <span class="chev" aria-hidden="true">▾</span>
+          </summary>
+          <p class="respuesta">No. Open the app and train. No sign-up, no email, no passwords.</p>
+        </details>
+        <details>
+          <summary>
+            Does it work offline?
+            <span class="chev" aria-hidden="true">▾</span>
+          </summary>
+          <p class="respuesta">Yes. It is 100% offline: the app doesn't even have the internet permission.
+             It works the same in a basement with no signal.</p>
+        </details>
+        <details>
+          <summary>
+            Where is my data?
+            <span class="chev" aria-hidden="true">▾</span>
+          </summary>
+          <p class="respuesta">On your phone and only on your phone. No cloud, no analytics, no trackers.
+             You make the backup: CSV export or a file in Downloads.</p>
+        </details>
+        <details>
+          <summary>
+            Can I add my own exercises?
+            <span class="chev" aria-hidden="true">▾</span>
+          </summary>
+          <p class="respuesta">Yes. The 61 exercises are the base: create your own with their muscle and equipment.</p>
+        </details>
+        <details>
+          <summary>
+            How much does it cost?
+            <span class="chev" aria-hidden="true">▾</span>
+          </summary>
+          <p class="respuesta">Nothing. Free, no ads and no in-app purchases.</p>
+        </details>
+        <details>
+          <summary>
+            When will it be on Google Play?
+            <span class="chev" aria-hidden="true">▾</span>
+          </summary>
+          <p class="respuesta">It is in internal testing now. When the public version ships,
+             the link will be right here.</p>
+        </details>
       </div>
-    </details>
-  </section>
+    </section>
 
-  <section class="seccion cta-final" id="descargar" aria-labelledby="t-cta">
-    <h2 class="titulo-seccion revelar" id="t-cta">Free. No ads. No account.</h2>
-    <p class="recap revelar">Guided session, routines, warm-up, estimated 1RM and CSV. You lift.</p>
-    <div class="acciones revelar">
-      <a class="boton boton-rojo" href="https://ko-fi.com/iggykimi">Buy me a coffee</a>
-      <span class="boton boton-fantasma" aria-disabled="true">Coming soon to Google Play</span>
-    </div>
-    <p class="revelar">It's in internal testing on Google Play. If you find it useful, you can buy me a coffee.</p>
-  </section>
+    <section class="seccion cta-final" id="descargar" aria-labelledby="t-cta">
+      <div class="regla revelar" aria-hidden="true"></div>
+      <h2 class="titulo-seccion revelar" id="t-cta">Free now. Yours always.</h2>
+      <p class="recap revelar">Guided sessions, routines, warm-up, estimated 1RM and CSV. Nothing leaves your phone.</p>
+      <div class="acciones revelar">
+        <a class="boton boton-rojo" href="https://ko-fi.com/iggykimi">Buy me a coffee</a>
+        <span class="boton boton-fantasma">Coming soon to Google Play</span>
+      </div>
+      <p class="nota revelar">It's in internal testing on Google Play. If you find it useful, you can buy me a coffee.</p>
+      <p class="version revelar">v0.21 · en/es · kg/lb</p>
+    </section>
   </div>
 </main>
 
 <footer class="pie">
-  <p>SetRack · © 2026</p>
+  <p>SetRack · © 2026 · v0.21</p>
   <nav aria-label="Site links">
     <a href="https://ko-fi.com/iggykimi">Ko-fi</a>
     <a href="https://github.com/iggykimi/setrack-web/issues">Issues</a>
     <a href="#privacidad">Privacy</a>
   </nav>
 </footer>
+
+<script>
+(function () {
+  "use strict";
+  var peso = 100, reps = 5, serieN = 0;
+  var DESCANSO = 90, restantes = 90, timer = null;
+  var elPeso = document.getElementById("d-peso");
+  var elReps = document.getElementById("d-reps");
+  var elReloj = document.getElementById("d-reloj");
+  var elBarra = document.getElementById("d-barra");
+  var elLista = document.getElementById("d-lista");
+  var elRm = document.getElementById("d-rm");
+  var elAviso = document.getElementById("d-aviso");
+  var elUltima = document.getElementById("d-ultima");
+  var chips = Array.prototype.slice.call(document.querySelectorAll(".demo-chips button"));
+
+  function fmt(s) { return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
+  function brzycki(w, r) {
+    if (r <= 1) return w;
+    if (r > 12) r = 12;
+    return w * 36 / (37 - r);
+  }
+  function pintar() {
+    var p = (Math.round(peso * 10) / 10).toString();
+    elPeso.textContent = p + " kg";
+    elReps.textContent = reps;
+  }
+  function marcarChips() {
+    chips.forEach(function (c) {
+      var activo = Number(c.getAttribute("data-peso")) === peso && Number(c.getAttribute("data-reps")) === reps;
+      c.setAttribute("aria-pressed", activo ? "true" : "false");
+    });
+  }
+  function pararTimer() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+  function pintarReloj() {
+    elReloj.textContent = fmt(restantes);
+    elBarra.style.transform = "scaleX(" + (restantes / DESCANSO) + ")";
+  }
+  function empezarDescanso() {
+    pararTimer();
+    restantes = DESCANSO;
+    pintarReloj();
+    elAviso.textContent = "Rest running. Breathe and get back to the bar.";
+    timer = setInterval(function () {
+      restantes -= 1;
+      if (restantes <= 0) {
+        restantes = 0;
+        pintarReloj();
+        pararTimer();
+        elAviso.textContent = "Rest over. Go get the next set.";
+        return;
+      }
+      pintarReloj();
+    }, 1000);
+  }
+
+  document.getElementById("d-peso-menos").addEventListener("click", function () {
+    peso = Math.max(20, Math.round((peso - 2.5) * 10) / 10); pintar(); marcarChips();
+  });
+  document.getElementById("d-peso-mas").addEventListener("click", function () {
+    peso = Math.min(300, Math.round((peso + 2.5) * 10) / 10); pintar(); marcarChips();
+  });
+  document.getElementById("d-reps-menos").addEventListener("click", function () {
+    reps = Math.max(1, reps - 1); pintar(); marcarChips();
+  });
+  document.getElementById("d-reps-mas").addEventListener("click", function () {
+    reps = Math.min(12, reps + 1); pintar(); marcarChips();
+  });
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () {
+      peso = Number(c.getAttribute("data-peso"));
+      reps = Number(c.getAttribute("data-reps"));
+      pintar(); marcarChips();
+    });
+  });
+  document.getElementById("d-guardar").addEventListener("click", function () {
+    serieN += 1;
+    var vacio = elLista.querySelector(".vacio");
+    if (vacio) vacio.remove();
+    var li = document.createElement("li");
+    var izq = document.createElement("span");
+    var p = (Math.round(peso * 10) / 10).toString();
+    izq.textContent = "Set " + serieN + " · " + p + " kg × " + reps;
+    var der = document.createElement("span");
+    der.textContent = "1RM ≈ " + Math.round(brzycki(peso, reps)) + " kg";
+    li.appendChild(izq); li.appendChild(der);
+    elLista.appendChild(li);
+    elRm.textContent = "≈ " + Math.round(brzycki(peso, reps)) + " kg";
+    elUltima.textContent = p + " kg × " + reps;
+    empezarDescanso();
+  });
+  document.getElementById("d-saltar").addEventListener("click", function () {
+    pararTimer();
+    restantes = 0;
+    pintarReloj();
+    elAviso.textContent = "Rest over. Go get the next set.";
+  });
+  pintar();
+  pintarReloj();
+})();
+</script>
 </body>
 </html>
