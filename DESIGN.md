@@ -18,21 +18,26 @@ presentación honesta, Ko-fi, placeholder de Play).
 
 ## Composición (compacta)
 - Hero en dos columnas (texto + UNA captura 02-sesion), apilado en móvil.
-- «La app»: 3 capturas representativas (sesión, sugerencias+músculos,
+- «La app»: 3 capturas representativas (rutina, sugerencias+músculos,
   ficha 1RM) + lista de funciones en palabras del producto, sin cifras reclamo
-  (nada de «100 kg», nada de 61 como titular).
+  (nada de «100 kg», nada de 61 como titular). La tira NO repite la captura
+  del hero. Puntos de lista en un solo neutro (`--dust`).
 - Privacidad con `details.legal` íntegro, FAQ «Antes de instalar» (6),
   cierre compacto, pie con Ko-fi + incidencias + privacidad.
 - Sin animaciones de entrada: contenido siempre visible (página de trámite,
   cero trampas de `opacity: 0`).
 
 ## Prohibiciones (claim-check)
-- Nada de descargas APK ni URLs inventadas (Ko-fi ×4 + issues ×1 por idioma;
-  Play siempre `<span>` sin href: sin URL pública).
+- Nada de descargas APK ni URLs inventadas en la landing (Ko-fi ×4 + issues ×1 por idioma;
+  Play siempre `<span>` sin href con borde sólido, nunca discontinuo: sin URL pública).
 - Cifras solo verificadas en `docs/play/ficha-play.md` o en código.
 - Nada de conmutador JS de idioma: ruta `/en/` + hreflang.
-- Legal exacto: «La app no solicita ningún permiso» (cero `<uses-permission>`
-  en el manifest, verificado 2026-10-04).
+- Legal exacto: «sin permiso de internet; el único permiso del sistema es la
+  vibración (toque al apuntar cada serie)» — VIBRATE lo aporta `@capacitor/haptics`,
+  verificado en el manifest fusionado 2026-10-04. Script: `#privacidad`/`#politica`
+  abren el `details#politica` (URL registrable para Play).
+- FAQ en hairlines (`#preguntas details` sin caja, `+` que rota 45°); el legal
+  conserva su caja con el mismo `+`.
 
 ## Preservar (intocable)
 - URLs `/` y `/en/`, hreflang, sitemap, robots, llms.txt, OG + Twitter + JSON-LD.
