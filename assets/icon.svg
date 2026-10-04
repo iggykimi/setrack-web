@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
+  <!-- Adaptive-icon foreground on a 108 grid. Scaled to 0.8 so the whole mark (plates included)
+       fits the 66-unit safe circle: round launcher masks no longer clip the plates. -->
+  <defs>
+    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff7a7e"/>
+      <stop offset="0.12" stop-color="#f2555a"/>
+      <stop offset="1" stop-color="#c93b40"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7fadff"/>
+      <stop offset="0.12" stop-color="#4a8cff"/>
+      <stop offset="1" stop-color="#2f6ad6"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4f5f1"/>
+      <stop offset="1" stop-color="#8e969e"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(54 54) scale(0.8) translate(-54 -54)">
+  <rect x="14" y="51.75" width="80" height="4.5" rx="2.25" fill="url(#steel)"/>
+  <rect x="44" y="52" width="20" height="4" fill="#c9cdc6"/>
+  <rect x="36" y="47.5" width="3.5" height="13" rx="1.4" fill="url(#steel)"/>
+  <rect x="68.5" y="47.5" width="3.5" height="13" rx="1.4" fill="url(#steel)"/>
+  <rect x="26.5" y="33" width="8.5" height="42" rx="2.6" fill="url(#red)"/>
+  <rect x="19" y="39" width="6.5" height="30" rx="2.2" fill="url(#blue)"/>
+  <rect x="73" y="33" width="8.5" height="42" rx="2.6" fill="url(#red)"/>
+  <rect x="82.5" y="39" width="6.5" height="30" rx="2.2" fill="url(#blue)"/>
+  </g>
+</svg>
