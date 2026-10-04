@@ -88,7 +88,12 @@
   }
   .cafe:hover { transform: scale(1.03); }
   .cafe:active { transform: scale(0.98); }
-  @media (max-width: 640px) {
+  .idioma {
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px;
+    color: var(--dust); text-decoration: none; font-size: 14px;
+  }
+  .idioma:hover { color: var(--chalk); }
+  @media (max-width: 860px) {
     .navegacion nav { display: none; }
   }
 
@@ -113,7 +118,7 @@
   .boton:active { transform: scale(0.98); }
   .boton-rojo { background: var(--push); color: #14090a; }
   .boton-fantasma {
-    border: 1px dashed var(--line); color: var(--dust); cursor: default;
+    border: 1px solid var(--line); color: var(--dust); cursor: default;
   }
   .hero figure {
     background: var(--surface); border: 1px solid var(--line); border-radius: 26px;
@@ -146,18 +151,14 @@
   .funciones li { padding-left: 20px; position: relative; font-size: 15.5px; color: var(--dust); }
   .funciones li strong { color: var(--chalk); font-weight: 700; }
   .funciones li::before {
-    content: ""; position: absolute; left: 0; top: 8px;
-    width: 9px; height: 9px; border-radius: 50%; background: var(--push);
+    content: ""; position: absolute; left: 0; top: 9px;
+    width: 8px; height: 8px; border-radius: 50%; background: var(--dust);
   }
-  .funciones li:nth-child(3n+2)::before { background: var(--pull); }
-  .funciones li:nth-child(3n)::before { background: var(--legs); }
   @media (max-width: 760px) {
     .funciones { grid-template-columns: 1fr; }
   }
 
   /* Privacidad: los ceros + legal íntegro. */
-  .ceros { font-size: clamp(17px, 2.2vw, 21px); font-weight: 800; margin: 0 0 14px; }
-  .ceros b { color: var(--push); }
   .puntos { margin: 0 0 18px; padding-left: 22px; color: var(--dust); font-size: 15px; }
   .puntos li { margin: 6px 0; }
   details {
@@ -167,7 +168,10 @@
   summary { padding: 15px 20px; cursor: pointer; font-weight: 700; font-size: 15.5px; list-style: none; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
   summary::-webkit-details-marker { display: none; }
   summary .chev { color: var(--dust); transition: transform 160ms var(--ease-out); }
-  details[open] summary .chev { transform: rotate(180deg); }
+  details[open] summary .chev { transform: rotate(45deg); }
+  #preguntas details { background: none; border: none; border-bottom: 1px solid var(--line); border-radius: 0; margin: 0; }
+  #preguntas summary { padding: 14px 4px; font-size: 16px; }
+  #preguntas .cuerpo { padding: 0 4px 16px; }
   details .cuerpo { padding: 0 20px 18px; color: var(--dust); font-size: 14.5px; }
   details .cuerpo p, details .cuerpo ul { margin: 10px 0; }
   details .cuerpo ul { padding-left: 22px; }
@@ -198,7 +202,7 @@
       <a href="#app">La app</a>
       <a href="#privacidad">Privacidad</a>
     </nav>
-    <a href="en/" lang="en" hreflang="en" title="English" style="color:var(--dust);text-decoration:none;font-size:14.5px">EN</a>
+    <a class="idioma" href="en/" lang="en" hreflang="en" title="English">EN</a>
     <a class="cafe" href="https://ko-fi.com/iggykimi">Invítame a un café</a>
   </header>
 
@@ -206,7 +210,7 @@
     <section class="hero" aria-label="Presentación">
       <div>
         <h1>Apunta la serie. Vuelve a la barra.</h1>
-        <p class="lead">Tus series en segundos, con una mano entre serie y serie.
+        <p class="lead">Apunta cada serie con una mano, entre serie y serie.
           <strong>Sin permiso de internet: los datos se quedan en tu móvil.</strong></p>
         <div class="acciones">
           <a class="boton boton-rojo" href="https://ko-fi.com/iggykimi">Invítame a un café</a>
@@ -223,12 +227,12 @@
         <h2 class="titulo" id="t-app">La app</h2>
         <div class="tira">
           <figure>
-            <img loading="lazy" decoding="async" src="assets/img/02-sesion.webp" alt="Sesión en curso: la lista de series de hoy con pesos y repeticiones." width="680" height="1384">
-            <figcaption><strong>Sesión</strong>Cada serie, apuntada al momento.</figcaption>
+            <img loading="lazy" decoding="async" src="assets/img/01-entrenar.webp" alt="Entrenar: la rutina de hoy con sus ejercicios y el botón para empezar." width="560" height="1140">
+            <figcaption><strong>Rutina</strong>Qué toca hoy, según tu rutina.</figcaption>
           </figure>
           <figure>
             <img loading="lazy" decoding="async" src="assets/img/04-selector.webp" alt="Selector de ejercicios: sugerencias con músculo y series que faltan esta semana." width="560" height="1140">
-            <figcaption><strong>Sugerencias</strong>Por músculo y por series que te faltan.</figcaption>
+            <figcaption><strong>Sugerencias</strong>Las series que te faltan, por músculo.</figcaption>
           </figure>
           <figure>
             <img loading="lazy" decoding="async" src="assets/img/10-ficha.webp" alt="Ficha de ejercicio: 1RM estimado con gráfica de evolución." width="560" height="1140">
@@ -236,28 +240,27 @@
           </figure>
         </div>
         <ul class="funciones">
-          <li><strong>Rutinas y sesión libre.</strong> La app sugiere ejercicios según tus músculos y tus series de la semana.</li>
-          <li><strong>Ejercicios propios.</strong> Crea los tuyos con su músculo y su material.</li>
-          <li><strong>Series contadas.</strong> Cada ejercicio suma sus series por músculo y semana.</li>
-          <li><strong>Calentamiento.</strong> Aproximación calculada con los discos que necesitas.</li>
-          <li><strong>Progreso e historial.</strong> 1RM estimado, volumen y sesiones pasadas.</li>
-          <li><strong>Copias y CSV.</strong> Guarda, restaura y exporta cuando quieras.</li>
+          <li><strong>Rutinas o sesión libre.</strong> Te sugiere ejercicios según las series que te faltan por músculo esta semana.</li>
+          <li><strong>Ejercicios propios.</strong> Crea los tuyos: músculo y material.</li>
+          <li><strong>Series contadas.</strong> Cada serie suma en su músculo y en su semana.</li>
+          <li><strong>Calentamiento.</strong> Te dice qué discos cargar para la aproximación.</li>
+          <li><strong>Progreso e historial.</strong> 1RM estimado, volumen y todas tus sesiones.</li>
+          <li><strong>Copias y CSV.</strong> Guarda, restaura y exporta a CSV cuando quieras.</li>
           <li><strong>Español e inglés.</strong> En kilos o en libras.</li>
         </ul>
       </section>
 
       <section class="bloque" id="privacidad" aria-labelledby="t-privacidad">
-        <h2 class="titulo" id="t-privacidad">Tus datos no salen del móvil</h2>
-        <p class="ceros"><b>0</b> datos recogidos · <b>0</b> anuncios · <b>0</b> rastreadores · <b>0</b> terceros</p>
+        <h2 class="titulo" id="t-privacidad">Sin conexión. Sin cuentas. Sin anuncios.</h2>
         <ul class="puntos">
           <li>La app no tiene permiso de internet. No puede enviar tus datos a ningún sitio.</li>
           <li>«Guardar copia» escribe un archivo en Descargas solo cuando tú lo pides.</li>
           <li>Desinstalar la app borra todos los datos.</li>
         </ul>
-        <details class="legal">
+        <details class="legal" id="politica">
           <summary>
             Política de privacidad · texto íntegro
-            <span class="chev" aria-hidden="true">▾</span>
+            <span class="chev" aria-hidden="true">+</span>
           </summary>
           <div class="cuerpo">
             <p class="fecha">Última actualización: 3 de octubre de 2026.</p>
@@ -272,10 +275,11 @@
               <li>Desinstalar la app borra todos los datos.</li>
             </ul>
             <p>No hay analítica, anuncios, rastreadores ni servicios de terceros.
-               La app no solicita ningún permiso: ni internet, ni ubicación,
-               ni cámara, ni contactos, ni almacenamiento.</p>
-            <p lang="en">English summary: SetRack collects no data. It works fully offline, declares
-               no permissions at all, has no ads, no analytics and no third-party services. All data
+               La app no declara el permiso de internet; el único permiso del sistema
+               es la vibración, que usa para el toque al apuntar cada serie.</p>
+            <p lang="en">English summary: SetRack collects no data. It works fully offline and declares
+               no internet permission; the only system permission is vibration, used for the tick
+               when logging a set. No ads, no analytics, no third-party services. All data
                stays on your device; uninstalling removes everything.</p>
           </div>
         </details>
@@ -284,27 +288,27 @@
       <section class="bloque" id="preguntas" aria-labelledby="t-preguntas">
         <h2 class="titulo" id="t-preguntas">Antes de instalar</h2>
         <details>
-          <summary>¿Necesito crear una cuenta?<span class="chev" aria-hidden="true">▾</span></summary>
+          <summary>¿Necesito crear una cuenta?<span class="chev" aria-hidden="true">+</span></summary>
           <p class="cuerpo">No. Abres la app y entrenas. No hay registro, ni correo, ni contraseñas.</p>
         </details>
         <details>
-          <summary>¿Funciona sin conexión?<span class="chev" aria-hidden="true">▾</span></summary>
+          <summary>¿Funciona sin conexión?<span class="chev" aria-hidden="true">+</span></summary>
           <p class="cuerpo">Sí. Es 100% offline: la app ni siquiera tiene permiso de internet. Sirve igual en un sótano sin cobertura.</p>
         </details>
         <details>
-          <summary>¿Dónde están mis datos?<span class="chev" aria-hidden="true">▾</span></summary>
+          <summary>¿Dónde están mis datos?<span class="chev" aria-hidden="true">+</span></summary>
           <p class="cuerpo">En tu móvil y solo en tu móvil. Sin nube, sin analítica y sin rastreadores. La copia la haces tú: exportación CSV o archivo en Descargas.</p>
         </details>
         <details>
-          <summary>¿Puedo añadir mis propios ejercicios?<span class="chev" aria-hidden="true">▾</span></summary>
+          <summary>¿Puedo añadir mis propios ejercicios?<span class="chev" aria-hidden="true">+</span></summary>
           <p class="cuerpo">Sí. El catálogo con músculo y material es la base: crea los tuyos con su músculo y su material.</p>
         </details>
         <details>
-          <summary>¿Cuánto cuesta?<span class="chev" aria-hidden="true">▾</span></summary>
+          <summary>¿Cuánto cuesta?<span class="chev" aria-hidden="true">+</span></summary>
           <p class="cuerpo">Nada. Gratis, sin anuncios y sin compras dentro de la app.</p>
         </details>
         <details>
-          <summary>¿Cuándo estará en Google Play?<span class="chev" aria-hidden="true">▾</span></summary>
+          <summary>¿Cuándo estará en Google Play?<span class="chev" aria-hidden="true">+</span></summary>
           <p class="cuerpo">Está en fase de prueba interna. Cuando salga la versión pública, el enlace estará aquí.</p>
         </details>
       </section>
@@ -329,5 +333,8 @@
       </nav>
     </footer>
   </div>
+<script>
+(function(){function abrir(){var d=document.getElementById('politica');if(d&&['#privacidad','#politica'].indexOf(location.hash)>-1)d.open=true}abrir();addEventListener('hashchange',abrir)})();
+</script>
 </body>
 </html>
