@@ -136,7 +136,7 @@
     background: var(--surface); border: 1px solid var(--line); border-radius: 26px;
     padding: 14px; margin: 0;
   }
-  .tira img { width: 100%; height: auto; display: block; border-radius: 14px; }
+  .tira img { width: 100%; height: auto; display: block; border-radius: 14px; aspect-ratio: 9 / 13; object-fit: cover; object-position: top center; -webkit-mask-image: linear-gradient(#000 88%, transparent); mask-image: linear-gradient(#000 88%, transparent); }
   .tira figcaption { padding: 12px 6px 4px; font-size: 14px; color: var(--dust); }
   .tira figcaption strong { display: block; color: var(--chalk); font-size: 15px; }
   @media (max-width: 760px) {
