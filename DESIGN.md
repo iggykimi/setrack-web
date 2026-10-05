@@ -14,6 +14,9 @@ plantilla de producto.
 - Tipo: Archivo variable self-hosted (`fonts/archivo-latin.woff2`, eje de anchura 62–125 %). Los titulares van a `font-stretch: 68%`, peso 800 y `line-height: 0.86`. El texto se lee en anchura normal.
 - Radios: 30 px en pantallas, 26 px en la tarjeta legal, 999 px en píldoras.
 
+## Tono (2026-10-05)
+Llano y modesto: describe lo que hace la app como lo contaría quien la hizo para sí y la comparte («Un diario de gimnasio sencillo», «Tus datos se quedan en tu móvil»). Nada de eslóganes imperativos ni tríos «Sin X. Sin Y. Sin Z.»; los hechos de privacidad se dicen con naturalidad. Los textos de las capturas de Play siguen el mismo tono (`docs/play/store/copy.mjs` del repo de la app). Las imágenes OG salen de `docs/play/store/compose.mjs` de ese repo.
+
 ## Composición
 1. **Portada**: titular en dos líneas (la segunda en `--faint`) → barra SVG a todo el ancho → entradilla + Play + Ko-fi.
 2. **La app**: titular + lista de 6 funciones con la forma de las filas de la app (número condensado y texto; sin disco de color: los colores de los discos solo marcan datos). Al lado van dos recortes reales superpuestos: la sesión delante y el selector asomando por la izquierda.
