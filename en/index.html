@@ -5,324 +5,97 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#000000">
-<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
 <title>SetRack · Log the set, back to the bar</title>
-<meta name="description" content="Gym log for Android. Log your sets in seconds, one-handed, and your data stays only on your phone: offline, ad-free, no account.">
+<meta name="description" content="Gym log for Android. Log every set one-handed and your data stays on your phone: no internet, no ads and no account.">
 <link rel="canonical" href="https://iggykimi.github.io/setrack-web/en/">
 <link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/">
 <link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/">
-<link rel="alternate" hreflang="x-default" href="https://iggykimi.github.io/setrack-web/">
+<link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/">
+<link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/">
+<link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/">
+<link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/">
+<link rel="alternate" hreflang="x-default" href="https://iggykimi.github.io/setrack-web/en/">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="preload" href="../fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="SetRack" translate="no">
+<meta property="og:site_name" content="SetRack">
 <meta property="og:title" content="SetRack · Log the set, back to the bar">
-<meta property="og:description" content="Gym log for Android. Log your sets in seconds, one-handed, and your data stays only on your phone: offline, ad-free, no account.">
+<meta property="og:description" content="Gym log for Android. Log every set one-handed and your data stays on your phone: no internet, no ads and no account.">
 <meta property="og:url" content="https://iggykimi.github.io/setrack-web/en/">
 <meta property="og:image" content="https://iggykimi.github.io/setrack-web/assets/og-en.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:locale" content="en_US">
-<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SetRack · Log the set, back to the bar">
-<meta name="twitter:description" content="Gym log for Android. Log your sets in seconds and your data stays only on your phone.">
 <meta name="twitter:image" content="https://iggykimi.github.io/setrack-web/assets/og-en.jpg">
-<link rel="preload" href="../fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SetRack","operatingSystem":"Android","applicationCategory":"HealthApplication","description":"Offline gym log. Log your sets in seconds: guided sessions, routines, warm-up, estimated 1RM and CSV export. No account, no ads, no internet permission.","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"featureList":["Offline set logging","Guided session","Routines with open slots","Warm-up with plates","Estimated 1RM (Brzycki)","61 base exercises and custom ones","CSV export","Spanish and English","kg/lb"],"author":{"@type":"Person","name":"iggykimi","url":"https://github.com/iggykimi"}}
-</script>
-<style>
-  /* SetRack web: the app's own tokens (floor/chalk/plates, Archivo, 26px radius). */
-  @font-face {
-    font-family: "Archivo";
-    src: url("../fonts/archivo-latin.woff2") format("woff2-variations");
-    font-weight: 100 900; font-style: normal; font-display: swap;
-  }
-  :root {
-    --floor: #000000;
-    --surface: #121315;
-    --raised: #1d1f22;
-    --line: #2c2f33;
-    --chalk: #eceee8;
-    --dust: #9ba3ab;
-    --push: #f2555a;
-    --pull: #4a8cff;
-    --legs: #2ba868;
-    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  }
-  * { box-sizing: border-box; margin: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--floor); color: var(--chalk);
-    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
-    font-size: 16px; line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  .envoltura { max-width: 1060px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
-  a { color: inherit; }
-  a:focus-visible, summary:focus-visible {
-    outline: 2px solid var(--push); outline-offset: 3px; border-radius: 8px;
-  }
-  .saltar {
-    position: absolute; left: 16px; top: -60px; z-index: 50;
-    background: var(--raised); color: var(--chalk); padding: 10px 18px;
-    border-radius: 999px; text-decoration: none; transition: top 160ms var(--ease-out);
-  }
-  .saltar:focus { top: 12px; }
-
-  .navegacion {
-    position: sticky; top: 12px; z-index: 40;
-    display: flex; align-items: center; gap: 20px;
-    max-width: 1060px; margin: 12px auto 0; padding: 10px 12px 10px 16px;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
-  }
-  .marca { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 18px; }
-  .marca img { width: 30px; height: 30px; }
-  .navegacion nav { display: flex; gap: 18px; margin-left: auto; font-size: 14.5px; }
-  .navegacion nav a { color: var(--dust); text-decoration: none; }
-  .navegacion nav a:hover { color: var(--chalk); }
-  .cafe {
-    background: var(--push); color: #14090a; font-weight: 700; font-size: 14.5px;
-    padding: 9px 18px; border-radius: 999px; text-decoration: none; white-space: nowrap;
-    transition: transform 120ms var(--ease-out);
-  }
-  .cafe:hover { transform: scale(1.03); }
-  .cafe:active { transform: scale(0.98); }
-  .idioma {
-    border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px;
-    color: var(--dust); text-decoration: none; font-size: 14px;
-  }
-  .idioma:hover { color: var(--chalk); }
-  @media (max-width: 860px) {
-    .navegacion nav { display: none; }
-  }
-
-  .hero {
-    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(24px, 5vw, 64px);
-    align-items: center; padding: clamp(40px, 7vh, 84px) 0 clamp(32px, 5vh, 56px);
-  }
-  .hero h1 {
-    font-size: clamp(34px, 4.6vw, 56px); font-weight: 800;
-    line-height: 1.04; letter-spacing: -0.02em; margin: 0 0 14px;
-  }
-  .hero .lead { color: var(--dust); font-size: clamp(16px, 1.6vw, 18px); max-width: 30em; }
-  .hero .lead strong { color: var(--chalk); }
-  .acciones { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; align-items: center; }
-  .boton {
-    display: inline-block; padding: 13px 26px; border-radius: 999px;
-    font-weight: 700; font-size: 15px; text-decoration: none;
-    transition: transform 120ms var(--ease-out);
-  }
-  .boton:hover { transform: scale(1.03); }
-  .boton:active { transform: scale(0.98); }
-  .boton-rojo { background: var(--push); color: #14090a; }
-  .boton-fantasma {
-    border: 1px solid var(--line); color: var(--dust); cursor: default;
-  }
-  .hero figure {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 26px;
-    padding: 18px; margin: 0;
-  }
-  .hero figure img { width: 100%; height: auto; display: block; border-radius: 14px; }
-  @media (max-width: 760px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero figure { max-width: 340px; }
-  }
-
-  section.bloque { padding: clamp(30px, 5vh, 56px) 0; scroll-margin-top: 80px; }
-  h2.titulo { font-size: clamp(24px, 3.2vw, 36px); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 18px; }
-
-  .tira {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 26px;
-  }
-  .tira figure {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 26px;
-    padding: 14px; margin: 0;
-  }
-  .tira img { width: 100%; height: auto; display: block; border-radius: 14px; aspect-ratio: 9 / 13; object-fit: cover; object-position: top center; -webkit-mask-image: linear-gradient(#000 88%, transparent); mask-image: linear-gradient(#000 88%, transparent); }
-  .tira figcaption { padding: 12px 6px 4px; font-size: 14px; color: var(--dust); }
-  .tira figcaption strong { display: block; color: var(--chalk); font-size: 15px; }
-  @media (max-width: 760px) {
-    .tira { grid-template-columns: 1fr; max-width: 340px; }
-  }
-  .funciones { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; }
-  .funciones li { padding-left: 20px; position: relative; font-size: 15.5px; color: var(--dust); }
-  .funciones li strong { color: var(--chalk); font-weight: 700; }
-  .funciones li::before {
-    content: ""; position: absolute; left: 0; top: 9px;
-    width: 8px; height: 8px; border-radius: 50%; background: var(--dust);
-  }
-  @media (max-width: 760px) {
-    .funciones { grid-template-columns: 1fr; }
-  }
-
-  .puntos { margin: 0 0 18px; padding-left: 22px; color: var(--dust); font-size: 15px; }
-  .puntos li { margin: 6px 0; }
-  details {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
-    margin: 10px 0; overflow: hidden;
-  }
-  summary { padding: 15px 20px; cursor: pointer; font-weight: 700; font-size: 15.5px; list-style: none; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
-  summary::-webkit-details-marker { display: none; }
-  summary .chev { color: var(--dust); transition: transform 160ms var(--ease-out); }
-  details[open] summary .chev { transform: rotate(45deg); }
-  #preguntas details { background: none; border: none; border-bottom: 1px solid var(--line); border-radius: 0; margin: 0; }
-  #preguntas summary { padding: 14px 4px; font-size: 16px; }
-  #preguntas .cuerpo { padding: 0 4px 16px; }
-  details .cuerpo { padding: 0 20px 18px; color: var(--dust); font-size: 14.5px; }
-  details .cuerpo p, details .cuerpo ul { margin: 10px 0; }
-  details .cuerpo ul { padding-left: 22px; }
-  details .cuerpo li { margin: 6px 0; }
-  details .cuerpo p:first-child { color: var(--chalk); }
-  .fecha { font-size: 13px; font-style: italic; }
-
-  .cierre { text-align: left; }
-  .cierre p { color: var(--dust); margin: 0 0 18px; }
-  .pie {
-    display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
-    border-top: 1px solid var(--line); margin-top: 26px; padding: 22px 0 40px;
-    font-size: 14px; color: var(--dust);
-  }
-  .pie nav { display: flex; gap: 18px; margin-left: auto; }
-  .pie a { color: var(--dust); text-decoration: none; }
-  .pie a:hover { color: var(--chalk); }
-
-  /* No entrance animation: a utility page, content always visible. */
-</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SetRack","operatingSystem":"Android","applicationCategory":"HealthApplication","description":"Gym log for Android. Log every set one-handed and your data stays on your phone: no internet, no ads and no account.","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"featureList":["Routine or free session","Warm-up","Estimated 1RM","61 exercises","Backup and CSV","6 languages"],"author":{"@type":"Person","name":"iggykimi","url":"https://github.com/iggykimi"}}</script>
 </head>
 <body>
-  <a class="saltar" href="#contenido">Skip to content</a>
-  <header class="navegacion">
-    <a class="marca" href="#"><img src="../assets/icon.svg" alt="" width="30" height="30">SetRack</a>
-    <nav aria-label="Sections">
-      <a href="#app">The app</a>
-      <a href="#privacidad">Privacy</a>
-    </nav>
-    <a class="idioma" href="../" lang="es" hreflang="es" title="Español">ES</a>
-    <a class="cafe" href="https://ko-fi.com/iggykimi">Buy me a coffee</a>
-  </header>
-
-  <div class="envoltura">
-    <section class="hero" aria-label="Introduction">
-      <div>
-        <h1>Log the set. Back to the bar.</h1>
-        <p class="lead">Log each set one-handed, between sets.
-          <strong>No internet permission: your data stays on your phone.</strong></p>
-        <div class="acciones">
-          <a class="boton boton-rojo" href="https://ko-fi.com/iggykimi">Buy me a coffee</a>
-          <span class="boton boton-fantasma" aria-disabled="true">Coming soon to Google Play</span>
-        </div>
+<a class="saltar" href="#contenido">Skip to content</a>
+<header class="cabecera envoltura">
+  <a class="marca" href="../en/"><img src="../assets/icon.svg" alt="" width="28" height="28"><span>SetRack</span></a>
+  <nav class="idiomas" aria-label="Language"><a href="../" hreflang="es" lang="es" title="Español">es</a><a href="../en/" hreflang="en" lang="en" title="English" aria-current="page">en</a><a href="../pt/" hreflang="pt-BR" lang="pt-BR" title="Português">pt</a><a href="../de/" hreflang="de" lang="de" title="Deutsch">de</a><a href="../fr/" hreflang="fr" lang="fr" title="Français">fr</a><a href="../it/" hreflang="it" lang="it" title="Italiano">it</a></nav>
+</header>
+<main id="contenido" tabindex="-1">
+  <section class="portada envoltura" aria-labelledby="t-portada">
+    <h1 id="t-portada">Log the set.<span class="tenue">Back to the bar.</span></h1>
+    <svg class="barra" viewBox="0 0 320 64" role="img" aria-label="A barbell loaded with five coloured plates, the SetRack symbol."><rect x="4" y="29.5" width="312" height="5" rx="2.5" fill="var(--line)"/><rect x="88" y="25" width="6" height="14" rx="2" fill="var(--dust)"/><rect x="226" y="25" width="6" height="14" rx="2" fill="var(--dust)"/><g class="par" style="--i:0" data-region="push"><rect class="izq" x="76" y="2" width="10" height="60" rx="3"/><rect class="der" x="234" y="2" width="10" height="60" rx="3"/></g><g class="par" style="--i:1" data-region="pull"><rect class="izq" x="63" y="5" width="10" height="54" rx="3"/><rect class="der" x="247" y="5" width="10" height="54" rx="3"/></g><g class="par" style="--i:2" data-region="legs"><rect class="izq" x="50" y="8" width="10" height="48" rx="3"/><rect class="der" x="260" y="8" width="10" height="48" rx="3"/></g><g class="par" style="--i:3" data-region="core"><rect class="izq" x="37" y="11" width="10" height="42" rx="3"/><rect class="der" x="273" y="11" width="10" height="42" rx="3"/></g><g class="par" style="--i:4" data-region="push"><rect class="izq" x="24" y="14" width="10" height="36" rx="3"/><rect class="der" x="286" y="14" width="10" height="36" rx="3"/></g></svg>
+    <div class="portada-pie">
+      <p class="entrada">Gym log for Android. Free, no ads, no account, fully offline.</p>
+      <div class="acciones">
+        <span class="play" aria-disabled="true">Coming soon to Google Play</span>
+        <a class="cafe" href="https://ko-fi.com/iggykimi">Buy me a coffee</a>
       </div>
-      <figure>
-        <img src="../assets/img/en-02-sesion.webp" alt="Workout in progress: today's set list with weights and reps." width="560" height="1140">
-      </figure>
-    </section>
+    </div>
+  </section>
 
-    <main id="contenido" tabindex="-1">
-      <section class="bloque" id="app" aria-labelledby="t-app">
-        <h2 class="titulo" id="t-app">The app</h2>
-        <div class="tira">
-          <figure>
-            <img loading="lazy" decoding="async" src="../assets/img/en-01-entrenar.webp" alt="Train: today's routine with its exercises and the start button." width="560" height="1140">
-            <figcaption><strong>Routine</strong>What to train today, from your routine.</figcaption>
-          </figure>
-          <figure>
-            <img loading="lazy" decoding="async" src="../assets/img/en-04-selector.webp" alt="Exercise picker: suggestions with muscle and sets missing this week." width="560" height="1140">
-            <figcaption><strong>Suggestions</strong>The sets you are missing, by muscle.</figcaption>
-          </figure>
-          <figure>
-            <img loading="lazy" decoding="async" src="../assets/img/en-10-ficha.webp" alt="Exercise detail: estimated 1RM with progress chart." width="560" height="1140">
-            <figcaption><strong>Detail</strong>Estimated 1RM and progress per exercise.</figcaption>
-          </figure>
-        </div>
-        <ul class="funciones">
-          <li><strong>Routines or free session.</strong> Suggests exercises from the sets missing by muscle this week.</li>
-          <li><strong>Your own exercises.</strong> Create them: muscle and equipment.</li>
-          <li><strong>Counted sets.</strong> Every set adds to its muscle and its week.</li>
-          <li><strong>Warm-up.</strong> Tells you which plates to load for the ramp-up.</li>
-          <li><strong>Progress and history.</strong> Estimated 1RM, volume and all your sessions.</li>
-          <li><strong>Backups and CSV.</strong> Save, restore and export to CSV whenever you want.</li>
-          <li><strong>Spanish and English.</strong> In kilos or pounds.</li>
-        </ul>
-      </section>
+  <section class="app envoltura" id="app" aria-labelledby="t-app">
+    <div class="app-texto">
+      <h2 id="t-app">One hand.<span class="tenue">Between sets.</span></h2>
+      <ol class="series">
+      <li data-region="push"><span class="n" aria-hidden="true">1</span><span><strong>Routine or free session</strong> It suggests what each muscle still needs this week.</span></li>
+      <li data-region="pull"><span class="n" aria-hidden="true">2</span><span><strong>Warm-up</strong> Three ramp-up sets worked out from your last session.</span></li>
+      <li data-region="legs"><span class="n" aria-hidden="true">3</span><span><strong>Estimated 1RM</strong> Per exercise and over time, with the Brzycki formula.</span></li>
+      <li data-region="core"><span class="n" aria-hidden="true">4</span><span><strong>61 exercises</strong> Plus your own, with their muscle and equipment.</span></li>
+      <li data-region="push"><span class="n" aria-hidden="true">5</span><span><strong>Backup and CSV</strong> Saved to Downloads, whenever you want.</span></li>
+      <li data-region="push"><span class="n" aria-hidden="true">6</span><span><strong>6 languages</strong> In kilos or pounds.</span></li>
+      </ol>
+    </div>
+    <div class="pantallas">
+      <figure class="pantalla principal"><img src="../assets/img/en-sesion.webp" alt="Session in progress: bench press with one set of 75 kg for 8 and the weight and rep controls." width="640" height="871" decoding="async"></figure>
+      <figure class="pantalla segunda"><img src="../assets/img/en-selector.webp" alt="Add exercise: suggestions with the sets each muscle still needs this week." width="640" height="859" decoding="async"></figure>
+    </div>
+  </section>
 
-      <section class="bloque" id="privacidad" aria-labelledby="t-privacidad">
-        <h2 class="titulo" id="t-privacidad">No connection. No accounts. No ads.</h2>
-        <ul class="puntos">
-          <li>The app has no internet permission. It cannot send your data anywhere.</li>
-          <li>“Save backup” writes a file to Downloads only when you ask for it.</li>
-          <li>Uninstalling the app erases all your data.</li>
-        </ul>
-        <details class="legal" id="politica">
-          <summary>
-            Privacy policy · full text
-            <span class="chev" aria-hidden="true">+</span>
-          </summary>
-          <div class="cuerpo">
-            <p>SetRack collects no data. It works fully offline and declares
-               no internet permission; the only system permission is vibration,
-               used for the tick when logging a set. No analytics, no ads,
-               no trackers, no third-party services.</p>
-            <p lang="es">Texto original en español (versión registrada): SetRack no recoge, transmite ni
-               comparte ningún dato personal. La app no tiene permiso de internet: la información que
-               registras (ejercicios, series, pesos) se guarda únicamente en el almacenamiento
-               local de tu dispositivo. No hay analítica, anuncios, rastreadores ni servicios de
-               terceros. La app no declara el permiso de internet; el único permiso del sistema
-               es la vibración, que usa para el toque al apuntar cada serie.
-               Última actualización: 3 de octubre de 2026.</p>
-          </div>
-        </details>
-      </section>
+  <section class="datos envoltura" id="privacidad" aria-labelledby="t-datos">
+    <h2 id="t-datos">Your data never leaves<span class="tenue">your phone.</span></h2>
+    <p class="entrada">The app has no internet permission: it cannot send anything anywhere. No account, no analytics, no ads.</p>
+    <article class="politica" id="politica">
+  <h3>Privacy policy</h3>
+  <p class="fecha">Last updated: 5 October 2026.</p>
+  <p>SetRack does not collect, transmit or share any personal data. The app has no internet permission: what you log (exercises, sets, weights) is stored only in your device’s local storage.</p>
+  <p>You control your data:</p>
+  <ul><li>“Save backup” writes a file to the Downloads folder when you ask for it.</li><li>Android backup (if it is enabled on your system) may include the app’s data; it is managed from your device settings.</li><li>Uninstalling the app deletes all data.</li></ul>
+  <p>There are no analytics, ads, trackers or third-party services. The app does not declare the internet permission; its only system permission is vibration, used for the tick when you log a set.</p>
+  <p>Contact: open an issue on <a href="https://github.com/iggykimi/setrack-web/issues">GitHub</a>.</p>
+  <p class="aparte"><a href="../en/privacy/">Open as a separate page →</a></p>
+</article>
+  </section>
 
-      <section class="bloque" id="preguntas" aria-labelledby="t-preguntas">
-        <h2 class="titulo" id="t-preguntas">Before you install</h2>
-        <details>
-          <summary>Do I need an account?<span class="chev" aria-hidden="true">+</span></summary>
-          <p class="cuerpo">No. You open the app and train. No sign-up, no email, no passwords.</p>
-        </details>
-        <details>
-          <summary>Does it work offline?<span class="chev" aria-hidden="true">+</span></summary>
-          <p class="cuerpo">Yes. It is 100% offline: the app does not even have internet permission. It works the same in a basement with no signal.</p>
-        </details>
-        <details>
-          <summary>Where is my data?<span class="chev" aria-hidden="true">+</span></summary>
-          <p class="cuerpo">On your phone and only on your phone. No cloud, no analytics, no trackers. You make the backup: CSV export or a file in Downloads.</p>
-        </details>
-        <details>
-          <summary>Can I add my own exercises?<span class="chev" aria-hidden="true">+</span></summary>
-          <p class="cuerpo">Yes. The catalog with muscle and equipment is the starting point: create yours with their muscle and equipment.</p>
-        </details>
-        <details>
-          <summary>How much does it cost?<span class="chev" aria-hidden="true">+</span></summary>
-          <p class="cuerpo">Nothing. Free, no ads, no in-app purchases.</p>
-        </details>
-        <details>
-          <summary>When will it be on Google Play?<span class="chev" aria-hidden="true">+</span></summary>
-          <p class="cuerpo">It is in internal testing. When the public version ships, the link will be here.</p>
-        </details>
-      </section>
-
-      <section class="bloque cierre" id="descargar" aria-labelledby="t-cta">
-        <h2 class="titulo" id="t-cta">Free. No ads. No account.</h2>
-        <p>Routines, free session, warm-up, estimated 1RM and CSV. You lift.</p>
-        <div class="acciones">
-          <a class="boton boton-rojo" href="https://ko-fi.com/iggykimi">Buy me a coffee</a>
-          <span class="boton boton-fantasma" aria-disabled="true">Coming soon to Google Play</span>
-        </div>
-        <p style="margin-top:14px;font-size:14px">It is in internal testing on Google Play. If you find it useful, you can buy me a coffee.</p>
-      </section>
-    </main>
-
-    <footer class="pie">
-      <p>SetRack · © 2026</p>
-      <nav aria-label="Links">
-        <a href="https://ko-fi.com/iggykimi">Ko-fi</a>
-        <a href="https://github.com/iggykimi/setrack-web/issues">Issues</a>
-        <a href="#privacidad">Privacy</a>
-      </nav>
-    </footer>
-  </div>
-<script>
-(function(){function abrir(){var d=document.getElementById('politica');if(d&&['#privacidad','#politica'].indexOf(location.hash)>-1)d.open=true}abrir();addEventListener('hashchange',abrir)})();
-</script>
+  <section class="apoyo envoltura" aria-labelledby="t-apoyo">
+    <h2 id="t-apoyo">SetRack is free.</h2>
+    <p>No ads and no paid version. If it helps you, a coffee helps keep it going.</p>
+    <a class="cafe" href="https://ko-fi.com/iggykimi">Buy me a coffee</a>
+  </section>
+</main>
+<footer class="pie envoltura">
+  <p class="pie-marca"><img src="../assets/icon.svg" alt="" width="22" height="22">SetRack · 2026</p>
+  <nav aria-label="SetRack">
+    <a href="https://ko-fi.com/iggykimi">Ko-fi</a>
+    <a href="https://github.com/iggykimi/setrack-web/issues">Issues</a>
+    <a href="../en/privacy/">Privacy</a>
+  </nav>
+</footer>
 </body>
 </html>

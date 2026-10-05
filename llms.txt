@@ -1,25 +1,25 @@
 # SetRack
 
-> App Android de registro de gimnasio. 100% offline: sin cuenta, sin anuncios,
-> sin rastreadores y sin permiso de internet. Los datos viven solo en el móvil.
+> Android gym log. Fully offline: no account, no ads, no trackers and no internet
+> permission. Data lives only on the phone. Free.
 
-## Páginas
+## Pages
 
-- [Landing en español](https://iggykimi.github.io/setrack-web/): presentación, capturas, preguntas y política de privacidad.
-- [Landing in English](https://iggykimi.github.io/setrack-web/en/): same page in English.
+- [Español](https://iggykimi.github.io/setrack-web/) · [English](https://iggykimi.github.io/setrack-web/en/) · [Português](https://iggykimi.github.io/setrack-web/pt/) · [Deutsch](https://iggykimi.github.io/setrack-web/de/) · [Français](https://iggykimi.github.io/setrack-web/fr/) · [Italiano](https://iggykimi.github.io/setrack-web/it/)
+- Privacy policy: [es](https://iggykimi.github.io/setrack-web/privacidad/) · [en](https://iggykimi.github.io/setrack-web/en/privacy/) · [pt](https://iggykimi.github.io/setrack-web/pt/privacidade/) · [de](https://iggykimi.github.io/setrack-web/de/datenschutz/) · [fr](https://iggykimi.github.io/setrack-web/fr/confidentialite/) · [it](https://iggykimi.github.io/setrack-web/it/privacy/). Each home page also carries the full text (#privacidad).
 
-## Hechos verificables
+## Verifiable facts
 
-- La app no declara el permiso INTERNET en el APK: no puede conectar a la red.
-- Los datos (ejercicios, series, pesos) se guardan solo en el almacenamiento local.
-- Exportación e importación CSV; copias manuales en Descargas.
-- 61 ejercicios base con músculo y material; el usuario puede añadir más.
-- 1RM estimado con la fórmula de Brzycki; progreso por semana, mes, trimestre o año.
-- Español e inglés; kilos o libras.
-- Estado: prueba interna en Google Play (sin enlace público todavía).
-- Política de privacidad: https://iggykimi.github.io/setrack-web/ (sección «Política de privacidad», texto íntegro).
+- The APK declares no INTERNET permission; its only system permission is VIBRATE (the tick when logging a set).
+- Exercises, sets and weights are stored only in local storage.
+- Manual backup file in Downloads, restore from that file, and CSV export.
+- 61 base exercises with muscle and equipment; users can add their own.
+- Estimated 1RM (Brzycki); progress by week, month, quarter or year.
+- Suggests exercises by the sets each muscle still needs this week.
+- Spanish, English, Portuguese (Brazil), German, French and Italian; kilos or pounds.
+- Status: internal testing on Google Play (no public link yet).
 
-## Contacto
+## Contact
 
-- Donaciones: https://ko-fi.com/iggykimi
-- Incidencias: https://github.com/iggykimi/setrack-web/issues
+- Donations: https://ko-fi.com/iggykimi
+- Issues: https://github.com/iggykimi/setrack-web/issues

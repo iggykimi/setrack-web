@@ -1,50 +1,47 @@
-# DESIGN.md — SetRack landing (dirección vigente, 2026-10-04)
+# DESIGN.md — SetRack web (dirección vigente, 2026-10-05)
 
-## Concepto (una frase)
-Página de trámite pegada a la app: sus tokens, su tipografía, su icono,
-sus capturas. Cumple su cometido y poco más (URL de privacidad para Play,
-presentación honesta, Ko-fi, placeholder de Play).
+## Concepto
+La web es la barra de la app. Pocas palabras en la condensada enorme de la app,
+la barra cargándose de discos y dos pantallas reales. Una idea por bloque:
+apuntar, qué hace, tus datos y apoyar. Debe sentirse hecha a mano, no como una
+plantilla de producto.
 
-## Lenguaje (el de la app, ver `app/src/styles/tokens.css`)
-- Fondo `--floor #000000`, superficies `--surface #121315` / `--raised #1d1f22`,
-  líneas `--line #2c2f33`, texto `--chalk #eceee8`, secundario `--dust #9ba3ab`.
-- Puntos de músculo con los colores de la app: push `#f2555a`,
-  pull `#4a8cff`, legs `#2ba868`. El rojo `#f2555a` además en CTAs y ceros.
-- Tipo: **Archivo variable** self-hosted (`fonts/archivo-latin.woff2` + `OFL-Archivo.txt`).
-  Sin display decorativa, sin mono: la app no los usa.
-- Radios: 26px tarjetas, 999px píldoras. Icono real: `assets/icon.svg`
-  (barra con discos rojo+azul, el del launcher). Una sola ilustración de barra:
-  el icono; prohibida la barra decorativa duplicada.
+## Lenguaje (el de la app: `src/styles/tokens.css`)
+- Negro AMOLED `#000`, superficies `--surface #121315`, líneas `--line #2c2f33` y `--line-soft #1f2124`.
+- Texto en tiza `#eceee8`. El secundario va en `--mist #b9bfc6` (entradillas), `--dust #9ba3ab` y `--faint #7c848d`; la segunda línea de cada titular va en `--faint`.
+- Color **solo** de discos: push `#f2555a`, pull `#4a8cff`, legs `#2ba868`, core `#e6e8eb`. Nunca en botones.
+- Botón principal en tiza sólida con texto `--ink`, igual que en la app. La plaza de Play es una píldora con borde sólido y sin enlace.
+- Tipo: Archivo variable self-hosted (`fonts/archivo-latin.woff2`, eje de anchura 62–125 %). Los titulares van a `font-stretch: 68%`, peso 800 y `line-height: 0.86`. El texto se lee en anchura normal.
+- Radios: 30 px en pantallas, 26 px en la tarjeta legal, 999 px en píldoras.
 
-## Composición (compacta)
-- Hero en dos columnas (texto + UNA captura 02-sesion), apilado en móvil.
-- «La app»: 3 capturas representativas (rutina, sugerencias+músculos,
-  ficha 1RM) + lista de funciones en palabras del producto, sin cifras reclamo
-  (nada de «100 kg», nada de 61 como titular). La tira NO repite la captura
-  del hero. Puntos de lista en un solo neutro (`--dust`).
-- Privacidad con `details.legal` íntegro, FAQ «Antes de instalar» (6),
-  cierre compacto, pie con Ko-fi + incidencias + privacidad.
-- Sin animaciones de entrada: contenido siempre visible (página de trámite,
-  cero trampas de `opacity: 0`).
+## Composición
+1. **Portada**: titular en dos líneas (la segunda en `--faint`) → barra SVG a todo el ancho → entradilla + Play + Ko-fi.
+2. **La app**: titular + lista de 6 funciones con la forma de las filas de la app (número condensado, texto y disco del color de su región). Al lado van dos recortes reales superpuestos: la sesión delante y el selector asomando por la izquierda.
+3. **Tus datos** (`#privacidad`): titular + entradilla. La política íntegra (`#politica`) va al lado en escritorio y debajo en móvil.
+4. **Apoyo**: «SetRack es gratis» + Ko-fi.
+5. Pie: Ko-fi, incidencias y privacidad.
 
-## Prohibiciones (claim-check)
-- Nada de descargas APK ni URLs inventadas en la landing (Ko-fi ×4 + issues ×1 por idioma;
-  Play siempre `<span>` sin href con borde sólido, nunca discontinuo: sin URL pública).
-- Cifras solo verificadas en `docs/play/ficha-play.md` o en código.
-- Nada de conmutador JS de idioma: ruta `/en/` + hreflang.
-- Legal exacto: «sin permiso de internet; el único permiso del sistema es la
-  vibración (toque al apuntar cada serie)» — VIBRATE lo aporta `@capacitor/haptics`,
-  verificado en el manifest fusionado 2026-10-04. Script: `#privacidad`/`#politica`
-  abren el `details#politica` (URL registrable para Play).
-- FAQ en hairlines (`#preguntas details` sin caja, `+` que rota 45°); el legal
-  conserva su caja con el mismo `+`.
+## Movimiento
+Uno solo: los discos entran en la barra al cargar (de dentro a fuera, 90 ms
+entre pares, `--ease-out`). Es CSS puro: sin JS, el contenido se ve igual.
+Con `prefers-reduced-motion` no se mueve.
 
-## Preservar (intocable)
-- URLs `/` y `/en/`, hreflang, sitemap, robots, llms.txt, OG + Twitter + JSON-LD.
-- Ids `#app` y `#privacidad`, `main#contenido`, `a.saltar`, conmutador `en/`↔`../`.
-- Bloque `details.legal` (fecha 3-oct-2026) y las 6 FAQ.
+## Idiomas y URLs
+- `build/texts.mjs` contiene todo el texto. `node build/build.mjs` genera las 12 páginas y `sitemap.xml`. **No edites los `index.html` a mano.**
+- Inicio: `/` (es), `/en/`, `/pt/` (pt-BR), `/de/`, `/fr/`, `/it/`.
+- Privacidad: `/privacidad/`, `/en/privacy/`, `/pt/privacidade/`, `/de/datenschutz/`, `/fr/confidentialite/`, `/it/privacy/`.
+- La URL registrada en Play es `/`, así que la portada conserva la política íntegra en `#politica`.
+- hreflang en todas las páginas, con `x-default` → `/en/`. Sin JS de cambio de idioma.
+- Capturas: `assets/img/{lang}-sesion.webp` y `{lang}-selector.webp`, recortes de las series `SHOTS=1` de la app (640 px de ancho, webp q82). OG: `assets/og.jpg` (es) y `og-{lang}.jpg`, renderizadas desde la propia portada.
+
+## Claims (prohibiciones)
+- Solo hechos verificados en el código o en `docs/play/ficha-play.md`: gratis, sin anuncios, sin cuenta, sin permiso de internet (único permiso: vibración), datos en el móvil, copia en Descargas y CSV, 61 ejercicios base + propios, 1RM Brzycki, 6 idiomas, kg/lb.
+- Prohibido: temporizador de descanso, importar CSV y «qué discos cargar» (no hay calculadora de discos). El calentamiento son 3 aproximaciones calculadas sobre la última sesión.
+- Sin enlaces de descarga ni a Play hasta que haya ficha pública. Ko-fi: `https://ko-fi.com/iggykimi`.
+- Cero peticiones externas: fuente, iconos e imágenes servidos desde el repo.
 
 ## Verificación antes de publicar
-1. Capturas 1440 + 390: todo visible, tildes intactas, Archivo cargada, cero errores JS.
-2. Cero peticiones externas (solo Ko-fi como enlace). Ko-fi ×4, play-href 0.
-3. En vivo: `/`, `/en/`, icon.svg, woff2, webp, sitemap, llms.txt → 200.
+1. `node build/build.mjs`.
+2. Servir en local y sacar capturas a 1440 y 390 px de las 6 portadas y las 6 políticas: sin desbordes horizontales, tildes y umlauts intactos, cero errores de consola.
+3. Comprobar los enlaces internos (todo en 200).
+4. Ya publicado, comprobar que `/`, `/en/` … y `sitemap.xml` responden 200.

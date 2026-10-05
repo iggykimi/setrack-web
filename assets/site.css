@@ -1,0 +1,228 @@
+/* SetRack web. The app's own language: AMOLED black, chalk, Archivo condensed for
+   display, plate colours only as data. One motion: the bar loads its plates. */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("../fonts/archivo-latin.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --floor: #000;
+  --surface: #121315;
+  --raised: #1d1f22;
+  --line: #2c2f33;
+  --line-soft: #1f2124;
+  --chalk: #eceee8;
+  --mist: #b9bfc6;
+  --dust: #9ba3ab;
+  --faint: #7c848d;
+  --ink: #0a0b0c;
+  --push: #f2555a;
+  --pull: #4a8cff;
+  --legs: #2ba868;
+  --core: #e6e8eb;
+  --bevel: inset 0 1px 0 rgb(255 255 255 / 0.07), inset 0 0 0 1px rgb(255 255 255 / 0.035);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --gutter: clamp(20px, 5vw, 64px);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--floor);
+  color: var(--chalk);
+  font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; }
+img { display: block; max-width: 100%; height: auto; }
+:focus-visible { outline: 2px solid var(--chalk); outline-offset: 4px; border-radius: 6px; }
+main:focus { outline: none; }
+
+.envoltura { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: var(--gutter); }
+
+.saltar {
+  position: absolute; left: 16px; top: -80px; z-index: 10;
+  background: var(--chalk); color: var(--ink); font-weight: 700;
+  padding: 10px 18px; border-radius: 999px; text-decoration: none;
+}
+.saltar:focus { top: 12px; }
+
+/* Display type: the app's condensed heavy cut. */
+h1, h2 {
+  font-stretch: 68%;
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+.tenue { display: block; color: var(--faint); }
+
+/* ── Header ─────────────────────────────────────────────── */
+.cabecera {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding-block: 22px;
+}
+.marca {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-weight: 800; font-stretch: 80%; font-size: 21px; text-decoration: none;
+}
+.idiomas { display: flex; gap: 2px; }
+.idiomas a {
+  min-width: 40px; height: 40px; display: grid; place-items: center;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--faint); text-decoration: none; border-radius: 999px;
+  transition: color 160ms var(--ease-out), background-color 160ms var(--ease-out);
+}
+.idiomas a:hover { color: var(--chalk); }
+.idiomas a[aria-current] { color: var(--ink); background: var(--chalk); }
+
+/* ── Cover: two lines, the bar, one sentence ─────────────── */
+.portada { padding-top: clamp(40px, 9vh, 110px); }
+.portada h1 { font-size: clamp(52px, 9.6vw, 138px); }
+.barra {
+  width: 100%; height: auto; display: block;
+  margin-block: clamp(28px, 6vh, 72px) clamp(24px, 5vh, 56px);
+  overflow: visible;
+}
+.barra [data-region="push"] { fill: var(--push); }
+.barra [data-region="pull"] { fill: var(--pull); }
+.barra [data-region="legs"] { fill: var(--legs); }
+.barra [data-region="core"] { fill: var(--core); }
+.portada-pie {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 20px 40px; padding-bottom: clamp(56px, 12vh, 140px);
+}
+.entrada { color: var(--mist); font-size: clamp(18px, 1.7vw, 22px); max-width: 30em; text-wrap: pretty; }
+.acciones { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.cafe, .play {
+  display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px;
+  border-radius: 999px; font-weight: 700; font-size: 16px; white-space: nowrap;
+}
+.cafe {
+  background: var(--chalk); color: var(--ink); text-decoration: none;
+  transition: transform 160ms var(--ease-out);
+}
+.cafe:hover { transform: translateY(-1px); }
+.cafe:active { transform: scale(0.97); }
+.play { border: 1px solid var(--line); color: var(--dust); }
+
+/* The one motion: plates slide onto the sleeves, heaviest first, once. */
+@media (prefers-reduced-motion: no-preference) {
+  .barra .izq { animation: cargar-izq 760ms var(--ease-out) backwards; animation-delay: calc(180ms + var(--i) * 90ms); }
+  .barra .der { animation: cargar-der 760ms var(--ease-out) backwards; animation-delay: calc(180ms + var(--i) * 90ms); }
+}
+@keyframes cargar-izq { from { transform: translateX(-90px); opacity: 0; } }
+@keyframes cargar-der { from { transform: translateX(90px); opacity: 0; } }
+
+/* ── The app: what you get, as a set list, next to two real screens ── */
+.app {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+  gap: clamp(40px, 6vw, 96px); align-items: start;
+  padding-block: clamp(56px, 10vh, 120px);
+  border-top: 1px solid var(--line-soft);
+}
+.app h2, .datos h2 { font-size: clamp(44px, 6.4vw, 96px); }
+.series { list-style: none; margin-top: clamp(32px, 5vh, 56px); }
+.series li {
+  display: grid; grid-template-columns: 2.4ch minmax(0, 1fr) 6px; gap: 18px; align-items: baseline;
+  padding-block: 16px; border-bottom: 1px solid var(--line-soft);
+  color: var(--dust); text-wrap: pretty;
+}
+.series li:first-child { border-top: 1px solid var(--line-soft); }
+.series strong { color: var(--chalk); font-weight: 700; }
+.series .n { font-stretch: 70%; font-weight: 800; font-size: 22px; color: var(--faint); font-variant-numeric: tabular-nums; }
+/* A plate on the right of each row, like the region mark on the app's rows. */
+.series li::after {
+  content: ""; width: 6px; height: 22px; border-radius: 2px; align-self: center;
+  background: var(--plate, var(--dust));
+}
+.series li[data-region="push"] { --plate: var(--push); }
+.series li[data-region="pull"] { --plate: var(--pull); }
+.series li[data-region="legs"] { --plate: var(--legs); }
+.series li[data-region="core"] { --plate: var(--core); }
+
+.pantallas { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding-top: 12px; }
+.pantalla {
+  border-radius: 30px; overflow: hidden; background: var(--floor);
+  box-shadow: var(--bevel), 0 0 0 1px var(--line);
+}
+.pantalla img { width: 100%; }
+.pantalla.principal { grid-column: 1 / span 2; grid-row: 1; width: 60%; justify-self: end; position: relative; z-index: 1; box-shadow: var(--bevel), 0 0 0 1px var(--line), 0 30px 60px -20px #000; }
+.pantalla.segunda { grid-column: 1 / span 2; grid-row: 1; width: 54%; justify-self: start; margin-top: 24%; }
+
+/* ── Data stays home + the full policy (Play links here) ──── */
+.datos { padding-block: clamp(56px, 10vh, 120px); border-top: 1px solid var(--line-soft); scroll-margin-top: 24px; }
+.datos > .entrada { margin-top: 28px; }
+@media (min-width: 1000px) {
+  /* The heading holds the left, the full policy sits beside it. */
+  .datos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); column-gap: clamp(40px, 6vw, 96px); align-items: start; }
+  .datos > h2, .datos > .entrada { grid-column: 1; }
+  .datos > .politica { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; }
+}
+.politica {
+  margin-top: clamp(40px, 7vh, 80px); max-width: 46em;
+  color: var(--dust); font-size: 15.5px;
+  padding: clamp(22px, 3vw, 36px); border-radius: 26px;
+  background: var(--surface); box-shadow: var(--bevel);
+  scroll-margin-top: 24px;
+}
+.politica h1, .politica h3 { color: var(--chalk); font-size: 22px; font-stretch: 80%; font-weight: 800; line-height: 1.1; letter-spacing: 0; }
+.politica p, .politica ul { margin-top: 12px; }
+.politica ul { padding-left: 20px; }
+.politica li { margin-top: 6px; }
+.politica a { color: var(--chalk); text-underline-offset: 3px; }
+.politica .fecha { font-size: 14px; color: var(--faint); margin-top: 6px; }
+.politica .aparte { margin-top: 20px; }
+.politica .aparte a { text-decoration: none; font-weight: 600; }
+.politica .aparte a:hover { text-decoration: underline; }
+
+/* ── Support ──────────────────────────────────────────────── */
+.apoyo { padding-block: clamp(56px, 10vh, 120px); border-top: 1px solid var(--line-soft); }
+.apoyo h2 { font-size: clamp(40px, 5.6vw, 84px); }
+.apoyo p { color: var(--mist); font-size: clamp(17px, 1.5vw, 20px); max-width: 30em; margin-block: 18px 28px; }
+
+/* ── Footer ───────────────────────────────────────────────── */
+.pie {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px;
+  padding-block: 28px 44px; border-top: 1px solid var(--line-soft);
+  color: var(--faint); font-size: 14.5px;
+}
+.pie-marca { display: inline-flex; align-items: center; gap: 10px; }
+.pie nav { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+.pie a { color: var(--dust); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.pie a:hover { color: var(--chalk); }
+
+/* ── Privacy page ─────────────────────────────────────────── */
+.legal { padding-block: clamp(24px, 6vh, 64px) clamp(56px, 10vh, 120px); }
+.legal .politica { margin-top: 20px; }
+.legal .politica h1 { font-size: clamp(40px, 6vw, 72px); font-stretch: 68%; line-height: 0.9; }
+.volver a { color: var(--dust); text-decoration: none; display: inline-flex; min-height: 44px; align-items: center; }
+.volver a:hover { color: var(--chalk); }
+
+/* ── Small screens ────────────────────────────────────────── */
+@media (max-width: 880px) {
+  .app { grid-template-columns: 1fr; }
+  .pantallas { max-width: 520px; }
+}
+@media (max-width: 520px) {
+  .portada-pie { padding-bottom: 64px; }
+  .acciones { width: 100%; }
+  .cafe, .play { flex: 1 1 auto; justify-content: center; }
+  .idiomas a { min-width: 34px; }
+  .marca { font-size: 19px; }
+  .pantalla.principal { width: 66%; }
+  .pantalla.segunda { width: 58%; margin-top: 30%; }
+}
+@media (max-width: 400px) {
+  .marca span { display: none; }
+}
