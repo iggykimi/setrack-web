@@ -122,7 +122,7 @@ function home(code) {
   const t = LANGS[code]
   const base = up(t.path)
   const img = (name, alt, h) => `<img src="${base}assets/img/${code}-${name}.webp" alt="${esc(alt)}" width="640" height="${h}" decoding="async">`
-  const features = t.features.map(([f, d], i) => `<li data-region="${PLATES[i % PLATES.length]}"><span class="n" aria-hidden="true">${i + 1}</span><span><strong>${esc(f)}</strong> ${esc(d)}</span></li>`).join('\n      ')
+  const features = t.features.map(([f, d], i) => `<li><span class="n" aria-hidden="true">${i + 1}</span><span><strong>${esc(f)}</strong> ${esc(d)}</span></li>`).join('\n      ')
   return `${head({ t, code, path: t.path, kind: 'home', title: t.title, description: t.description })}
 <body>
 ${header({ t, code, path: t.path, kind: 'home' })}
