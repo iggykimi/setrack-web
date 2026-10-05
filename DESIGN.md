@@ -10,7 +10,7 @@ plantilla de producto.
 - Negro AMOLED `#000`, superficies `--surface #121315`, líneas `--line #2c2f33` y `--line-soft #1f2124`.
 - Texto en tiza `#eceee8`. El secundario va en `--mist #b9bfc6` (entradillas), `--dust #9ba3ab` y `--faint #7c848d`; la segunda línea de cada titular va en `--faint`.
 - Color **solo** de discos: push `#f2555a`, pull `#4a8cff`, legs `#2ba868`, core `#e6e8eb`. Nunca en botones.
-- Botón principal en tiza sólida con texto `--ink`, igual que en la app. La plaza de Play es una píldora con borde sólido y sin enlace.
+- Botón principal en tiza sólida con texto `--ink`, igual que en la app: es Google Play («Disponible en Google Play», con `&hl=` del idioma de la página). Ko-fi, al lado, con borde.
 - Tipo: Archivo variable self-hosted (`fonts/archivo-latin.woff2`, eje de anchura 62–125 %). Los titulares van a `font-stretch: 68%`, peso 800 y `line-height: 0.86`. El texto se lee en anchura normal.
 - Radios: 30 px en pantallas, 26 px en la tarjeta legal, 999 px en píldoras.
 
@@ -40,7 +40,7 @@ Con `prefers-reduced-motion` no se mueve.
 ## Claims (prohibiciones)
 - Solo hechos verificados en el código o en `docs/play/ficha-play.md`: gratis, sin anuncios, sin cuenta, sin permiso de internet (único permiso: vibración), datos en el móvil, copia en Descargas y CSV, 61 ejercicios base + propios, 1RM Brzycki, 6 idiomas, kg/lb.
 - Prohibido: temporizador de descanso, importar CSV y «qué discos cargar» (no hay calculadora de discos). El calentamiento son 3 aproximaciones calculadas sobre la última sesión.
-- Sin enlaces de descarga ni a Play hasta que haya ficha pública. Ko-fi: `https://ko-fi.com/iggykimi`.
+- Sin enlaces de descarga de APK. Play: `https://play.google.com/store/apps/details?id=com.setrack.app`. Ko-fi: `https://ko-fi.com/iggykimi`.
 - Cero peticiones externas: fuente, iconos e imágenes servidos desde el repo.
 
 ## Verificación antes de publicar

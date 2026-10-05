@@ -108,13 +108,12 @@ h1, h2 {
   display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px;
   border-radius: 999px; font-weight: 700; font-size: 16px; white-space: nowrap;
 }
-.cafe {
-  background: var(--chalk); color: var(--ink); text-decoration: none;
-  transition: transform 160ms var(--ease-out);
-}
-.cafe:hover { transform: translateY(-1px); }
-.cafe:active { transform: scale(0.97); }
-.play { border: 1px solid var(--line); color: var(--dust); }
+/* Play is the one primary action (chalk, like the app's); Ko-fi sits beside it, outlined. */
+.play, .cafe { text-decoration: none; transition: transform 160ms var(--ease-out); }
+.play { background: var(--chalk); color: var(--ink); }
+.cafe { border: 1px solid var(--line); color: var(--chalk); }
+.play:hover, .cafe:hover { transform: translateY(-1px); }
+.play:active, .cafe:active { transform: scale(0.97); }
 
 /* The one motion: plates slide onto the sleeves, heaviest first, once. */
 @media (prefers-reduced-motion: no-preference) {

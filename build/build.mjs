@@ -133,7 +133,7 @@ ${header({ t, code, path: t.path, kind: 'home' })}
     <div class="portada-pie">
       <p class="entrada">${esc(t.lead)}</p>
       <div class="acciones">
-        <span class="play" aria-disabled="true">${esc(t.play)}</span>
+        <a class="play" href="${LINKS.play}&amp;hl=${t.htmlLang}">${esc(t.play)}</a>
         <a class="cafe" href="${LINKS.kofi}">${esc(t.kofi)}</a>
       </div>
     </div>

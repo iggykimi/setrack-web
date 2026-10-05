@@ -17,7 +17,7 @@
 - Estimated 1RM (Brzycki); progress by week, month, quarter or year.
 - Suggests exercises by the sets each muscle still needs this week.
 - Spanish, English, Portuguese (Brazil), German, French and Italian; kilos or pounds.
-- Status: internal testing on Google Play (no public link yet).
+- Status: available on Google Play: https://play.google.com/store/apps/details?id=com.setrack.app
 
 ## Contact
 
