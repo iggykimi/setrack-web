@@ -134,22 +134,13 @@ h1, h2 {
 .app h2, .datos h2 { font-size: clamp(44px, 6.4vw, 96px); }
 .series { list-style: none; margin-top: clamp(32px, 5vh, 56px); }
 .series li {
-  display: grid; grid-template-columns: 2.4ch minmax(0, 1fr) 6px; gap: 18px; align-items: baseline;
+  display: grid; grid-template-columns: 2.4ch minmax(0, 1fr); gap: 18px; align-items: baseline;
   padding-block: 16px; border-bottom: 1px solid var(--line-soft);
   color: var(--dust); text-wrap: pretty;
 }
 .series li:first-child { border-top: 1px solid var(--line-soft); }
 .series strong { color: var(--chalk); font-weight: 700; }
 .series .n { font-stretch: 70%; font-weight: 800; font-size: 22px; color: var(--faint); font-variant-numeric: tabular-nums; }
-/* A plate on the right of each row, like the region mark on the app's rows. */
-.series li::after {
-  content: ""; width: 6px; height: 22px; border-radius: 2px; align-self: center;
-  background: var(--plate, var(--dust));
-}
-.series li[data-region="push"] { --plate: var(--push); }
-.series li[data-region="pull"] { --plate: var(--pull); }
-.series li[data-region="legs"] { --plate: var(--legs); }
-.series li[data-region="core"] { --plate: var(--core); }
 
 .pantallas { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding-top: 12px; }
 .pantalla {

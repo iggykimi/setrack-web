@@ -16,7 +16,7 @@ plantilla de producto.
 
 ## Composición
 1. **Portada**: titular en dos líneas (la segunda en `--faint`) → barra SVG a todo el ancho → entradilla + Play + Ko-fi.
-2. **La app**: titular + lista de 6 funciones con la forma de las filas de la app (número condensado, texto y disco del color de su región). Al lado van dos recortes reales superpuestos: la sesión delante y el selector asomando por la izquierda.
+2. **La app**: titular + lista de 6 funciones con la forma de las filas de la app (número condensado y texto; sin disco de color: los colores de los discos solo marcan datos). Al lado van dos recortes reales superpuestos: la sesión delante y el selector asomando por la izquierda.
 3. **Tus datos** (`#privacidad`): titular + entradilla. La política íntegra (`#politica`) va al lado en escritorio y debajo en móvil.
 4. **Apoyo**: «SetRack es gratis» + Ko-fi.
 5. Pie: Ko-fi, incidencias y privacidad.
