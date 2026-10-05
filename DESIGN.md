@@ -38,7 +38,7 @@ Con `prefers-reduced-motion` no se mueve.
 - Capturas: `assets/img/{lang}-sesion.webp` y `{lang}-selector.webp`, recortes de las series `SHOTS=1` de la app (640 px de ancho, webp q82). OG: `assets/og.jpg` (es) y `og-{lang}.jpg`, renderizadas desde la propia portada.
 
 ## Claims (prohibiciones)
-- Solo hechos verificados en el código o en `docs/play/ficha-play.md`: gratis, sin anuncios, sin cuenta, sin permiso de internet (único permiso: vibración), datos en el móvil, copia en Descargas y CSV, 61 ejercicios base + propios, 1RM Brzycki, 6 idiomas, kg/lb.
+- Solo hechos verificados en el código o en `docs/play/ficha-play.md`: gratis, sin anuncios, sin cuenta, sin permiso de internet (único permiso: vibración), datos en el móvil, copia en Descargas y CSV, 92 ejercicios base + propios, tres programas de inicio con series calculadas, 1RM Brzycki, 6 idiomas, kg/lb.
 - Prohibido: temporizador de descanso, importar CSV y «qué discos cargar» (no hay calculadora de discos). El calentamiento son 3 aproximaciones calculadas sobre la última sesión.
 - Sin enlaces de descarga de APK. Play: `https://play.google.com/store/apps/details?id=com.setrack.app`. Ko-fi: `https://ko-fi.com/iggykimi`.
 - Cero peticiones externas: fuente, iconos e imágenes servidos desde el repo.
