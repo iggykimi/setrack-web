@@ -2,16 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://iggykimi.github.io/setrack-web/</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://iggykimi.github.io/setrack-web/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/"/>
   </url>
   <url>
     <loc>https://iggykimi.github.io/setrack-web/en/</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://iggykimi.github.io/setrack-web/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/"/>
+  </url>
+  <url>
+    <loc>https://iggykimi.github.io/setrack-web/pt/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/"/>
+  </url>
+  <url>
+    <loc>https://iggykimi.github.io/setrack-web/de/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/"/>
+  </url>
+  <url>
+    <loc>https://iggykimi.github.io/setrack-web/fr/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/"/>
+  </url>
+  <url>
+    <loc>https://iggykimi.github.io/setrack-web/it/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/"/>
+  </url>
+  <url>
+    <loc>https://iggykimi.github.io/setrack-web/privacidad/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/privacidade/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/datenschutz/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/privacy/"/>
+  </url>
+  <url>
+    <loc>https://iggykimi.github.io/setrack-web/en/privacy/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/privacidade/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/datenschutz/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/privacy/"/>
+  </url>
+  <url>
+    <loc>https://iggykimi.github.io/setrack-web/pt/privacidade/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/privacidade/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/datenschutz/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/privacy/"/>
+  </url>
+  <url>
+    <loc>https://iggykimi.github.io/setrack-web/de/datenschutz/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/privacidade/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/datenschutz/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/privacy/"/>
+  </url>
+  <url>
+    <loc>https://iggykimi.github.io/setrack-web/fr/confidentialite/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/privacidade/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/datenschutz/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/privacy/"/>
+  </url>
+  <url>
+    <loc>https://iggykimi.github.io/setrack-web/it/privacy/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/privacidade/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/datenschutz/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/privacy/"/>
   </url>
 </urlset>

@@ -5,336 +5,97 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#000000">
-<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <title>SetRack · Apunta la serie, vuelve a la barra</title>
-<meta name="description" content="Registro de gimnasio para Android. Apunta tus series en segundos, con una mano, y tus datos se quedan solo en tu móvil: sin conexión, sin anuncios y sin cuenta.">
+<meta name="description" content="Registro de gimnasio para Android. Apuntas cada serie con una mano y tus datos se quedan en tu móvil: sin internet, sin anuncios y sin cuenta.">
 <link rel="canonical" href="https://iggykimi.github.io/setrack-web/">
 <link rel="alternate" hreflang="es" href="https://iggykimi.github.io/setrack-web/">
 <link rel="alternate" hreflang="en" href="https://iggykimi.github.io/setrack-web/en/">
-<link rel="alternate" hreflang="x-default" href="https://iggykimi.github.io/setrack-web/">
+<link rel="alternate" hreflang="pt-BR" href="https://iggykimi.github.io/setrack-web/pt/">
+<link rel="alternate" hreflang="de" href="https://iggykimi.github.io/setrack-web/de/">
+<link rel="alternate" hreflang="fr" href="https://iggykimi.github.io/setrack-web/fr/">
+<link rel="alternate" hreflang="it" href="https://iggykimi.github.io/setrack-web/it/">
+<link rel="alternate" hreflang="x-default" href="https://iggykimi.github.io/setrack-web/en/">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="SetRack" translate="no">
+<meta property="og:site_name" content="SetRack">
 <meta property="og:title" content="SetRack · Apunta la serie, vuelve a la barra">
-<meta property="og:description" content="Registro de gimnasio para Android. Apunta tus series en segundos, con una mano, y tus datos se quedan solo en tu móvil: sin conexión, sin anuncios y sin cuenta.">
+<meta property="og:description" content="Registro de gimnasio para Android. Apuntas cada serie con una mano y tus datos se quedan en tu móvil: sin internet, sin anuncios y sin cuenta.">
 <meta property="og:url" content="https://iggykimi.github.io/setrack-web/">
 <meta property="og:image" content="https://iggykimi.github.io/setrack-web/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_ES">
-<meta property="og:locale:alternate" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SetRack · Apunta la serie, vuelve a la barra">
-<meta name="twitter:description" content="Registro de gimnasio para Android. Apunta tus series en segundos y tus datos se quedan solo en tu móvil.">
 <meta name="twitter:image" content="https://iggykimi.github.io/setrack-web/assets/og.jpg">
-<link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SetRack","operatingSystem":"Android","applicationCategory":"HealthApplication","description":"Registro de gimnasio offline. Apunta tus series en segundos: sesión guiada, rutinas, calentamiento, 1RM estimado y exportación CSV. Sin cuenta, sin anuncios, sin permiso de internet.","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"featureList":["Registro de series offline","Sesión guiada","Rutinas con huecos","Calentamiento con discos","1RM estimado (Brzycki)","61 ejercicios base y personalizados","Exportación CSV","Español e inglés","kg/lb"],"author":{"@type":"Person","name":"iggykimi","url":"https://github.com/iggykimi"}}
-</script>
-<style>
-  /* SetRack web: los mismos tokens de la app (floor/chalk/plates, Archivo, radio 26). */
-  @font-face {
-    font-family: "Archivo";
-    src: url("fonts/archivo-latin.woff2") format("woff2-variations");
-    font-weight: 100 900; font-style: normal; font-display: swap;
-  }
-  :root {
-    --floor: #000000;
-    --surface: #121315;
-    --raised: #1d1f22;
-    --line: #2c2f33;
-    --chalk: #eceee8;
-    --dust: #9ba3ab;
-    --push: #f2555a;
-    --pull: #4a8cff;
-    --legs: #2ba868;
-    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  }
-  * { box-sizing: border-box; margin: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--floor); color: var(--chalk);
-    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
-    font-size: 16px; line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  .envoltura { max-width: 1060px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
-  a { color: inherit; }
-  a:focus-visible, summary:focus-visible {
-    outline: 2px solid var(--push); outline-offset: 3px; border-radius: 8px;
-  }
-  .saltar {
-    position: absolute; left: 16px; top: -60px; z-index: 50;
-    background: var(--raised); color: var(--chalk); padding: 10px 18px;
-    border-radius: 999px; text-decoration: none; transition: top 160ms var(--ease-out);
-  }
-  .saltar:focus { top: 12px; }
-
-  /* Cabecera: como la barra de la app, compacta. */
-  .navegacion {
-    position: sticky; top: 12px; z-index: 40;
-    display: flex; align-items: center; gap: 20px;
-    max-width: 1060px; margin: 12px auto 0; padding: 10px 12px 10px 16px;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
-  }
-  .marca { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 18px; }
-  .marca img { width: 30px; height: 30px; }
-  .navegacion nav { display: flex; gap: 18px; margin-left: auto; font-size: 14.5px; }
-  .navegacion nav a { color: var(--dust); text-decoration: none; }
-  .navegacion nav a:hover { color: var(--chalk); }
-  .cafe {
-    background: var(--push); color: #14090a; font-weight: 700; font-size: 14.5px;
-    padding: 9px 18px; border-radius: 999px; text-decoration: none; white-space: nowrap;
-    transition: transform 120ms var(--ease-out);
-  }
-  .cafe:hover { transform: scale(1.03); }
-  .cafe:active { transform: scale(0.98); }
-  .idioma {
-    border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px;
-    color: var(--dust); text-decoration: none; font-size: 14px;
-  }
-  .idioma:hover { color: var(--chalk); }
-  @media (max-width: 860px) {
-    .navegacion nav { display: none; }
-  }
-
-  /* Hero compacto: texto + una captura, como una ficha de la app. */
-  .hero {
-    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(24px, 5vw, 64px);
-    align-items: center; padding: clamp(40px, 7vh, 84px) 0 clamp(32px, 5vh, 56px);
-  }
-  .hero h1 {
-    font-size: clamp(34px, 4.6vw, 56px); font-weight: 800;
-    line-height: 1.04; letter-spacing: -0.02em; margin: 0 0 14px;
-  }
-  .hero .lead { color: var(--dust); font-size: clamp(16px, 1.6vw, 18px); max-width: 30em; }
-  .hero .lead strong { color: var(--chalk); }
-  .acciones { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; align-items: center; }
-  .boton {
-    display: inline-block; padding: 13px 26px; border-radius: 999px;
-    font-weight: 700; font-size: 15px; text-decoration: none;
-    transition: transform 120ms var(--ease-out);
-  }
-  .boton:hover { transform: scale(1.03); }
-  .boton:active { transform: scale(0.98); }
-  .boton-rojo { background: var(--push); color: #14090a; }
-  .boton-fantasma {
-    border: 1px solid var(--line); color: var(--dust); cursor: default;
-  }
-  .hero figure {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 26px;
-    padding: 18px; margin: 0;
-  }
-  .hero figure img { width: 100%; height: auto; display: block; border-radius: 14px; }
-  @media (max-width: 760px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero figure { max-width: 340px; }
-  }
-
-  section.bloque { padding: clamp(30px, 5vh, 56px) 0; scroll-margin-top: 80px; }
-  h2.titulo { font-size: clamp(24px, 3.2vw, 36px); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 18px; }
-
-  /* La app: 3 capturas + lista de funciones con los puntos de la app. */
-  .tira {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 26px;
-  }
-  .tira figure {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 26px;
-    padding: 14px; margin: 0;
-  }
-  .tira img { width: 100%; height: auto; display: block; border-radius: 14px; aspect-ratio: 9 / 13; object-fit: cover; object-position: top center; -webkit-mask-image: linear-gradient(#000 88%, transparent); mask-image: linear-gradient(#000 88%, transparent); }
-  .tira figcaption { padding: 12px 6px 4px; font-size: 14px; color: var(--dust); }
-  .tira figcaption strong { display: block; color: var(--chalk); font-size: 15px; }
-  @media (max-width: 760px) {
-    .tira { grid-template-columns: 1fr; max-width: 340px; }
-  }
-  .funciones { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; }
-  .funciones li { padding-left: 20px; position: relative; font-size: 15.5px; color: var(--dust); }
-  .funciones li strong { color: var(--chalk); font-weight: 700; }
-  .funciones li::before {
-    content: ""; position: absolute; left: 0; top: 9px;
-    width: 8px; height: 8px; border-radius: 50%; background: var(--dust);
-  }
-  @media (max-width: 760px) {
-    .funciones { grid-template-columns: 1fr; }
-  }
-
-  /* Privacidad: los ceros + legal íntegro. */
-  .puntos { margin: 0 0 18px; padding-left: 22px; color: var(--dust); font-size: 15px; }
-  .puntos li { margin: 6px 0; }
-  details {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
-    margin: 10px 0; overflow: hidden;
-  }
-  summary { padding: 15px 20px; cursor: pointer; font-weight: 700; font-size: 15.5px; list-style: none; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
-  summary::-webkit-details-marker { display: none; }
-  summary .chev { color: var(--dust); transition: transform 160ms var(--ease-out); }
-  details[open] summary .chev { transform: rotate(45deg); }
-  #preguntas details { background: none; border: none; border-bottom: 1px solid var(--line); border-radius: 0; margin: 0; }
-  #preguntas summary { padding: 14px 4px; font-size: 16px; }
-  #preguntas .cuerpo { padding: 0 4px 16px; }
-  details .cuerpo { padding: 0 20px 18px; color: var(--dust); font-size: 14.5px; }
-  details .cuerpo p, details .cuerpo ul { margin: 10px 0; }
-  details .cuerpo ul { padding-left: 22px; }
-  details .cuerpo li { margin: 6px 0; }
-  details .cuerpo p:first-child { color: var(--chalk); }
-  .fecha { font-size: 13px; font-style: italic; }
-
-  /* Cierre compacto + pie. */
-  .cierre { text-align: left; }
-  .cierre p { color: var(--dust); margin: 0 0 18px; }
-  .pie {
-    display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
-    border-top: 1px solid var(--line); margin-top: 26px; padding: 22px 0 40px;
-    font-size: 14px; color: var(--dust);
-  }
-  .pie nav { display: flex; gap: 18px; margin-left: auto; }
-  .pie a { color: var(--dust); text-decoration: none; }
-  .pie a:hover { color: var(--chalk); }
-
-  /* Sin animación de entrada: página de trámite, contenido siempre visible. */
-</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SetRack","operatingSystem":"Android","applicationCategory":"HealthApplication","description":"Registro de gimnasio para Android. Apuntas cada serie con una mano y tus datos se quedan en tu móvil: sin internet, sin anuncios y sin cuenta.","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"featureList":["Rutina o sesión libre","Calentamiento","1RM estimado","61 ejercicios","Copia y CSV","6 idiomas"],"author":{"@type":"Person","name":"iggykimi","url":"https://github.com/iggykimi"}}</script>
 </head>
 <body>
-  <a class="saltar" href="#contenido">Saltar al contenido</a>
-  <header class="navegacion">
-    <a class="marca" href="#"><img src="assets/icon.svg" alt="" width="30" height="30">SetRack</a>
-    <nav aria-label="Secciones">
-      <a href="#app">La app</a>
-      <a href="#privacidad">Privacidad</a>
-    </nav>
-    <a class="idioma" href="en/" lang="en" hreflang="en" title="English">EN</a>
-    <a class="cafe" href="https://ko-fi.com/iggykimi">Invítame a un café</a>
-  </header>
-
-  <div class="envoltura">
-    <section class="hero" aria-label="Presentación">
-      <div>
-        <h1>Apunta la serie. Vuelve a la barra.</h1>
-        <p class="lead">Apunta cada serie con una mano, entre serie y serie.
-          <strong>Sin permiso de internet: los datos se quedan en tu móvil.</strong></p>
-        <div class="acciones">
-          <a class="boton boton-rojo" href="https://ko-fi.com/iggykimi">Invítame a un café</a>
-          <span class="boton boton-fantasma" aria-disabled="true">Próximamente en Google Play</span>
-        </div>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="cabecera envoltura">
+  <a class="marca" href="./"><img src="assets/icon.svg" alt="" width="28" height="28"><span>SetRack</span></a>
+  <nav class="idiomas" aria-label="Idioma"><a href="./" hreflang="es" lang="es" title="Español" aria-current="page">es</a><a href="en/" hreflang="en" lang="en" title="English">en</a><a href="pt/" hreflang="pt-BR" lang="pt-BR" title="Português">pt</a><a href="de/" hreflang="de" lang="de" title="Deutsch">de</a><a href="fr/" hreflang="fr" lang="fr" title="Français">fr</a><a href="it/" hreflang="it" lang="it" title="Italiano">it</a></nav>
+</header>
+<main id="contenido" tabindex="-1">
+  <section class="portada envoltura" aria-labelledby="t-portada">
+    <h1 id="t-portada">Apunta la serie.<span class="tenue">Vuelve a la barra.</span></h1>
+    <svg class="barra" viewBox="0 0 320 64" role="img" aria-label="Una barra cargada con cinco discos de colores, el símbolo de SetRack."><rect x="4" y="29.5" width="312" height="5" rx="2.5" fill="var(--line)"/><rect x="88" y="25" width="6" height="14" rx="2" fill="var(--dust)"/><rect x="226" y="25" width="6" height="14" rx="2" fill="var(--dust)"/><g class="par" style="--i:0" data-region="push"><rect class="izq" x="76" y="2" width="10" height="60" rx="3"/><rect class="der" x="234" y="2" width="10" height="60" rx="3"/></g><g class="par" style="--i:1" data-region="pull"><rect class="izq" x="63" y="5" width="10" height="54" rx="3"/><rect class="der" x="247" y="5" width="10" height="54" rx="3"/></g><g class="par" style="--i:2" data-region="legs"><rect class="izq" x="50" y="8" width="10" height="48" rx="3"/><rect class="der" x="260" y="8" width="10" height="48" rx="3"/></g><g class="par" style="--i:3" data-region="core"><rect class="izq" x="37" y="11" width="10" height="42" rx="3"/><rect class="der" x="273" y="11" width="10" height="42" rx="3"/></g><g class="par" style="--i:4" data-region="push"><rect class="izq" x="24" y="14" width="10" height="36" rx="3"/><rect class="der" x="286" y="14" width="10" height="36" rx="3"/></g></svg>
+    <div class="portada-pie">
+      <p class="entrada">Registro de gimnasio para Android. Gratis, sin anuncios, sin cuenta y sin conexión.</p>
+      <div class="acciones">
+        <span class="play" aria-disabled="true">Próximamente en Google Play</span>
+        <a class="cafe" href="https://ko-fi.com/iggykimi">Invítame a un café</a>
       </div>
-      <figure>
-        <img src="assets/img/02-sesion.webp" alt="Sesión en curso: la lista de series de hoy con pesos y repeticiones." width="680" height="1384">
-      </figure>
-    </section>
+    </div>
+  </section>
 
-    <main id="contenido" tabindex="-1">
-      <section class="bloque" id="app" aria-labelledby="t-app">
-        <h2 class="titulo" id="t-app">La app</h2>
-        <div class="tira">
-          <figure>
-            <img loading="lazy" decoding="async" src="assets/img/01-entrenar.webp" alt="Entrenar: la rutina de hoy con sus ejercicios y el botón para empezar." width="560" height="1140">
-            <figcaption><strong>Rutina</strong>Qué toca hoy, según tu rutina.</figcaption>
-          </figure>
-          <figure>
-            <img loading="lazy" decoding="async" src="assets/img/04-selector.webp" alt="Selector de ejercicios: sugerencias con músculo y series que faltan esta semana." width="560" height="1140">
-            <figcaption><strong>Sugerencias</strong>Las series que te faltan, por músculo.</figcaption>
-          </figure>
-          <figure>
-            <img loading="lazy" decoding="async" src="assets/img/10-ficha.webp" alt="Ficha de ejercicio: 1RM estimado con gráfica de evolución." width="560" height="1140">
-            <figcaption><strong>Ficha</strong>1RM estimado y evolución por ejercicio.</figcaption>
-          </figure>
-        </div>
-        <ul class="funciones">
-          <li><strong>Rutinas o sesión libre.</strong> Te sugiere ejercicios según las series que te faltan por músculo esta semana.</li>
-          <li><strong>Ejercicios propios.</strong> Crea los tuyos: músculo y material.</li>
-          <li><strong>Series contadas.</strong> Cada serie suma en su músculo y en su semana.</li>
-          <li><strong>Calentamiento.</strong> Te dice qué discos cargar para la aproximación.</li>
-          <li><strong>Progreso e historial.</strong> 1RM estimado, volumen y todas tus sesiones.</li>
-          <li><strong>Copias y CSV.</strong> Guarda, restaura y exporta a CSV cuando quieras.</li>
-          <li><strong>Español e inglés.</strong> En kilos o en libras.</li>
-        </ul>
-      </section>
+  <section class="app envoltura" id="app" aria-labelledby="t-app">
+    <div class="app-texto">
+      <h2 id="t-app">Una mano.<span class="tenue">Entre serie y serie.</span></h2>
+      <ol class="series">
+      <li data-region="push"><span class="n" aria-hidden="true">1</span><span><strong>Rutina o sesión libre</strong> Te propone lo que le falta a cada músculo esta semana.</span></li>
+      <li data-region="pull"><span class="n" aria-hidden="true">2</span><span><strong>Calentamiento</strong> Tres aproximaciones calculadas sobre tu última sesión.</span></li>
+      <li data-region="legs"><span class="n" aria-hidden="true">3</span><span><strong>1RM estimado</strong> Por ejercicio y en el tiempo, con la fórmula de Brzycki.</span></li>
+      <li data-region="core"><span class="n" aria-hidden="true">4</span><span><strong>61 ejercicios</strong> Y los tuyos, con su músculo y su material.</span></li>
+      <li data-region="push"><span class="n" aria-hidden="true">5</span><span><strong>Copia y CSV</strong> A Descargas, cuando tú quieras.</span></li>
+      <li data-region="push"><span class="n" aria-hidden="true">6</span><span><strong>6 idiomas</strong> En kilos o en libras.</span></li>
+      </ol>
+    </div>
+    <div class="pantallas">
+      <figure class="pantalla principal"><img src="assets/img/es-sesion.webp" alt="Sesión en curso: press banca con una serie de 75 kg por 8 y los controles de peso y repeticiones." width="640" height="871" decoding="async"></figure>
+      <figure class="pantalla segunda"><img src="assets/img/es-selector.webp" alt="Añadir ejercicio: sugerencias con las series que le faltan a cada músculo esta semana." width="640" height="859" decoding="async"></figure>
+    </div>
+  </section>
 
-      <section class="bloque" id="privacidad" aria-labelledby="t-privacidad">
-        <h2 class="titulo" id="t-privacidad">Sin conexión. Sin cuentas. Sin anuncios.</h2>
-        <ul class="puntos">
-          <li>La app no tiene permiso de internet. No puede enviar tus datos a ningún sitio.</li>
-          <li>«Guardar copia» escribe un archivo en Descargas solo cuando tú lo pides.</li>
-          <li>Desinstalar la app borra todos los datos.</li>
-        </ul>
-        <details class="legal" id="politica">
-          <summary>
-            Política de privacidad · texto íntegro
-            <span class="chev" aria-hidden="true">+</span>
-          </summary>
-          <div class="cuerpo">
-            <p class="fecha">Última actualización: 3 de octubre de 2026.</p>
-            <p>SetRack no recoge, transmite ni comparte ningún dato personal.
-               La app no tiene permiso de internet: la información que registras
-               (ejercicios, series, pesos) se guarda únicamente en el almacenamiento
-               local de tu dispositivo.</p>
-            <p>Tú controlas tus datos:</p>
-            <ul>
-              <li>«Guardar copia» escribe un archivo en la carpeta Descargas cuando tú lo pides.</li>
-              <li>La copia de seguridad de Android (si está activa en el sistema) puede incluir los datos de la app; se gestiona desde los ajustes de tu dispositivo.</li>
-              <li>Desinstalar la app borra todos los datos.</li>
-            </ul>
-            <p>No hay analítica, anuncios, rastreadores ni servicios de terceros.
-               La app no declara el permiso de internet; el único permiso del sistema
-               es la vibración, que usa para el toque al apuntar cada serie.</p>
-            <p lang="en">English summary: SetRack collects no data. It works fully offline and declares
-               no internet permission; the only system permission is vibration, used for the tick
-               when logging a set. No ads, no analytics, no third-party services. All data
-               stays on your device; uninstalling removes everything.</p>
-          </div>
-        </details>
-      </section>
+  <section class="datos envoltura" id="privacidad" aria-labelledby="t-datos">
+    <h2 id="t-datos">Tus datos no salen<span class="tenue">de tu móvil.</span></h2>
+    <p class="entrada">La app no tiene permiso de internet: no puede enviar nada a ningún sitio. Sin cuenta, sin analítica, sin anuncios.</p>
+    <article class="politica" id="politica">
+  <h3>Política de privacidad</h3>
+  <p class="fecha">Última actualización: 5 de octubre de 2026.</p>
+  <p>SetRack no recoge, transmite ni comparte ningún dato personal. La app no tiene permiso de internet: la información que registras (ejercicios, series, pesos) se guarda únicamente en el almacenamiento local de tu dispositivo.</p>
+  <p>Tú controlas tus datos:</p>
+  <ul><li>«Guardar copia» escribe un archivo en la carpeta Descargas cuando tú lo pides.</li><li>La copia de seguridad de Android (si está activa en el sistema) puede incluir los datos de la app; se gestiona desde los ajustes de tu dispositivo.</li><li>Desinstalar la app borra todos los datos.</li></ul>
+  <p>No hay analítica, anuncios, rastreadores ni servicios de terceros. La app no declara el permiso de internet; el único permiso del sistema es la vibración, que usa para el toque al apuntar cada serie.</p>
+  <p>Contacto: abre una incidencia en <a href="https://github.com/iggykimi/setrack-web/issues">GitHub</a>.</p>
+  <p class="aparte"><a href="privacidad/">Abrir como página aparte →</a></p>
+</article>
+  </section>
 
-      <section class="bloque" id="preguntas" aria-labelledby="t-preguntas">
-        <h2 class="titulo" id="t-preguntas">Antes de instalar</h2>
-        <details>
-          <summary>¿Necesito crear una cuenta?<span class="chev" aria-hidden="true">+</span></summary>
-          <p class="cuerpo">No. Abres la app y entrenas. No hay registro, ni correo, ni contraseñas.</p>
-        </details>
-        <details>
-          <summary>¿Funciona sin conexión?<span class="chev" aria-hidden="true">+</span></summary>
-          <p class="cuerpo">Sí. Es 100% offline: la app ni siquiera tiene permiso de internet. Sirve igual en un sótano sin cobertura.</p>
-        </details>
-        <details>
-          <summary>¿Dónde están mis datos?<span class="chev" aria-hidden="true">+</span></summary>
-          <p class="cuerpo">En tu móvil y solo en tu móvil. Sin nube, sin analítica y sin rastreadores. La copia la haces tú: exportación CSV o archivo en Descargas.</p>
-        </details>
-        <details>
-          <summary>¿Puedo añadir mis propios ejercicios?<span class="chev" aria-hidden="true">+</span></summary>
-          <p class="cuerpo">Sí. El catálogo con músculo y material es la base: crea los tuyos con su músculo y su material.</p>
-        </details>
-        <details>
-          <summary>¿Cuánto cuesta?<span class="chev" aria-hidden="true">+</span></summary>
-          <p class="cuerpo">Nada. Gratis, sin anuncios y sin compras dentro de la app.</p>
-        </details>
-        <details>
-          <summary>¿Cuándo estará en Google Play?<span class="chev" aria-hidden="true">+</span></summary>
-          <p class="cuerpo">Está en fase de prueba interna. Cuando salga la versión pública, el enlace estará aquí.</p>
-        </details>
-      </section>
-
-      <section class="bloque cierre" id="descargar" aria-labelledby="t-cta">
-        <h2 class="titulo" id="t-cta">Gratis. Sin anuncios. Sin cuenta.</h2>
-        <p>Rutinas, sesión libre, calentamiento, 1RM estimado y CSV. Tú levantas.</p>
-        <div class="acciones">
-          <a class="boton boton-rojo" href="https://ko-fi.com/iggykimi">Invítame a un café</a>
-          <span class="boton boton-fantasma" aria-disabled="true">Próximamente en Google Play</span>
-        </div>
-        <p style="margin-top:14px;font-size:14px">Está en prueba interna de Google Play. Si te resulta útil, puedes invitar un café.</p>
-      </section>
-    </main>
-
-    <footer class="pie">
-      <p>SetRack · © 2026</p>
-      <nav aria-label="Enlaces">
-        <a href="https://ko-fi.com/iggykimi">Ko-fi</a>
-        <a href="https://github.com/iggykimi/setrack-web/issues">Incidencias</a>
-        <a href="#privacidad">Privacidad</a>
-      </nav>
-    </footer>
-  </div>
-<script>
-(function(){function abrir(){var d=document.getElementById('politica');if(d&&['#privacidad','#politica'].indexOf(location.hash)>-1)d.open=true}abrir();addEventListener('hashchange',abrir)})();
-</script>
+  <section class="apoyo envoltura" aria-labelledby="t-apoyo">
+    <h2 id="t-apoyo">SetRack es gratis.</h2>
+    <p>Sin anuncios y sin versión de pago. Si te sirve, un café ayuda a mantenerla.</p>
+    <a class="cafe" href="https://ko-fi.com/iggykimi">Invítame a un café</a>
+  </section>
+</main>
+<footer class="pie envoltura">
+  <p class="pie-marca"><img src="assets/icon.svg" alt="" width="22" height="22">SetRack · 2026</p>
+  <nav aria-label="SetRack">
+    <a href="https://ko-fi.com/iggykimi">Ko-fi</a>
+    <a href="https://github.com/iggykimi/setrack-web/issues">Incidencias</a>
+    <a href="privacidad/">Privacidad</a>
+  </nav>
+</footer>
 </body>
 </html>
