@@ -13,7 +13,8 @@
 - The APK declares no INTERNET permission; its only system permission is VIBRATE (the tick when logging a set).
 - Exercises, sets and weights are stored only in local storage.
 - Manual backup file in Downloads, restore from that file, and CSV export.
-- 61 base exercises with muscle and equipment; users can add their own.
+- 92 base exercises with muscle and equipment; users can add their own.
+- Three starter programs (Upper/Lower, Push/Pull/Legs, Full body) with planned sets per exercise.
 - Estimated 1RM (Brzycki); progress by week, month, quarter or year.
 - Suggests exercises by the sets each muscle still needs this week.
 - Spanish, English, Portuguese (Brazil), German, French and Italian; kilos or pounds.
