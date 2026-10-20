@@ -25,10 +25,21 @@ function barbell(label) {
       `<rect class="izq" x="${SLEEVE - off - PW - 10}" y="${y}" width="${PW}" height="${h}" rx="3"/>` +
       `<rect class="der" x="${W - SLEEVE + off + 10}" y="${y}" width="${PW}" height="${h}" rx="3"/></g>`
   }).join('')
-  return `<svg class="barra" viewBox="0 0 ${W} 64" role="img" aria-label="${esc(label)}">` +
+  return `<svg class="barra" viewBox="0 0 ${W} 64" role="img" aria-label="${esc(label)}"><g class="cuerpo">` +
     `<rect x="4" y="29.5" width="312" height="5" rx="2.5" fill="var(--line)"/>` +
     `<rect x="${SLEEVE - 8}" y="25" width="6" height="14" rx="2" fill="var(--dust)"/>` +
-    `<rect x="${W - SLEEVE + 2}" y="25" width="6" height="14" rx="2" fill="var(--dust)"/>${pairs}</svg>`
+    `<rect x="${W - SLEEVE + 2}" y="25" width="6" height="14" rx="2" fill="var(--dust)"/>${pairs}</g>` +
+    // Where the last (outermost) pair lands.
+    chalk(SLEEVE - (PLATES.length - 1) * (PW + GAP) - PW - 10, -1) + chalk(W - SLEEVE + (PLATES.length - 1) * (PW + GAP) + 10 + PW, 1) + '</svg>'
+}
+
+/* A puff of chalk where the last plate lands: specks flying out from the collar, the app's record
+   «polvo de tiza». Fixed directions, so every page draws the same puff. */
+const DUST = [[38, -22], [30, -8], [44, 6], [26, 20], [16, -30], [8, 28], [34, 30], [22, -36], [48, -12], [12, 10], [40, 18], [28, -2], [18, 34], [36, -30]]
+/** `side` -1 on the left sleeve, 1 on the right: the puff flies out, away from the bar's centre. */
+function chalk(x, side) {
+  const specks = DUST.map(([dx, dy], i) => `<circle cx="${x}" cy="${32 + ((i % 5) - 2) * 6}" r="${1.2 + (i % 4) * 0.45}" style="--dx:${dx * side}px;--dy:${dy}px;--j:${i}"/>`).join('')
+  return `<g class="tiza" aria-hidden="true">${specks}</g>`
 }
 
 function alternates(kind) {
@@ -159,7 +170,7 @@ ${header({ t, code, path: t.path, kind: 'home' })}
   </section>
 
   <section class="apoyo envoltura" aria-labelledby="t-apoyo">
-    <h2 id="t-apoyo">${esc(t.supportTitle)}</h2>
+    <h2 id="t-apoyo" class="encendido">${esc(t.supportTitle)}</h2>
     <p>${esc(t.supportLead)}</p>
     <a class="cafe" href="${LINKS.kofi}">${esc(t.kofi)}</a>
   </section>

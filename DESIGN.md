@@ -1,4 +1,4 @@
-# DESIGN.md — SetRack web (dirección vigente, 2026-10-05)
+# DESIGN.md — SetRack web (dirección vigente, 2026-10-20)
 
 ## Concepto
 La web es la barra de la app. Pocas palabras en la condensada enorme de la app,
@@ -19,15 +19,27 @@ Llano y modesto: describe lo que hace la app como lo contaría quien la hizo par
 
 ## Composición
 1. **Portada**: titular en dos líneas (la segunda en `--faint`) → barra SVG a todo el ancho → entradilla + Play + Ko-fi.
-2. **La app**: titular + lista de 6 funciones con la forma de las filas de la app (número condensado y texto; sin disco de color: los colores de los discos solo marcan datos). Al lado van dos recortes reales superpuestos: la sesión delante y el selector asomando por la izquierda.
+2. **La app**: titular + lista de 8 funciones con la forma de las filas de la app (número condensado y texto; sin disco de color: los colores de los discos solo marcan datos). Al lado van dos recortes reales superpuestos: la sesión delante y el selector asomando por la izquierda.
 3. **Tus datos** (`#privacidad`): titular + entradilla. La política íntegra (`#politica`) va al lado en escritorio y debajo en móvil.
-4. **Apoyo**: «SetRack es gratis» + Ko-fi.
+4. **Apoyo**: «Es gratis.» + Ko-fi.
 5. Pie: Ko-fi, incidencias y privacidad.
 
-## Movimiento
-Uno solo: los discos entran en la barra al cargar (de dentro a fuera, 90 ms
-entre pares, `--ease-out`). Es CSS puro: sin JS, el contenido se ve igual.
-Con `prefers-reduced-motion` no se mueve.
+## Movimiento (2026-10-20)
+Un momento orquestado al cargar y dos detalles ligados al scroll. Todo es CSS
+puro: sin JS, y sin soporte el contenido se ve igual y completo. Con
+`prefers-reduced-motion` no se mueve nada.
+- **Carga de la barra**: cada par de discos entra rápido y «pesa» al llegar
+  (rebote de 5 px), de dentro a fuera, 110 ms entre pares. Con el último puesto,
+  la barra cede 2,5 px y se asienta, y sale un golpe de tiza (14 motas en
+  direcciones fijas) de los discos exteriores. Dura unos 2 s y ocurre una vez.
+- **«Es gratis.»** pasa de `--faint` a tiza con una banda de luz al entrar en
+  pantalla (`animation-timeline: view()`, solo con `@supports`).
+- **Las dos pantallas** se separan con el scroll: la de delante se desplaza
+  ±48 px y la de detrás ±14 px. Solo `transform`.
+- Hover solo con `(hover: hover) and (pointer: fine)`; los botones se hunden a
+  `scale(0.97)` al pulsar.
+- No añadas entradas con fundido en cada sección ni efectos sueltos: el
+  movimiento está en la barra y en dos puntos medidos.
 
 ## Idiomas y URLs
 - `build/texts.mjs` contiene todo el texto. `node build/build.mjs` genera las 12 páginas y `sitemap.xml`. **No edites los `index.html` a mano.**
