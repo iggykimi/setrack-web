@@ -323,7 +323,7 @@ export const LINKS = { kofi: 'https://ko-fi.com/iggykimi', issues: ISSUES, play:
  * definition of the app, written to stand alone when quoted. */
 export const FAQ = {
   es: {
-    title: ['Preguntas', 'de siempre.'],
+    title: ['Preguntas', 'frecuentes.'],
     items: [
       ['¿Qué es SetRack?', 'SetRack es un diario de gimnasio gratis para Android que funciona sin internet: no tiene anuncios, no pide cuenta y guarda tus series solo en tu móvil. Incluye 104 ejercicios, 3 programas, 1RM estimado con la fórmula de Brzycki y copia en Descargas con CSV. La app está en 11 idiomas; esta web, en 6.'],
       ['¿Funciona sin internet?', 'Sí. La app no tiene permiso de internet, así que apunta igual en un sótano sin cobertura. El único permiso que usa es la vibración, para el toque al apuntar una serie.'],
