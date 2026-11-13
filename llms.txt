@@ -2,22 +2,24 @@
 
 > Android gym log. Fully offline: no account, no ads, no trackers and no internet
 > permission. Data lives only on the phone. Free.
+> Last reviewed: 2026-11-13.
 
 ## Pages
 
 - [Español](https://iggykimi.github.io/setrack-web/) · [English](https://iggykimi.github.io/setrack-web/en/) · [Português](https://iggykimi.github.io/setrack-web/pt/) · [Deutsch](https://iggykimi.github.io/setrack-web/de/) · [Français](https://iggykimi.github.io/setrack-web/fr/) · [Italiano](https://iggykimi.github.io/setrack-web/it/)
 - Privacy policy: [es](https://iggykimi.github.io/setrack-web/privacidad/) · [en](https://iggykimi.github.io/setrack-web/en/privacy/) · [pt](https://iggykimi.github.io/setrack-web/pt/privacidade/) · [de](https://iggykimi.github.io/setrack-web/de/datenschutz/) · [fr](https://iggykimi.github.io/setrack-web/fr/confidentialite/) · [it](https://iggykimi.github.io/setrack-web/it/privacy/). Each home page also carries the full text (#privacidad).
 
-## Verifiable facts
+## Verifiable facts (checked 2026-11-13)
 
 - The APK declares no INTERNET permission; its only system permission is VIBRATE (the tick when logging a set).
 - Exercises, sets and weights are stored only in local storage.
 - Manual backup file in Downloads, restore from that file, and CSV export.
-- 99 base exercises with muscle and equipment; users can add their own.
+- 104 base exercises with muscle and equipment; users can add their own.
+- 8 colour themes, two of them light.
 - Three starter programs (Upper/Lower, Push/Pull/Legs, Full body) with planned sets per exercise.
 - Estimated 1RM (Brzycki); progress by week, month, quarter or year.
 - Suggests exercises by the sets each muscle still needs this week.
-- Spanish, English, Portuguese (Brazil), German, French and Italian; kilos or pounds.
+- The app is available in 11 languages (Spanish, English, Portuguese (Brazil), German, French, Italian, Polish, Dutch, Japanese, Korean, Traditional Chinese); this website is in 6 (Spanish, English, Portuguese, German, French, Italian). Kilos or pounds.
 - Status: available on Google Play: https://play.google.com/store/apps/details?id=com.setrack.app
 
 ## Contact

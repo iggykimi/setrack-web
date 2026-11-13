@@ -187,6 +187,18 @@ h1, h2 {
 @keyframes flotar-delante { from { transform: translateY(48px); } to { transform: translateY(-48px); } }
 @keyframes flotar-detras { from { transform: translateY(14px); } to { transform: translateY(-14px); } }
 
+/* Second Play button, after the feature list: same words, same link. */
+.cta-final { padding-block: 0 clamp(56px, 10vh, 120px); }
+
+/* Plain questions, answered in one breath each. */
+.preguntas { padding-block: clamp(56px, 10vh, 120px); border-top: 1px solid var(--line-soft); }
+.preguntas h2 { font-size: clamp(44px, 6.4vw, 96px); }
+.respuestas { margin-top: clamp(32px, 5vh, 56px); max-width: 46em; }
+.respuestas div { padding-block: 18px; border-bottom: 1px solid var(--line-soft); }
+.respuestas div:first-child { border-top: 1px solid var(--line-soft); }
+.respuestas dt { color: var(--chalk); font-weight: 700; }
+.respuestas dd { color: var(--dust); margin-top: 6px; text-wrap: pretty; }
+
 /* ── Data stays home + the full policy (Play links here) ──── */
 .datos { padding-block: clamp(56px, 10vh, 120px); border-top: 1px solid var(--line-soft); scroll-margin-top: 24px; }
 .datos > .entrada { margin-top: 28px; }

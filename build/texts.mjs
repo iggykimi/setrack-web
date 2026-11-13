@@ -318,3 +318,68 @@ export const LANGS = {
 }
 
 export const LINKS = { kofi: 'https://ko-fi.com/iggykimi', issues: ISSUES, play: 'https://play.google.com/store/apps/details?id=com.setrack.app' }
+
+/** Questions and answers, per language. First answer of each list is the plain
+ * definition of the app, written to stand alone when quoted. */
+export const FAQ = {
+  es: {
+    title: ['Preguntas', 'de siempre.'],
+    items: [
+      ['¿Qué es SetRack?', 'SetRack es un diario de gimnasio gratis para Android que funciona sin internet: no tiene anuncios, no pide cuenta y guarda tus series solo en tu móvil. Incluye 104 ejercicios, 3 programas, 1RM estimado con la fórmula de Brzycki y copia en Descargas con CSV. La app está en 11 idiomas; esta web, en 6.'],
+      ['¿Funciona sin internet?', 'Sí. La app no tiene permiso de internet, así que apunta igual en un sótano sin cobertura. El único permiso que usa es la vibración, para el toque al apuntar una serie.'],
+      ['¿Cuánto cuesta?', 'Nada. Es gratis y sin anuncios. Si te resulta útil, puedes invitarme a un café en Ko-fi.'],
+      ['¿Qué pasa si cambio de móvil?', 'Guarda una copia en Descargas y restaurala en el nuevo, o exporta tus series a CSV. Desinstalar la app borra los datos, así que haz la copia antes.'],
+      ['¿Necesito cuenta?', 'No. Sin registro y sin correo. Tus datos se quedan en tu móvil.'],
+    ],
+  },
+  en: {
+    title: ['Questions', 'people ask.'],
+    items: [
+      ['What is SetRack?', 'SetRack is a free gym log for Android that works with no internet: it has no ads, needs no account and keeps your sets only on your phone. It includes 104 exercises, 3 starter programs, estimated 1RM with the Brzycki formula and backup to Downloads with CSV export. The app is in 11 languages; this site is in 6.'],
+      ['Does it work offline?', 'Yes. The app declares no internet permission, so it logs the same in a basement with no signal. Its only permission is vibration, for the tick when you log a set.'],
+      ['How much does it cost?', 'Nothing. It is free, with no ads. If you find it useful, you can buy me a coffee on Ko-fi.'],
+      ['What if I change phones?', 'Save a backup to Downloads and restore it on the new phone, or export your sets to CSV. Uninstalling deletes the data, so back up first.'],
+      ['Do I need an account?', 'No. No sign-up and no email. Your data stays on your phone.'],
+    ],
+  },
+  pt: {
+    title: ['Perguntas', 'de sempre.'],
+    items: [
+      ['O que é o SetRack?', 'O SetRack é um diário de academia gratuito para Android que funciona sem internet: não tem anúncios, não pede conta e guarda suas séries só no seu celular. Inclui 104 exercícios, 3 programas iniciais, 1RM estimado com a fórmula de Brzycki e backup em Downloads com CSV. O app está em 11 idiomas; este site, em 6.'],
+      ['Funciona sem internet?', 'Sim. O app não tem permissão de internet, então anota igual num porão sem sinal. A única permissão é a vibração, no toque ao registrar uma série.'],
+      ['Quanto custa?', 'Nada. É gratuito e sem anúncios. Se for útil, você pode me pagar um café no Ko-fi.'],
+      ['E se eu trocar de celular?', 'Salve um backup em Downloads e restaure no novo, ou exporte suas séries para CSV. Desinstalar apaga os dados, então faça o backup antes.'],
+      ['Preciso de conta?', 'Não. Sem cadastro e sem e-mail. Seus dados ficam no seu celular.'],
+    ],
+  },
+  de: {
+    title: ['Fragen,', 'die kommen.'],
+    items: [
+      ['Was ist SetRack?', 'SetRack ist ein kostenloses Trainingstagebuch für Android, das ohne Internet läuft: keine Werbung, kein Konto, und deine Sätze bleiben nur auf deinem Handy. Es enthält 104 Übungen, 3 Startprogramme, geschätztes 1RM nach der Brzycki-Formel und Backup in den Download-Ordner mit CSV. Die App gibt es in 11 Sprachen; diese Seite in 6.'],
+      ['Geht das offline?', 'Ja. Die App hat keine Internetberechtigung, also trägt sie im Keller ohne Empfang genauso ein. Die einzige Berechtigung ist Vibration, für das kurze Feedback beim Eintragen.'],
+      ['Was kostet es?', 'Nichts. Kostenlos und ohne Werbung. Wenn sie dir hilft, kannst du mich auf Ko-fi auf einen Kaffee einladen.'],
+      ['Was ist beim Handywechsel?', 'Lege ein Backup in den Download-Ordner und stelle es auf dem neuen Handy wieder her, oder exportiere deine Sätze als CSV. Deinstallieren löscht die Daten, also vorher sichern.'],
+      ['Brauche ich ein Konto?', 'Nein. Keine Registrierung, keine E-Mail. Deine Daten bleiben auf dem Handy.'],
+    ],
+  },
+  fr: {
+    title: ['Questions', 'qu’on pose.'],
+    items: [
+      ['SetRack, c’est quoi ?', 'SetRack est un carnet de muscu gratuit pour Android qui fonctionne sans internet : sans publicité, sans compte, et tes séries restent sur ton téléphone. Il inclut 104 exercices, 3 programmes pour débuter, le 1RM estimé avec la formule de Brzycki et la sauvegarde dans Téléchargements en CSV. L’app est en 11 langues ; ce site, en 6.'],
+      ['Ça marche hors ligne ?', 'Oui. L’app n’a pas l’autorisation internet, elle note donc pareil dans un sous-sol sans réseau. Sa seule autorisation est la vibration, pour le petit retour quand tu notes une série.'],
+      ['Ça coûte combien ?', 'Rien. C’est gratuit et sans publicité. Si elle te sert, tu peux m’offrir un café sur Ko-fi.'],
+      ['Et si je change de téléphone ?', 'Enregistre une sauvegarde dans Téléchargements et restaure-la sur le nouveau, ou exporte tes séries en CSV. Désinstaller efface les données, donc sauvegarde avant.'],
+      ['Il faut un compte ?', 'Non. Ni inscription ni e-mail. Tes données restent sur ton téléphone.'],
+    ],
+  },
+  it: {
+    title: ['Domande', 'di sempre.'],
+    items: [
+      ['Cos’è SetRack?', 'SetRack è un diario di palestra gratis per Android che funziona senza internet: niente pubblicità, niente account e le tue serie restano solo sul telefono. Include 104 esercizi, 3 programmi per iniziare, 1RM stimato con la formula di Brzycki e backup in Download con CSV. L’app è in 11 lingue; questo sito in 6.'],
+      ['Funziona offline?', 'Sì. L’app non ha il permesso internet, quindi registra uguale in una cantina senza segnale. L’unico permesso è la vibrazione, per il piccolo feedback quando segni una serie.'],
+      ['Quanto costa?', 'Niente. È gratis e senza pubblicità. Se ti è utile, puoi offrirmi un caffè su Ko-fi.'],
+      ['Se cambio telefono?', 'Salva un backup in Download e ripristinalo sul nuovo, oppure esporta le tue serie in CSV. Disinstallare cancella i dati, quindi fai prima il backup.'],
+      ['Serve un account?', 'No. Niente registrazione e niente e-mail. I tuoi dati restano sul telefono.'],
+    ],
+  },
+}

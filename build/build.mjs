@@ -3,7 +3,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { LANGS, LINKS } from './texts.mjs'
+import { LANGS, LINKS, FAQ } from './texts.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const SITE = 'https://iggykimi.github.io/setrack-web/'
@@ -51,13 +51,21 @@ function alternates(kind) {
 function head({ t, code, path, kind, title, description }) {
   const base = up(path)
   const og = code === 'es' ? 'og.jpg' : `og-${code}.jpg`
-  const ld = kind === 'home' ? `<script type="application/ld+json">${JSON.stringify({
-    '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'SetRack', operatingSystem: 'Android',
+  const faq = FAQ[code]
+  const ld = kind === 'home' ? `<script type="application/ld+json">${JSON.stringify([{
+    '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'SetRack',
+    url: SITE + path,
+    downloadUrl: LINKS.play,
+    operatingSystem: 'Android',
     applicationCategory: 'HealthApplication', description, inLanguage: t.htmlLang, isAccessibleForFree: true,
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
     featureList: t.features.map(([f]) => f),
     author: { '@type': 'Person', name: 'iggykimi', url: 'https://github.com/iggykimi' },
-  })}</script>` : ''
+    sameAs: [LINKS.play],
+  }, {
+    '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: t.htmlLang,
+    mainEntity: faq.items.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  }])}</script>` : ''
   return `<!DOCTYPE html>
 <html lang="${t.htmlLang}">
 <head>
@@ -123,6 +131,7 @@ function footer(t, base) {
     <a href="${LINKS.kofi}">Ko-fi</a>
     <a href="${LINKS.issues}">${esc(t.footer.issues)}</a>
     <a href="${base}${t.privacy}">${esc(t.footer.privacy)}</a>
+    <a href="${base}llms.txt">llms.txt</a>
   </nav>
 </footer>`
 }
@@ -163,6 +172,19 @@ ${header({ t, code, path: t.path, kind: 'home' })}
     </div>
   </section>
 
+  <section class="envoltura cta-final">
+    <div class="acciones">
+      <a class="play" href="${LINKS.play}&amp;hl=${t.htmlLang}">${esc(t.play)}</a>
+    </div>
+  </section>
+
+  <section class="preguntas envoltura" id="preguntas" aria-labelledby="t-preguntas">
+    <h2 id="t-preguntas">${twoLines(FAQ[code].title)}</h2>
+    <dl class="respuestas">
+      ${FAQ[code].items.map(([q, a]) => `<div><dt>${esc(q)}</dt><dd>${esc(a)}</dd></div>`).join('\n      ')}
+    </dl>
+  </section>
+
   <section class="datos envoltura" id="privacidad" aria-labelledby="t-datos">
     <h2 id="t-datos">${twoLines(t.dataTitle)}</h2>
     <p class="entrada">${esc(t.dataLead)}</p>
@@ -200,7 +222,7 @@ ${footer(t, base)}
 function sitemap() {
   const block = (kind) => CODES.map((c) => {
     const loc = SITE + (kind === 'home' ? LANGS[c].path : LANGS[c].privacy)
-    const alts = CODES.map((a) => `    <xhtml:link rel="alternate" hreflang="${LANGS[a].htmlLang}" href="${SITE + (kind === 'home' ? LANGS[a].path : LANGS[a].privacy)}"/>`).join('\n')
+    const alts = CODES.map((a) => `    <xhtml:link rel="alternate" hreflang="${LANGS[a].htmlLang}" href="${SITE + (kind === 'home' ? LANGS[a].path : LANGS[a].privacy)}"/>`).join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE + (kind === 'home' ? LANGS['en'].path : LANGS['en'].privacy)}"/>`
     return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${UPDATED}</lastmod>\n${alts}\n  </url>`
   }).join('\n')
   return `<?xml version="1.0" encoding="UTF-8"?>
