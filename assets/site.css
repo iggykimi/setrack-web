@@ -43,11 +43,16 @@ body {
   overflow-x: hidden;
 }
 a { color: inherit; }
+a, summary { touch-action: manipulation; }
 img { display: block; max-width: 100%; height: auto; }
 :focus-visible { outline: 2px solid var(--chalk); outline-offset: 4px; border-radius: 6px; }
 main:focus { outline: none; }
 
-.envoltura { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: var(--gutter); }
+.envoltura {
+  width: 100%; max-width: 1240px; margin-inline: auto;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
 
 .saltar {
   position: absolute; left: 16px; top: -80px; z-index: 10;
@@ -74,6 +79,14 @@ h1, h2 {
 .marca {
   display: inline-flex; align-items: center; gap: 10px;
   font-weight: 800; font-stretch: 80%; font-size: 21px; text-decoration: none;
+}
+/* Section links: the page in three jumps. Not on the privacy page, which has no sections. */
+.secciones { display: flex; gap: 2px; }
+.secciones a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
+  border-radius: 999px; color: var(--dust); text-decoration: none;
+  font-size: 14px; font-weight: 600;
+  transition: color 160ms var(--ease-out), background-color 160ms var(--ease-out);
 }
 /* Language menu: one compact pill, 11 names inside. Native <details>, no JS. */
 .idiomas { position: relative; }
@@ -134,11 +147,20 @@ body:lang(zh-Hant) .portada h1 { font-size: clamp(40px, 8vw, 116px); }
 .barra [data-region="legs"] { fill: var(--legs); }
 .barra [data-region="core"] { fill: var(--core); }
 .portada-pie {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
   gap: 20px 40px; padding-bottom: clamp(56px, 12vh, 140px);
 }
+.portada-texto { max-width: 36em; }
 .entrada { color: var(--mist); font-size: clamp(18px, 1.7vw, 22px); max-width: 30em; text-wrap: pretty; }
 .acciones { display: flex; flex-wrap: wrap; gap: 12px; }
+/* The four facts that decide a download, at a glance. */
+.confianza { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 22px; }
+.confianza li {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 13px; border: 1px solid var(--line); border-radius: 999px;
+  color: var(--mist); font-size: 13px; font-weight: 600;
+}
+.confianza li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--legs); }
 
 .cafe, .play {
   display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px;
@@ -184,12 +206,31 @@ body:lang(zh-Hant) .portada h1 { font-size: clamp(40px, 8vw, 116px); }
   to { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.4); }
 }
 
+/* ── How it works: three steps, in the same order as a session ── */
+.como {
+  display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 5vw, 72px); align-items: start;
+  padding-block: clamp(56px, 10vh, 120px);
+  border-top: 1px solid var(--line-soft);
+  scroll-margin-top: 24px;
+}
+.como h2 { font-size: clamp(44px, 6.4vw, 96px); }
+.pasos { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
+.pasos li { padding-top: 18px; border-top: 1px solid var(--line); }
+.pasos .n {
+  display: block; color: var(--faint); font-stretch: 70%; font-weight: 800;
+  font-size: clamp(30px, 3vw, 42px); line-height: 1; font-variant-numeric: tabular-nums;
+}
+.pasos strong { display: block; margin-top: 16px; font-size: 19px; }
+.pasos p { color: var(--dust); font-size: 15.5px; line-height: 1.5; margin-top: 8px; text-wrap: pretty; }
+
 /* ── The app: what you get, as a set list, next to two real screens ── */
 .app {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
   gap: clamp(40px, 6vw, 96px); align-items: start;
   padding-block: clamp(56px, 10vh, 120px);
   border-top: 1px solid var(--line-soft);
+  scroll-margin-top: 24px;
 }
 .app h2, .datos h2 { font-size: clamp(44px, 6.4vw, 96px); }
 .series { list-style: none; margin-top: clamp(32px, 5vh, 56px); }
@@ -223,15 +264,14 @@ body:lang(zh-Hant) .portada h1 { font-size: clamp(40px, 8vw, 116px); }
 @keyframes flotar-delante { from { transform: translateY(48px); } to { transform: translateY(-48px); } }
 @keyframes flotar-detras { from { transform: translateY(14px); } to { transform: translateY(-14px); } }
 
-/* Second Play button, after the feature list: same words, same link. */
-.cta-final { padding-block: 0 clamp(56px, 10vh, 120px); }
-
-/* Plain questions, answered in one breath each. */
-.preguntas { padding-block: clamp(56px, 10vh, 120px); border-top: 1px solid var(--line-soft); }
+/* ── Questions ────────────────────────────────────────────── */
+.preguntas { padding-block: clamp(56px, 10vh, 120px); border-top: 1px solid var(--line-soft); scroll-margin-top: 24px; }
 .preguntas h2 { font-size: clamp(44px, 6.4vw, 96px); }
-.respuestas { margin-top: clamp(32px, 5vh, 56px); max-width: 46em; }
-.respuestas div { padding-block: 18px; border-bottom: 1px solid var(--line-soft); }
-.respuestas div:first-child { border-top: 1px solid var(--line-soft); }
+.respuestas { margin-top: clamp(32px, 5vh, 56px); border-top: 1px solid var(--line-soft); }
+.respuestas div { break-inside: avoid; padding-block: 18px; border-bottom: 1px solid var(--line-soft); }
+@media (min-width: 900px) {
+  .respuestas { columns: 2; column-gap: clamp(32px, 5vw, 72px); }
+}
 .respuestas dt { color: var(--chalk); font-weight: 700; }
 .respuestas dd { color: var(--dust); margin-top: 6px; text-wrap: pretty; }
 
@@ -261,8 +301,18 @@ body:lang(zh-Hant) .portada h1 { font-size: clamp(40px, 8vw, 116px); }
 .politica .aparte a { text-decoration: none; font-weight: 600; }
 
 /* ── Support ──────────────────────────────────────────────── */
-.apoyo { padding-block: clamp(56px, 10vh, 120px); border-top: 1px solid var(--line-soft); }
-.apoyo h2 { font-size: clamp(40px, 5.6vw, 84px); }
+.apoyo {
+  display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 5vw, 72px); align-items: center;
+  padding-block: clamp(56px, 10vh, 120px); border-top: 1px solid var(--line-soft);
+}
+/* 0.86 would clip the background-clip gradient: the box must be taller than
+   the ink, descenders included. The padding gives the paint room; the negative
+   margin keeps the visual rhythm. */
+.apoyo h2 { font-size: clamp(40px, 5.6vw, 84px); line-height: 1.08; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+body:lang(ja) .apoyo h2,
+body:lang(ko) .apoyo h2,
+body:lang(zh-Hant) .apoyo h2 { line-height: 1.12; }
 /* «Es gratis.» lights up as it comes into view: a band of light sweeps it from faint to chalk.
    Scroll-driven, CSS only; without support (or with reduced motion) it is simply chalk. */
 @supports (animation-timeline: view()) {
@@ -277,7 +327,7 @@ body:lang(zh-Hant) .portada h1 { font-size: clamp(40px, 8vw, 116px); }
   }
 }
 @keyframes encender { from { background-position: 100% 0; } to { background-position: 0 0; } }
-.apoyo p { color: var(--mist); font-size: clamp(17px, 1.5vw, 20px); max-width: 30em; margin-block: 18px 28px; }
+.apoyo p { color: var(--mist); font-size: clamp(17px, 1.5vw, 20px); max-width: 30em; margin-block: 0 26px; }
 
 /* ── Footer ───────────────────────────────────────────────── */
 .pie {
@@ -286,6 +336,8 @@ body:lang(zh-Hant) .portada h1 { font-size: clamp(40px, 8vw, 116px); }
   color: var(--faint); font-size: 14.5px;
 }
 .pie-marca { display: inline-flex; align-items: center; gap: 10px; }
+.pie-info { display: grid; gap: 6px; }
+.pie-nota { font-size: 13.5px; }
 .pie nav { display: flex; flex-wrap: wrap; gap: 4px 22px; }
 .pie a { color: var(--dust); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 
@@ -300,14 +352,28 @@ body:lang(zh-Hant) .portada h1 { font-size: clamp(40px, 8vw, 116px); }
 /* Hover only where there is a pointer that hovers: on a phone a tap leaves it stuck. */
 @media (hover: hover) and (pointer: fine) {
   .idiomas summary:hover, .idiomas .lista a:hover, .pie a:hover, .volver a:hover { color: var(--chalk); }
+  .secciones a:hover { color: var(--chalk); background: var(--surface); }
   .play:hover, .cafe:hover { transform: translateY(-1px); }
   .politica .aparte a:hover { text-decoration: underline; }
 }
 
 /* ── Small screens ────────────────────────────────────────── */
 @media (max-width: 880px) {
-  .app { grid-template-columns: 1fr; }
-  .pantallas { max-width: 520px; }
+  .app { grid-template-columns: 1fr; gap: clamp(32px, 6vh, 56px); }
+  /* The screens first: on a phone, seeing the app beats reading its list. */
+  .pantallas { order: -1; width: 100%; max-width: 520px; margin-inline: auto; }
+  .como { grid-template-columns: 1fr; }
+  .apoyo { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .cabecera { flex-wrap: wrap; row-gap: 4px; }
+  .secciones { order: 3; flex-basis: 100%; margin-inline: -10px; }
+  .secciones a { min-height: 40px; padding: 0 10px; font-size: 13.5px; }
+}
+@media (max-width: 640px) {
+  .pasos { grid-template-columns: 1fr; gap: 0; }
+  .pasos li { padding-block: 16px; }
+  .pasos strong { margin-top: 10px; }
 }
 @media (max-width: 520px) {
   .portada-pie { padding-bottom: 64px; }
@@ -316,8 +382,8 @@ body:lang(zh-Hant) .portada h1 { font-size: clamp(40px, 8vw, 116px); }
   .idiomas summary { min-height: 38px; padding: 0 12px; font-size: 12px; }
   .idiomas .lista { min-width: 232px; }
   .marca { font-size: 19px; }
-  .pantalla.principal { width: 66%; }
-  .pantalla.segunda { width: 58%; margin-top: 30%; }
+  .pantalla.principal { width: 72%; }
+  .pantalla.segunda { width: 62%; margin-top: 26%; }
 }
 @media (max-width: 400px) {
   .marca span { display: none; }

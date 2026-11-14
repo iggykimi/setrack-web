@@ -3,8 +3,9 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { SITE, UPDATED } from './config.mjs'
+import { SITE, UPDATED, VERSION } from './config.mjs'
 import { LANGS, LINKS, FAQ } from './texts.mjs'
+import { webpSize } from './webp.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const CODES = Object.keys(LANGS)
@@ -57,9 +58,13 @@ function head({ t, code, path, kind, title, description }) {
     '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'SetRack',
     url: SITE + path,
     downloadUrl: LINKS.play,
+    installUrl: LINKS.play,
     operatingSystem: 'Android',
     applicationCategory: 'HealthApplication', description, inLanguage: t.htmlLang, isAccessibleForFree: true,
+    softwareVersion: VERSION,
     dateModified: UPDATED,
+    image: `${SITE}assets/icon.svg`,
+    screenshot: `${SITE}assets/img/${code}-sesion.webp`,
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
     featureList: t.features.map(([f]) => f),
     author: { '@type': 'Person', name: 'iggykimi', url: 'https://github.com/iggykimi' },
@@ -67,6 +72,10 @@ function head({ t, code, path, kind, title, description }) {
   }, {
     '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: t.htmlLang,
     mainEntity: faq.items.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  }, {
+    '@context': 'https://schema.org', '@type': 'HowTo', inLanguage: t.htmlLang,
+    name: t.howTitle.join(' '),
+    step: t.how.map(([name, text], i) => ({ '@type': 'HowToStep', position: i + 1, name, text })),
   }])}</script>` : ''
   return `<!DOCTYPE html>
 <html lang="${t.htmlLang}">
@@ -75,6 +84,7 @@ function head({ t, code, path, kind, title, description }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#000000">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
@@ -91,10 +101,14 @@ ${alternates(kind)}
 <meta property="og:image" content="${SITE}assets/${og}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(title)}">
 <meta property="og:locale" content="${t.ogLocale}">
 ${locales}
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${SITE}assets/${og}">
+<meta name="twitter:image:alt" content="${esc(title)}">
 ${ld}
 </head>`
 }
@@ -109,6 +123,11 @@ function header({ t, code, path, kind }) {
   return `<a class="saltar" href="#contenido">${esc(t.skip)}</a>
 <header class="cabecera envoltura">
   <a class="marca" href="${base + t.path || './'}"><img src="${base}assets/icon.svg" alt="" width="28" height="28"><span>SetRack</span></a>
+  ${kind === 'home' ? `<nav class="secciones" aria-label="${esc(t.navLabel)}">
+    <a href="#app">${esc(t.nav[0])}</a>
+    <a href="#preguntas">${esc(t.nav[1])}</a>
+    <a href="#privacidad">${esc(t.nav[2])}</a>
+  </nav>` : ''}
   <nav class="idiomas" aria-label="${esc(t.langNav)}">
     <details>
       <summary aria-label="${esc(t.langNav)}: ${esc(t.name)}">${esc(t.name)}</summary>
@@ -135,7 +154,10 @@ function policyBlock(t, { standalone, base }) {
 
 function footer(t, base) {
   return `<footer class="pie envoltura">
-  <p class="pie-marca"><img src="${base}assets/icon.svg" alt="" width="22" height="22">SetRack · 2026</p>
+  <div class="pie-info">
+    <p class="pie-marca"><img src="${base}assets/icon.svg" alt="" width="22" height="22">SetRack · 2026</p>
+    <p class="pie-nota">${esc(t.footer.note)}</p>
+  </div>
   <nav aria-label="SetRack">
     <a href="${LINKS.kofi}">Ko-fi</a>
     <a href="${LINKS.issues}">${esc(t.footer.issues)}</a>
@@ -150,7 +172,11 @@ const twoLines = ([a, b]) => `${esc(a)}<span class="tenue">${esc(b)}</span>`
 function home(code) {
   const t = LANGS[code]
   const base = up(t.path)
-  const img = (name, alt, h) => `<img src="${base}assets/img/${code}-${name}.webp" alt="${esc(alt)}" width="640" height="${h}" decoding="async">`
+  const img = (name, alt) => {
+    const file = `assets/img/${code}-${name}.webp`
+    const { width, height } = webpSize(join(ROOT, file))
+    return `<img src="${base}${file}" alt="${esc(alt)}" width="${width}" height="${height}" loading="lazy" decoding="async">`
+  }
   const features = t.features.map(([f, d], i) => `<li><span class="n" aria-hidden="true">${i + 1}</span><span><strong>${esc(f)}</strong> ${esc(d)}</span></li>`).join('\n      ')
   return `${head({ t, code, path: t.path, kind: 'home', title: t.title, description: t.description })}
 <body>
@@ -160,12 +186,24 @@ ${header({ t, code, path: t.path, kind: 'home' })}
     <h1 id="t-portada">${twoLines(t.hero)}</h1>
     ${barbell(t.barLabel)}
     <div class="portada-pie">
-      <p class="entrada">${esc(t.lead)}</p>
+      <div class="portada-texto">
+        <p class="entrada">${esc(t.lead)}</p>
+        <ul class="confianza">
+          ${t.trust.map((x) => `<li>${esc(x)}</li>`).join('\n          ')}
+        </ul>
+      </div>
       <div class="acciones">
         <a class="play" href="${LINKS.play}&amp;hl=${t.htmlLang}">${esc(t.play)}</a>
         <a class="cafe" href="${LINKS.kofi}">${esc(t.kofi)}</a>
       </div>
     </div>
+  </section>
+
+  <section class="como envoltura" id="como" aria-labelledby="t-como">
+    <h2 id="t-como">${twoLines(t.howTitle)}</h2>
+    <ol class="pasos">
+      ${t.how.map(([title, text], i) => `<li><span class="n" aria-hidden="true">0${i + 1}</span><strong>${esc(title)}</strong><p>${esc(text)}</p></li>`).join('\n      ')}
+    </ol>
   </section>
 
   <section class="app envoltura" id="app" aria-labelledby="t-app">
@@ -176,14 +214,8 @@ ${header({ t, code, path: t.path, kind: 'home' })}
       </ol>
     </div>
     <div class="pantallas">
-      <figure class="pantalla principal">${img('sesion', t.altSession, 871)}</figure>
-      <figure class="pantalla segunda">${img('selector', t.altPicker, 859)}</figure>
-    </div>
-  </section>
-
-  <section class="envoltura cta-final">
-    <div class="acciones">
-      <a class="play" href="${LINKS.play}&amp;hl=${t.htmlLang}">${esc(t.play)}</a>
+      <figure class="pantalla principal">${img('sesion', t.altSession)}</figure>
+      <figure class="pantalla segunda">${img('selector', t.altPicker)}</figure>
     </div>
   </section>
 
@@ -202,8 +234,13 @@ ${header({ t, code, path: t.path, kind: 'home' })}
 
   <section class="apoyo envoltura" aria-labelledby="t-apoyo">
     <h2 id="t-apoyo" class="encendido">${esc(t.supportTitle)}</h2>
-    <p>${esc(t.supportLead)}</p>
-    <a class="cafe" href="${LINKS.kofi}">${esc(t.kofi)}</a>
+    <div class="apoyo-texto">
+      <p>${esc(t.supportLead)}</p>
+      <div class="acciones">
+        <a class="play" href="${LINKS.play}&amp;hl=${t.htmlLang}">${esc(t.play)}</a>
+        <a class="cafe" href="${LINKS.kofi}">${esc(t.kofi)}</a>
+      </div>
+    </div>
   </section>
 </main>
 ${footer(t, base)}

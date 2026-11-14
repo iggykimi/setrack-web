@@ -39,7 +39,7 @@ This is the source of the website. It is static HTML with no JavaScript and no e
 
 - `index.html` and `en/`, `pt/`, `de/`, `fr/`, `it/`, `pl/`, `nl/`, `ja/`, `ko/`, `zh-tw/` hold the home page in 11 languages. Spanish is at the root.
 - Each language has a privacy policy page, for example `privacidad/` and `en/privacy/`. The home page also carries the full policy, because `/` is the URL registered in Google Play.
-- `build/texts.mjs` holds all the text, `build/build.mjs` writes the 22 pages and `sitemap.xml`, and `build/check.mjs` validates them. Run `node build/build.mjs && node build/check.mjs` from the repo root and commit the output. Do not edit the generated `index.html` files by hand.
+- `build/texts.mjs` holds all the text, `build/build.mjs` writes the 22 pages and `sitemap.xml`, `build/webp.mjs` reads the real WebP sizes, and `build/check.mjs` validates them (JSON-LD with 3 nodes, lazy screenshots with exact dimensions, section nav, trust chips, robots and social metas). Run `node build/build.mjs` and `node build/check.mjs` from the repo root and commit the output. Do not edit the generated `index.html` files by hand.
 - `assets/` has the stylesheet, the icon, the app screenshots per language (`assets/img/`) and the Open Graph images.
 - `fonts/` has Archivo, self-hosted, with its OFL license.
 - `DESIGN.md` records the design direction and the claims the site may make.

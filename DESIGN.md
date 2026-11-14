@@ -1,4 +1,10 @@
-# DESIGN.md — SetRack web (dirección vigente, 2026-10-20)
+# DESIGN.md — SetRack web (dirección vigente, 2026-11-14)
+
+## Concepto
+La web es la barra de la app. Pocas palabras en la condensada enorme de la app,
+la barra cargándose de discos y dos pantallas reales. Una idea por bloque:
+qué es, cómo funciona, qué hace, tus datos y apoyar. Debe sentirse hecha a
+mano, no como una plantilla de producto.
 
 ## Concepto
 La web es la barra de la app. Pocas palabras en la condensada enorme de la app,
@@ -18,11 +24,13 @@ plantilla de producto.
 Llano y modesto: describe lo que hace la app como lo contaría quien la hizo para sí y la comparte («Un diario de gimnasio sencillo», «Tus datos se quedan en tu móvil»). Nada de eslóganes imperativos ni tríos «Sin X. Sin Y. Sin Z.»; los hechos de privacidad se dicen con naturalidad. Los textos de las capturas de Play siguen el mismo tono (`docs/play/store/copy.mjs` del repo de la app). Las imágenes OG salen de `docs/play/store/compose.mjs` de ese repo.
 
 ## Composición
-1. **Portada**: titular en dos líneas (la segunda en `--faint`) → barra SVG a todo el ancho → entradilla + Play + Ko-fi.
-2. **La app**: titular + lista de 8 funciones con la forma de las filas de la app (número condensado y texto; sin disco de color: los colores de los discos solo marcan datos). Al lado van dos recortes reales superpuestos: la sesión delante y el selector asomando por la izquierda.
-3. **Tus datos** (`#privacidad`): titular + entradilla. La política íntegra (`#politica`) va al lado en escritorio y debajo en móvil.
-4. **Apoyo**: «Es gratis.» + Ko-fi.
-5. Pie: Ko-fi, incidencias y privacidad.
+1. **Portada**: titular en dos líneas (la segunda en `--faint`) → barra SVG a todo el ancho → entradilla + 4 chips de confianza (Gratis, Sin conexión, Sin cuenta, Sin anuncios) + Play + Ko-fi. La cabecera lleva navegación por secciones (Funciones, Preguntas, Datos) y el selector de idioma.
+2. **Cómo funciona**: titular + 3 pasos (Elige, Apunta, Mira) en el orden de una sesión.
+3. **La app** (`#app`): titular + lista de 8 funciones con la forma de las filas de la app (número condensado y texto; sin disco de color: los colores de los discos solo marcan datos). Al lado van dos recortes reales superpuestos: la sesión delante y el selector asomando por la izquierda. En móvil las pantallas van primero.
+4. **Preguntas** (`#preguntas`): titular + 5 respuestas en dos columnas en escritorio.
+5. **Tus datos** (`#privacidad`): titular + entradilla. La política íntegra (`#politica`) va al lado en escritorio y debajo en móvil.
+6. **Apoyo**: «Es gratis.» a la izquierda + texto y Play/Ko-fi a la derecha.
+7. Pie: marca, nota de autoría con fecha de actualización, Ko-fi, incidencias, privacidad y llms.txt.
 
 ## Movimiento (2026-10-20)
 Un momento orquestado al cargar y dos detalles ligados al scroll. Todo es CSS
@@ -33,7 +41,10 @@ puro: sin JS, y sin soporte el contenido se ve igual y completo. Con
   la barra cede 2,5 px y se asienta, y sale un golpe de tiza (14 motas en
   direcciones fijas) de los discos exteriores. Dura unos 2 s y ocurre una vez.
 - **«Es gratis.»** pasa de `--faint` a tiza con una banda de luz al entrar en
-  pantalla (`animation-timeline: view()`, solo con `@supports`).
+  pantalla (`animation-timeline: view()`, solo con `@supports`). El `h2` lleva
+  `line-height: 1.08` con `padding-bottom: 0.1em` (1.12 en CJK): con el 0.86 de
+  los titulares el `background-clip: text` recortaba los descendentes (la tinta
+  sobresalía de la caja del fondo). `build/check.mjs` lo vigila.
 - **Las dos pantallas** se separan con el scroll: la de delante se desplaza
   ±48 px y la de detrás ±14 px. Solo `transform`.
 - Hover solo con `(hover: hover) and (pointer: fine)`; los botones se hunden a
@@ -42,7 +53,7 @@ puro: sin JS, y sin soporte el contenido se ve igual y completo. Con
   movimiento está en la barra y en dos puntos medidos.
 
 ## Idiomas y URLs
-- `build/texts.mjs` contiene todo el texto. `node build/build.mjs` genera las 22 páginas y `sitemap.xml`; `node build/check.mjs` las valida. **No edites los `index.html` a mano.**
+- `build/texts.mjs` contiene todo el texto. `node build/build.mjs` genera las 22 páginas y `sitemap.xml`; `node build/check.mjs` las valida (3 nodos JSON-LD, `HowTo` con los 3 pasos, dimensiones reales de cada captura vía `build/webp.mjs`, `loading="lazy"` en pantallas, nav de secciones, 4 chips, robots + Twitter + `og:image:alt`). **No edites los `index.html` a mano.**
 - Inicio: `/` (es), `/en/`, `/pt/` (pt-BR), `/de/`, `/fr/`, `/it/`, `/pl/`, `/nl/`, `/ja/`, `/ko/`, `/zh-tw/` (chino tradicional).
 - Privacidad: `/privacidad/`, `/en/privacy/`, `/pt/privacidade/`, `/de/datenschutz/`, `/fr/confidentialite/`, `/it/privacy/`, `/pl/prywatnosc/`, `/nl/privacy/`, `/ja/privacy/`, `/ko/privacy/`, `/zh-tw/privacy/`.
 - La URL registrada en Play es `/`, así que la portada conserva la política íntegra en `#politica`.
@@ -50,13 +61,16 @@ puro: sin JS, y sin soporte el contenido se ve igual y completo. Con
 - Capturas: `assets/img/{lang}-sesion.webp` y `{lang}-selector.webp`, recortes de las series `SHOTS=1` de la app (640 px de ancho, webp q82). OG: `assets/og.jpg` (es) y `og-{lang}.jpg`, renderizadas desde la propia portada.
 
 ## Claims (prohibiciones)
-- Solo hechos verificados en el código o en `docs/play/ficha-play.md`: gratis, sin anuncios, sin cuenta, sin permiso de internet (único permiso: vibración), datos en el móvil, copia en Descargas y CSV, 104 ejercicios base + propios, tres programas de inicio con series calculadas, 1RM Brzycki, 8 temas, 11 idiomas en la app y en la web, kg/lb.
+- Solo hechos verificados en el código o en `docs/play/ficha-play.md`: gratis, sin anuncios, sin cuenta, sin permiso de internet (único permiso: vibración), datos en el móvil, copia en Descargas y CSV, 104 ejercicios base + propios, tres programas de inicio con series calculadas, 1RM Brzycki, 8 temas, 11 idiomas en la app y en la web, kg/lb. La versión que cita el JSON-LD (`softwareVersion`) es la de producción en Play.
 - Prohibido: temporizador de descanso, importar CSV y «qué discos cargar» (no hay calculadora de discos). El calentamiento son 3 aproximaciones calculadas sobre la última sesión.
 - Sin enlaces de descarga de APK. Play: `https://play.google.com/store/apps/details?id=com.setrack.app`. Ko-fi: `https://ko-fi.com/iggykimi`.
 - Cero peticiones externas: fuente, iconos e imágenes servidos desde el repo.
 
+## SEO y GEO (2026-11-14)
+Títulos y descripciones por idioma con «Android» y «sin conexión/offline»: lo que alguien buscaría. Tres nodos JSON-LD por portada (`SoftwareApplication` con `softwareVersion`, `screenshot` e `installUrl`; `FAQPage`; `HowTo` con los 3 pasos). `robots` con `max-image-preview:large`, `og:image:alt` y títulos de Twitter. `llms.txt` con los hechos y enlaces por idioma. Sin JS ni peticiones externas: todo el contenido está en el HTML.
+
 ## Verificación antes de publicar
-1. `node build/build.mjs && node build/check.mjs`.
+1. `node build/build.mjs` y `node build/check.mjs`.
 2. Servir en local y sacar capturas a 1440 y 390 px de las 11 portadas y las 11 políticas: sin desbordes horizontales, tildes y caracteres CJK intactos, cero errores de consola.
 3. Comprobar los enlaces internos (todo en 200).
 4. Ya publicado, comprobar que `/`, `/en/` … y `sitemap.xml` responden 200.

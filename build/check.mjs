@@ -4,8 +4,9 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, extname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { SITE, UPDATED } from './config.mjs'
+import { SITE, UPDATED, VERSION } from './config.mjs'
 import { FAQ, LANGS } from './texts.mjs'
+import { webpSize } from './webp.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const CODES = Object.keys(LANGS)
@@ -85,7 +86,19 @@ function checkMarkup(html, pageRel) {
   if (/[?&](utm_|fbclid)/.test(html)) fail(`${pageRel}: tracking parameter in a link`)
   if (/(undefined|NaN|\[object Object\])/.test(html) || /\b(TODO|FIXME)\b/.test(html)) fail(`${pageRel}: placeholder text in the output`)
   for (const img of html.matchAll(/<img\s[^>]*>/g)) {
-    if (!/\salt="/.test(img[0])) fail(`${pageRel}: image without alt: ${img[0].slice(0, 80)}`)
+    const tag = img[0]
+    if (!/\salt="/.test(tag)) fail(`${pageRel}: image without alt: ${tag.slice(0, 80)}`)
+    const src = tag.match(/\ssrc="([^"]+)"/)?.[1]
+    if (!src || /^https?:/.test(src) || !src.endsWith('.webp')) continue
+    const file = join(dirname(join(ROOT, pageRel)), src.split('?')[0])
+    if (!existsSync(file)) continue
+    const actual = webpSize(file)
+    const width = Number(tag.match(/\swidth="(\d+)"/)?.[1])
+    const height = Number(tag.match(/\sheight="(\d+)"/)?.[1])
+    if (width !== actual.width || height !== actual.height) {
+      fail(`${pageRel}: ${src} is ${actual.width}×${actual.height}, markup says ${width}×${height}`)
+    }
+    if (src.includes('assets/img/') && !/\sloading="lazy"/.test(tag)) fail(`${pageRel}: screenshot ${src} is not lazy`)
   }
 }
 
@@ -104,6 +117,9 @@ function verifyPage(code, kind) {
   if (!html.includes(`<html lang="${t.htmlLang}">`)) fail(`${rel}: wrong <html lang>`)
   if (!html.includes(`<title>${esc(title)}</title>`)) fail(`${rel}: wrong title`)
   if (!html.includes(`<meta name="description" content="${esc(description)}">`)) fail(`${rel}: wrong description`)
+  if (!html.includes('<meta name="robots" content="index, follow, max-image-preview:large">')) fail(`${rel}: missing robots meta`)
+  if (!html.includes(`<meta property="og:image:alt" content="${esc(title)}">`)) fail(`${rel}: missing og:image:alt`)
+  if (!html.includes(`<meta name="twitter:title" content="${esc(title)}">`)) fail(`${rel}: missing twitter:title`)
   if (!html.includes(`<link rel="canonical" href="${SITE}${path}">`)) fail(`${rel}: wrong canonical`)
 
   const alternates = [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">/g)]
@@ -125,23 +141,35 @@ function verifyPage(code, kind) {
   const faqCount = (html.match(/<dt>/g) ?? []).length
   if (kind === 'home') {
     if (faqCount !== 5) fail(`${rel}: ${faqCount} questions, expected 5`)
+    if ((html.match(/<nav class="secciones"/g) ?? []).length !== 1) fail(`${rel}: missing section nav`)
+    if ((html.match(/\shref="#app"/g) ?? []).length !== 1) fail(`${rel}: section nav does not link to #app`)
+    if ((html.match(/\shref="#preguntas"/g) ?? []).length !== 1) fail(`${rel}: section nav does not link to #preguntas`)
+    if ((html.match(/\shref="#privacidad"/g) ?? []).length !== 1) fail(`${rel}: section nav does not link to #privacidad`)
+    const trust = html.match(/<ul class="confianza">([\s\S]*?)<\/ul>/)?.[1] ?? ''
+    if ((trust.match(/<li>/g) ?? []).length !== 4) fail(`${rel}: expected 4 trust chips`)
+    const steps = html.match(/<ol class="pasos">([\s\S]*?)<\/ol>/)?.[1] ?? ''
+    if ((steps.match(/<li>/g) ?? []).length !== 3) fail(`${rel}: expected 3 how-to steps`)
     const ld = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)
     if (!ld) fail(`${rel}: missing JSON-LD`)
     else {
       try {
         const data = JSON.parse(ld[1])
-        if (!Array.isArray(data) || data.length !== 2) fail(`${rel}: JSON-LD should hold 2 nodes`)
+        if (!Array.isArray(data) || data.length !== 3) fail(`${rel}: JSON-LD should hold 3 nodes`)
         if (data[0]?.['@type'] !== 'SoftwareApplication') fail(`${rel}: first JSON-LD node is not SoftwareApplication`)
         if (data[1]?.['@type'] !== 'FAQPage') fail(`${rel}: second JSON-LD node is not FAQPage`)
+        if (data[2]?.['@type'] !== 'HowTo') fail(`${rel}: third JSON-LD node is not HowTo`)
         if (data[1]?.mainEntity?.length !== 5) fail(`${rel}: FAQPage does not hold 5 questions`)
-        if (data[0]?.inLanguage !== t.htmlLang) fail(`${rel}: JSON-LD inLanguage mismatch`)
+        if (data[2]?.step?.length !== 3) fail(`${rel}: HowTo does not hold 3 steps`)
+        if (data[0]?.inLanguage !== t.htmlLang || data[2]?.inLanguage !== t.htmlLang) fail(`${rel}: JSON-LD inLanguage mismatch`)
         if (data[0]?.dateModified !== UPDATED) fail(`${rel}: JSON-LD dateModified is not ${UPDATED}`)
+        if (data[0]?.softwareVersion !== VERSION) fail(`${rel}: JSON-LD softwareVersion is not ${VERSION}`)
       } catch (error) {
         fail(`${rel}: JSON-LD does not parse: ${error.message}`)
       }
     }
   } else {
     if (faqCount !== 0) fail(`${rel}: privacy page should not carry the FAQ`)
+    if ((html.match(/<nav class="secciones"/g) ?? []).length !== 0) fail(`${rel}: privacy page should not carry the section nav`)
     if (!html.includes(esc(t.policy.back))) fail(`${rel}: privacy page lost its back link`)
   }
 
@@ -188,6 +216,12 @@ if (!llms.includes(UPDATED)) fail(`llms.txt: not dated ${UPDATED}`)
 
 const css = read('assets/site.css')
 if (/@import|url\(\s*["']?https?:/.test(css)) fail('site.css: external request')
+if (!/\.respuestas\s*\{[^}]*columns:\s*2/.test(css)) fail('site.css: the FAQ lost its second column')
+const apoyoH2 = css.match(/\.apoyo h2\s*\{([^}]*)\}/)?.[1] ?? ''
+const apoyoLineHeight = Number(apoyoH2.match(/line-height:\s*([\d.]+)/)?.[1])
+if (!(apoyoLineHeight >= 1.02)) {
+  fail('site.css: .apoyo h2 needs line-height >= 1.02, or background-clip: text cuts the ink')
+}
 for (const file of ['assets/icon.svg', 'assets/favicon.svg', 'fonts/archivo-latin.woff2', 'robots.txt']) {
   if (!existsSync(join(ROOT, file))) fail(`${file}: missing`)
 }
