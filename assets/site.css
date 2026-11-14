@@ -75,14 +75,50 @@ h1, h2 {
   display: inline-flex; align-items: center; gap: 10px;
   font-weight: 800; font-stretch: 80%; font-size: 21px; text-decoration: none;
 }
-.idiomas { display: flex; gap: 2px; }
-.idiomas a {
-  min-width: 40px; height: 40px; display: grid; place-items: center;
-  font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--faint); text-decoration: none; border-radius: 999px;
+/* Language menu: one compact pill, 11 names inside. Native <details>, no JS. */
+.idiomas { position: relative; }
+.idiomas summary {
+  list-style: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 9px;
+  min-height: 40px; padding: 0 14px;
+  border: 1px solid var(--line); border-radius: 999px;
+  color: var(--dust); font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+  transition: color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+}
+.idiomas summary::-webkit-details-marker { display: none; }
+.idiomas summary::after {
+  content: ""; width: 6px; height: 6px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+}
+.idiomas[open] summary { color: var(--chalk); border-color: var(--dust); }
+.idiomas .lista {
+  position: absolute; right: 0; top: calc(100% + 10px); z-index: 20;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  min-width: 250px; padding: 8px; border-radius: 18px;
+  background: var(--surface); box-shadow: var(--bevel), 0 24px 60px -12px #000;
+}
+.idiomas .lista a {
+  padding: 11px 12px; border-radius: 10px;
+  color: var(--dust); text-decoration: none; font-size: 14px; font-weight: 600;
   transition: color 160ms var(--ease-out), background-color 160ms var(--ease-out);
 }
-.idiomas a[aria-current] { color: var(--ink); background: var(--chalk); }
+.idiomas .lista a[aria-current] { color: var(--ink); background: var(--chalk); }
+
+/* CJK: Archivo has no glyphs for these, so hand them to the system face and
+   drop the Latin display tightening, which squeezes square characters. */
+body:lang(ja), body:lang(ko), body:lang(zh-Hant) {
+  font-family: "Archivo", "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", "Apple SD Gothic Neo",
+    "Malgun Gothic", "Microsoft JhengHei", "PingFang TC", "Noto Sans CJK TC", system-ui, sans-serif;
+}
+body:lang(ja) h1, body:lang(ja) h2,
+body:lang(ko) h1, body:lang(ko) h2,
+body:lang(zh-Hant) h1, body:lang(zh-Hant) h2 {
+  letter-spacing: 0; line-height: 1.04; font-stretch: normal;
+}
+body:lang(ja) .portada h1,
+body:lang(ko) .portada h1,
+body:lang(zh-Hant) .portada h1 { font-size: clamp(40px, 8vw, 116px); }
 
 /* ── Cover: two lines, the bar, one sentence ─────────────── */
 .portada { padding-top: clamp(40px, 9vh, 110px); }
@@ -263,7 +299,7 @@ h1, h2 {
 
 /* Hover only where there is a pointer that hovers: on a phone a tap leaves it stuck. */
 @media (hover: hover) and (pointer: fine) {
-  .idiomas a:hover, .pie a:hover, .volver a:hover { color: var(--chalk); }
+  .idiomas summary:hover, .idiomas .lista a:hover, .pie a:hover, .volver a:hover { color: var(--chalk); }
   .play:hover, .cafe:hover { transform: translateY(-1px); }
   .politica .aparte a:hover { text-decoration: underline; }
 }
@@ -277,7 +313,8 @@ h1, h2 {
   .portada-pie { padding-bottom: 64px; }
   .acciones { width: 100%; }
   .cafe, .play { flex: 1 1 auto; justify-content: center; }
-  .idiomas a { min-width: 34px; }
+  .idiomas summary { min-height: 38px; padding: 0 12px; font-size: 12px; }
+  .idiomas .lista { min-width: 232px; }
   .marca { font-size: 19px; }
   .pantalla.principal { width: 66%; }
   .pantalla.segunda { width: 58%; margin-top: 30%; }

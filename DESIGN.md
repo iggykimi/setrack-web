@@ -42,21 +42,21 @@ puro: sin JS, y sin soporte el contenido se ve igual y completo. Con
   movimiento está en la barra y en dos puntos medidos.
 
 ## Idiomas y URLs
-- `build/texts.mjs` contiene todo el texto. `node build/build.mjs` genera las 12 páginas y `sitemap.xml`. **No edites los `index.html` a mano.**
-- Inicio: `/` (es), `/en/`, `/pt/` (pt-BR), `/de/`, `/fr/`, `/it/`.
-- Privacidad: `/privacidad/`, `/en/privacy/`, `/pt/privacidade/`, `/de/datenschutz/`, `/fr/confidentialite/`, `/it/privacy/`.
+- `build/texts.mjs` contiene todo el texto. `node build/build.mjs` genera las 22 páginas y `sitemap.xml`; `node build/check.mjs` las valida. **No edites los `index.html` a mano.**
+- Inicio: `/` (es), `/en/`, `/pt/` (pt-BR), `/de/`, `/fr/`, `/it/`, `/pl/`, `/nl/`, `/ja/`, `/ko/`, `/zh-tw/` (chino tradicional).
+- Privacidad: `/privacidad/`, `/en/privacy/`, `/pt/privacidade/`, `/de/datenschutz/`, `/fr/confidentialite/`, `/it/privacy/`, `/pl/prywatnosc/`, `/nl/privacy/`, `/ja/privacy/`, `/ko/privacy/`, `/zh-tw/privacy/`.
 - La URL registrada en Play es `/`, así que la portada conserva la política íntegra en `#politica`.
-- hreflang en todas las páginas, con `x-default` → `/en/`. Sin JS de cambio de idioma.
+- hreflang en todas las páginas, con `x-default` → `/en/`. El selector de idioma es un `<details>` nativo con los 11 nombres: sin JS y sin desbordar en móvil.
 - Capturas: `assets/img/{lang}-sesion.webp` y `{lang}-selector.webp`, recortes de las series `SHOTS=1` de la app (640 px de ancho, webp q82). OG: `assets/og.jpg` (es) y `og-{lang}.jpg`, renderizadas desde la propia portada.
 
 ## Claims (prohibiciones)
-- Solo hechos verificados en el código o en `docs/play/ficha-play.md`: gratis, sin anuncios, sin cuenta, sin permiso de internet (único permiso: vibración), datos en el móvil, copia en Descargas y CSV, 104 ejercicios base + propios, tres programas de inicio con series calculadas, 1RM Brzycki, 8 temas, 11 idiomas en la app (6 en la web), kg/lb.
+- Solo hechos verificados en el código o en `docs/play/ficha-play.md`: gratis, sin anuncios, sin cuenta, sin permiso de internet (único permiso: vibración), datos en el móvil, copia en Descargas y CSV, 104 ejercicios base + propios, tres programas de inicio con series calculadas, 1RM Brzycki, 8 temas, 11 idiomas en la app y en la web, kg/lb.
 - Prohibido: temporizador de descanso, importar CSV y «qué discos cargar» (no hay calculadora de discos). El calentamiento son 3 aproximaciones calculadas sobre la última sesión.
 - Sin enlaces de descarga de APK. Play: `https://play.google.com/store/apps/details?id=com.setrack.app`. Ko-fi: `https://ko-fi.com/iggykimi`.
 - Cero peticiones externas: fuente, iconos e imágenes servidos desde el repo.
 
 ## Verificación antes de publicar
-1. `node build/build.mjs`.
-2. Servir en local y sacar capturas a 1440 y 390 px de las 6 portadas y las 6 políticas: sin desbordes horizontales, tildes y umlauts intactos, cero errores de consola.
+1. `node build/build.mjs && node build/check.mjs`.
+2. Servir en local y sacar capturas a 1440 y 390 px de las 11 portadas y las 11 políticas: sin desbordes horizontales, tildes y caracteres CJK intactos, cero errores de consola.
 3. Comprobar los enlaces internos (todo en 200).
 4. Ya publicado, comprobar que `/`, `/en/` … y `sitemap.xml` responden 200.

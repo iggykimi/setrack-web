@@ -1,13 +1,12 @@
-// Writes the 12 pages (home + privacy, 6 languages) and the sitemap from build/texts.mjs.
+// Writes the 22 pages (home + privacy, 11 languages) and the sitemap from build/texts.mjs.
 // No dependencies: `node build/build.mjs` from the repo root, then commit the output.
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { SITE, UPDATED } from './config.mjs'
 import { LANGS, LINKS, FAQ } from './texts.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const SITE = 'https://iggykimi.github.io/setrack-web/'
-const UPDATED = '2026-10-05'
 const CODES = Object.keys(LANGS)
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -52,12 +51,15 @@ function head({ t, code, path, kind, title, description }) {
   const base = up(path)
   const og = code === 'es' ? 'og.jpg' : `og-${code}.jpg`
   const faq = FAQ[code]
+  const locales = CODES.filter((c) => c !== code)
+    .map((c) => `<meta property="og:locale:alternate" content="${LANGS[c].ogLocale}">`).join('\n')
   const ld = kind === 'home' ? `<script type="application/ld+json">${JSON.stringify([{
     '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'SetRack',
     url: SITE + path,
     downloadUrl: LINKS.play,
     operatingSystem: 'Android',
     applicationCategory: 'HealthApplication', description, inLanguage: t.htmlLang, isAccessibleForFree: true,
+    dateModified: UPDATED,
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
     featureList: t.features.map(([f]) => f),
     author: { '@type': 'Person', name: 'iggykimi', url: 'https://github.com/iggykimi' },
@@ -78,6 +80,7 @@ function head({ t, code, path, kind, title, description }) {
 <link rel="canonical" href="${SITE}${path}">
 ${alternates(kind)}
 <link rel="icon" href="${base}assets/icon.svg" type="image/svg+xml">
+<link rel="alternate" type="text/plain" href="${SITE}llms.txt" title="llms.txt">
 <link rel="preload" href="${base}fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${base}assets/site.css">
 <meta property="og:type" content="website">
@@ -89,6 +92,7 @@ ${alternates(kind)}
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="${t.ogLocale}">
+${locales}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="${SITE}assets/${og}">
 ${ld}
@@ -97,15 +101,20 @@ ${ld}
 
 function header({ t, code, path, kind }) {
   const base = up(path)
+  const href = (c) => (base + (kind === 'home' ? LANGS[c].path : LANGS[c].privacy)) || './'
   const langs = CODES.map((c) => {
-    const target = base + (kind === 'home' ? LANGS[c].path : LANGS[c].privacy)
     const current = c === code ? ' aria-current="page"' : ''
-    return `<a href="${target || './'}" hreflang="${LANGS[c].htmlLang}" lang="${LANGS[c].htmlLang}" title="${LANGS[c].name}"${current}>${c}</a>`
+    return `<a href="${href(c)}" hreflang="${LANGS[c].htmlLang}" lang="${LANGS[c].htmlLang}"${current}>${esc(LANGS[c].name)}</a>`
   }).join('')
   return `<a class="saltar" href="#contenido">${esc(t.skip)}</a>
 <header class="cabecera envoltura">
   <a class="marca" href="${base + t.path || './'}"><img src="${base}assets/icon.svg" alt="" width="28" height="28"><span>SetRack</span></a>
-  <nav class="idiomas" aria-label="${esc(t.langNav)}">${langs}</nav>
+  <nav class="idiomas" aria-label="${esc(t.langNav)}">
+    <details>
+      <summary aria-label="${esc(t.langNav)}: ${esc(t.name)}">${esc(t.name)}</summary>
+      <div class="lista">${langs}</div>
+    </details>
+  </nav>
 </header>`
 }
 
