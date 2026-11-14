@@ -321,4 +321,6 @@ body:lang(zh-Hant) .portada h1 { font-size: clamp(40px, 8vw, 116px); }
 }
 @media (max-width: 400px) {
   .marca span { display: none; }
+  /* The Dutch „trainingslogboek.” needs the room on a 320px screen. */
+  .portada h1 { font-size: clamp(40px, 14vw, 56px); }
 }
