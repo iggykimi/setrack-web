@@ -1,4 +1,4 @@
-﻿# SetRack
+# SetRack
 
 > Android gym log. Fully offline: no account, no ads, no trackers and no internet
 > permission. Data lives only on the phone. Free.
