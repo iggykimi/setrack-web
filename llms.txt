@@ -1,15 +1,15 @@
-# SetRack
+﻿# SetRack
 
 > Android gym log. Fully offline: no account, no ads, no trackers and no internet
 > permission. Data lives only on the phone. Free.
-> Last reviewed: 2026-11-14.
+> Last reviewed: 2026-11-22.
 
 ## Pages
 
-- [Español](https://iggykimi.github.io/setrack-web/) · [English](https://iggykimi.github.io/setrack-web/en/) · [Português](https://iggykimi.github.io/setrack-web/pt/) · [Deutsch](https://iggykimi.github.io/setrack-web/de/) · [Français](https://iggykimi.github.io/setrack-web/fr/) · [Italiano](https://iggykimi.github.io/setrack-web/it/) · [Polski](https://iggykimi.github.io/setrack-web/pl/) · [Nederlands](https://iggykimi.github.io/setrack-web/nl/) · [日本語](https://iggykimi.github.io/setrack-web/ja/) · [한국어](https://iggykimi.github.io/setrack-web/ko/) · [繁體中文](https://iggykimi.github.io/setrack-web/zh-tw/)
-- Privacy policy: [es](https://iggykimi.github.io/setrack-web/privacidad/) · [en](https://iggykimi.github.io/setrack-web/en/privacy/) · [pt](https://iggykimi.github.io/setrack-web/pt/privacidade/) · [de](https://iggykimi.github.io/setrack-web/de/datenschutz/) · [fr](https://iggykimi.github.io/setrack-web/fr/confidentialite/) · [it](https://iggykimi.github.io/setrack-web/it/privacy/) · [pl](https://iggykimi.github.io/setrack-web/pl/prywatnosc/) · [nl](https://iggykimi.github.io/setrack-web/nl/privacy/) · [ja](https://iggykimi.github.io/setrack-web/ja/privacy/) · [ko](https://iggykimi.github.io/setrack-web/ko/privacy/) · [zh](https://iggykimi.github.io/setrack-web/zh-tw/privacy/). Each home page also carries the full text (#privacidad).
+- [EspaÃ±ol](https://iggykimi.github.io/setrack-web/) Â· [English](https://iggykimi.github.io/setrack-web/en/) Â· [PortuguÃªs](https://iggykimi.github.io/setrack-web/pt/) Â· [Deutsch](https://iggykimi.github.io/setrack-web/de/) Â· [FranÃ§ais](https://iggykimi.github.io/setrack-web/fr/) Â· [Italiano](https://iggykimi.github.io/setrack-web/it/) Â· [Polski](https://iggykimi.github.io/setrack-web/pl/) Â· [Nederlands](https://iggykimi.github.io/setrack-web/nl/) Â· [æ—¥æœ¬èªž](https://iggykimi.github.io/setrack-web/ja/) Â· [í•œêµ­ì–´](https://iggykimi.github.io/setrack-web/ko/) Â· [ç¹é«”ä¸­æ–‡](https://iggykimi.github.io/setrack-web/zh-tw/)
+- Privacy policy: [es](https://iggykimi.github.io/setrack-web/privacidad/) Â· [en](https://iggykimi.github.io/setrack-web/en/privacy/) Â· [pt](https://iggykimi.github.io/setrack-web/pt/privacidade/) Â· [de](https://iggykimi.github.io/setrack-web/de/datenschutz/) Â· [fr](https://iggykimi.github.io/setrack-web/fr/confidentialite/) Â· [it](https://iggykimi.github.io/setrack-web/it/privacy/) Â· [pl](https://iggykimi.github.io/setrack-web/pl/prywatnosc/) Â· [nl](https://iggykimi.github.io/setrack-web/nl/privacy/) Â· [ja](https://iggykimi.github.io/setrack-web/ja/privacy/) Â· [ko](https://iggykimi.github.io/setrack-web/ko/privacy/) Â· [zh](https://iggykimi.github.io/setrack-web/zh-tw/privacy/). Each home page also carries the full text (#privacidad).
 
-## Verifiable facts (checked 2026-11-14)
+## Verifiable facts (checked 2026-11-22)
 
 - Version 1.0.11 on Google Play (versionCode 344).
 - How it works: pick a routine or a free session, log weight and reps, check each muscle's missing sets and each exercise's progress.
