@@ -6,11 +6,6 @@ la barra cargándose de discos y dos pantallas reales. Una idea por bloque:
 qué es, cómo funciona, qué hace, tus datos y apoyar. Debe sentirse hecha a
 mano, no como una plantilla de producto.
 
-## Concepto
-La web es la barra de la app. Pocas palabras en la condensada enorme de la app,
-la barra cargándose de discos y dos pantallas reales. Una idea por bloque:
-apuntar, qué hace, tus datos y apoyar. Debe sentirse hecha a mano, no como una
-plantilla de producto.
 
 ## Lenguaje (el de la app: `src/styles/tokens.css`)
 - Negro AMOLED `#000`, superficies `--surface #121315`, líneas `--line #2c2f33` y `--line-soft #1f2124`.

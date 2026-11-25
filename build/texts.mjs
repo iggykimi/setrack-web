@@ -33,7 +33,7 @@ export const LANGS = {
       ['Rutina o sesión libre', 'Te propone lo que le falta a cada músculo esta semana.'],
       ['Calentamiento', 'Tres aproximaciones calculadas sobre tu última sesión.'],
       ['1RM estimado', 'Por ejercicio y en el tiempo, con la fórmula de Brzycki.'],
-      ['104 ejercicios', 'Y los tuyos, con su músculo y su material.'],
+      ['130 ejercicios', 'Y los tuyos, con su músculo y su material.'],
       ['Si empiezas, te guía', 'En la primera sesión; si ya entrenas, va directo y sin pistas.'],
       ['8 temas de color', 'Dos de ellos claros.'],
       ['Copia y CSV', 'A Descargas, cuando tú quieras.'],
@@ -94,7 +94,7 @@ export const LANGS = {
       ['Routine or free session', 'It suggests what each muscle still needs this week.'],
       ['Warm-up', 'Three ramp-up sets worked out from your last session.'],
       ['Estimated 1RM', 'Per exercise and over time, with the Brzycki formula.'],
-      ['104 exercises', 'Plus your own, with their muscle and equipment.'],
+      ['130 exercises', 'Plus your own, with their muscle and equipment.'],
       ['Starting out, it guides you', 'Through your first session; already training, no tips, straight in.'],
       ['8 colour themes', 'Two of them light.'],
       ['Backup and CSV', 'Saved to Downloads, whenever you want.'],
@@ -155,7 +155,7 @@ export const LANGS = {
       ['Rotina ou treino livre', 'Sugere o que falta para cada músculo nesta semana.'],
       ['Aquecimento', 'Três séries de aproximação calculadas a partir do seu último treino.'],
       ['1RM estimado', 'Por exercício e ao longo do tempo, com a fórmula de Brzycki.'],
-      ['104 exercícios', 'E os seus, com músculo e equipamento.'],
+      ['130 exercícios', 'E os seus, com músculo e equipamento.'],
       ['Se está começando, ele guia', 'O primeiro treino; se já treina, vai direto, sem dicas.'],
       ['8 temas de cores', 'Dois deles claros.'],
       ['Backup e CSV', 'Na pasta Downloads, quando você quiser.'],
@@ -216,7 +216,7 @@ export const LANGS = {
       ['Trainingsplan oder freies Training', 'Schlägt vor, was jedem Muskel diese Woche noch fehlt.'],
       ['Aufwärmen', 'Drei Aufwärmsätze, berechnet aus deiner letzten Session.'],
       ['Geschätztes 1RM', 'Pro Übung und im Verlauf, nach der Brzycki-Formel.'],
-      ['104 Übungen', 'Dazu deine eigenen, mit Muskel und Equipment.'],
+      ['130 Übungen', 'Dazu deine eigenen, mit Muskel und Equipment.'],
       ['Für Einsteiger geführt', 'Die erste Session; wer schon trainiert, startet direkt, ohne Tipps.'],
       ['8 Farbthemen', 'Zwei davon hell.'],
       ['Backup und CSV', 'In den Download-Ordner, wann du willst.'],
@@ -277,7 +277,7 @@ export const LANGS = {
       ['Programme ou séance libre', 'Te propose ce qui manque à chaque muscle cette semaine.'],
       ['Échauffement', 'Trois séries d’approche calculées sur ta dernière séance.'],
       ['1RM estimé', 'Par exercice et dans le temps, avec la formule de Brzycki.'],
-      ['104 exercices', 'Plus les tiens, avec leur muscle et leur matériel.'],
+      ['130 exercices', 'Plus les tiens, avec leur muscle et leur matériel.'],
       ['Si tu débutes, elle te guide', 'Dans ta première séance ; si tu t’entraînes déjà, c’est direct, sans astuces.'],
       ['8 thèmes de couleur', 'Dont deux clairs.'],
       ['Sauvegarde et CSV', 'Dans Téléchargements, quand tu veux.'],
@@ -338,7 +338,7 @@ export const LANGS = {
       ['Scheda o allenamento libero', 'Ti propone ciò che manca a ogni muscolo questa settimana.'],
       ['Riscaldamento', 'Tre serie di avvicinamento calcolate sul tuo ultimo allenamento.'],
       ['1RM stimato', 'Per esercizio e nel tempo, con la formula di Brzycki.'],
-      ['104 esercizi', 'Più i tuoi, con muscolo e attrezzatura.'],
+      ['130 esercizi', 'Più i tuoi, con muscolo e attrezzatura.'],
       ['Se inizi, ti guida', 'Nel primo allenamento; se ti alleni già, vai dritto, senza suggerimenti.'],
       ['8 temi di colore', 'Due chiari.'],
       ['Backup e CSV', 'Nella cartella Download, quando vuoi.'],
@@ -399,7 +399,7 @@ export const LANGS = {
       ['Plan lub trening dowolny', 'Podpowiada, czego w tym tygodniu brakuje każdemu mięśniowi.'],
       ['Rozgrzewka', 'Trzy serie rozgrzewkowe wyliczone z ostatniego treningu.'],
       ['Szacowany 1RM', 'Na ćwiczenie i w czasie, ze wzorem Brzyckiego.'],
-      ['104 ćwiczenia', 'I własne, z mięśniem i sprzętem.'],
+      ['130 ćwiczenia', 'I własne, z mięśniem i sprzętem.'],
       ['Na start poprowadzi', 'Przez pierwszy trening; jeśli już trenujesz, od razu do rzeczy.'],
       ['8 motywów kolorystycznych', 'Dwa jasne.'],
       ['Kopia i CSV', 'W Pobranych, kiedy chcesz.'],
@@ -460,7 +460,7 @@ export const LANGS = {
       ['Schema of vrije training', 'Het stelt voor wat elke spier deze week nog nodig heeft.'],
       ['Warming-up', 'Drie opwarmsets berekend uit je vorige training.'],
       ['Geschatte 1RM', 'Per oefening en in de loop van de tijd, met de formule van Brzycki.'],
-      ['104 oefeningen', 'En je eigen oefeningen, met spier en materiaal.'],
+      ['130 oefeningen', 'En je eigen oefeningen, met spier en materiaal.'],
       ['Als je begint, leidt het je', 'Door je eerste training; train je al, dan ga je meteen door, zonder tips.'],
       ['8 kleurthema’s', 'Twee ervan licht.'],
       ['Back-up en CSV', 'Naar Downloads, wanneer je wilt.'],
@@ -521,7 +521,7 @@ export const LANGS = {
       ['ルーティンもルーティンなしのワークアウトも', '今週足りていない部位を提案します。'],
       ['ウォームアップ', '前回の記録から計算した3セットのウォームアップ。'],
       ['推定1RM', '種目ごと、期間ごとに。計算は Brzycki の式。'],
-      ['104種目', '自分の種目も、部位と器具つきで追加できます。'],
+      ['130種目', '自分の種目も、部位と器具つきで追加できます。'],
       ['初心者にはガイド', '最初のワークアウトで案内します。経験者はそのまま、ヒントなしで。'],
       ['8つのカラーテーマ', 'うち2つはライト。'],
       ['バックアップと CSV', '「ダウンロード」へ、好きなときに。'],
@@ -582,7 +582,7 @@ export const LANGS = {
       ['루틴 또는 자유 세션', '이번 주에 부위별로 부족한 걸 제안해요.'],
       ['워밍업', '지난 세션을 기준으로 계산한 3세트예요.'],
       ['추정 1RM', '종목별로, 기간별로. Brzycki 공식으로 계산해요.'],
-      ['104개 종목', '내 종목도 부위와 기구와 함께 추가할 수 있어요.'],
+      ['130개 종목', '내 종목도 부위와 기구와 함께 추가할 수 있어요.'],
       ['처음이면 안내해요', '첫 세션에서 안내하고, 이미 운동한다면 팁 없이 바로 시작해요.'],
       ['컬러 테마 8가지', '그중 두 가지는 밝은 테마예요.'],
       ['백업과 CSV', '원할 때 다운로드 폴더에 저장해요.'],
@@ -643,7 +643,7 @@ export const LANGS = {
       ['課表或自由訓練', '依本週各肌群還缺的組數給建議。'],
       ['熱身', '依上次訓練算出的三組熱身。'],
       ['預估 1RM', '每個動作、每個期間，用 Brzycki 公式。'],
-      ['104 個動作', '也能加自己的動作，附肌群和器材。'],
+      ['130 個動作', '也能加自己的動作，附肌群和器材。'],
       ['剛開始會帶你', '第一次訓練；已經在練就直接開始，不給提示。'],
       ['8 種顏色主題', '其中兩種是淺色。'],
       ['備份與 CSV', '隨時存到「下載」。'],
@@ -684,7 +684,7 @@ export const FAQ = {
   es: {
     title: ['Preguntas', 'frecuentes.'],
     items: [
-      ['¿Qué es SetRack?', 'SetRack es un diario de gimnasio gratis para Android que funciona sin internet: no tiene anuncios, no pide cuenta y guarda tus series solo en tu móvil. Incluye 104 ejercicios, 3 programas, 1RM estimado con la fórmula de Brzycki y copia en Descargas con CSV. La app está en 11 idiomas; esta web también.'],
+      ['¿Qué es SetRack?', 'SetRack es un diario de gimnasio gratis para Android que funciona sin internet: no tiene anuncios, no pide cuenta y guarda tus series solo en tu móvil. Incluye 130 ejercicios, 3 programas, 1RM estimado con la fórmula de Brzycki y copia en Descargas con CSV. La app está en 11 idiomas; esta web también.'],
       ['¿Funciona sin internet?', 'Sí. La app no tiene permiso de internet, así que apunta igual en un sótano sin cobertura. El único permiso que usa es la vibración, para el toque al apuntar una serie.'],
       ['¿Cuánto cuesta?', 'Nada. Es gratis y sin anuncios. Si te resulta útil, puedes invitarme a un café en Ko-fi.'],
       ['¿Qué pasa si cambio de móvil?', 'Guarda una copia en Descargas y restaurala en el nuevo, o exporta tus series a CSV. Desinstalar la app borra los datos, así que haz la copia antes.'],
@@ -694,7 +694,7 @@ export const FAQ = {
   en: {
     title: ['Questions', 'people ask.'],
     items: [
-      ['What is SetRack?', 'SetRack is a free gym log for Android that works with no internet: it has no ads, needs no account and keeps your sets only on your phone. It includes 104 exercises, 3 starter programs, estimated 1RM with the Brzycki formula and backup to Downloads with CSV export. The app and this site are both in 11 languages.'],
+      ['What is SetRack?', 'SetRack is a free gym log for Android that works with no internet: it has no ads, needs no account and keeps your sets only on your phone. It includes 130 exercises, 3 starter programs, estimated 1RM with the Brzycki formula and backup to Downloads with CSV export. The app and this site are both in 11 languages.'],
       ['Does it work offline?', 'Yes. The app declares no internet permission, so it logs the same in a basement with no signal. Its only permission is vibration, for the tick when you log a set.'],
       ['How much does it cost?', 'Nothing. It is free, with no ads. If you find it useful, you can buy me a coffee on Ko-fi.'],
       ['What if I change phones?', 'Save a backup to Downloads and restore it on the new phone, or export your sets to CSV. Uninstalling deletes the data, so back up first.'],
@@ -704,7 +704,7 @@ export const FAQ = {
   pt: {
     title: ['Perguntas', 'de sempre.'],
     items: [
-      ['O que é o SetRack?', 'O SetRack é um diário de academia gratuito para Android que funciona sem internet: não tem anúncios, não pede conta e guarda suas séries só no seu celular. Inclui 104 exercícios, 3 programas iniciais, 1RM estimado com a fórmula de Brzycki e backup em Downloads com CSV. O app e este site estão em 11 idiomas.'],
+      ['O que é o SetRack?', 'O SetRack é um diário de academia gratuito para Android que funciona sem internet: não tem anúncios, não pede conta e guarda suas séries só no seu celular. Inclui 130 exercícios, 3 programas iniciais, 1RM estimado com a fórmula de Brzycki e backup em Downloads com CSV. O app e este site estão em 11 idiomas.'],
       ['Funciona sem internet?', 'Sim. O app não tem permissão de internet, então anota igual num porão sem sinal. A única permissão é a vibração, no toque ao registrar uma série.'],
       ['Quanto custa?', 'Nada. É gratuito e sem anúncios. Se for útil, você pode me pagar um café no Ko-fi.'],
       ['E se eu trocar de celular?', 'Salve um backup em Downloads e restaure no novo, ou exporte suas séries para CSV. Desinstalar apaga os dados, então faça o backup antes.'],
@@ -714,7 +714,7 @@ export const FAQ = {
   de: {
     title: ['Fragen,', 'die kommen.'],
     items: [
-      ['Was ist SetRack?', 'SetRack ist ein kostenloses Trainingstagebuch für Android, das ohne Internet läuft: keine Werbung, kein Konto, und deine Sätze bleiben nur auf deinem Handy. Es enthält 104 Übungen, 3 Startprogramme, geschätztes 1RM nach der Brzycki-Formel und Backup in den Download-Ordner mit CSV. Die App und diese Seite sind in 11 Sprachen verfügbar.'],
+      ['Was ist SetRack?', 'SetRack ist ein kostenloses Trainingstagebuch für Android, das ohne Internet läuft: keine Werbung, kein Konto, und deine Sätze bleiben nur auf deinem Handy. Es enthält 130 Übungen, 3 Startprogramme, geschätztes 1RM nach der Brzycki-Formel und Backup in den Download-Ordner mit CSV. Die App und diese Seite sind in 11 Sprachen verfügbar.'],
       ['Geht das offline?', 'Ja. Die App hat keine Internetberechtigung, also trägt sie im Keller ohne Empfang genauso ein. Die einzige Berechtigung ist Vibration, für das kurze Feedback beim Eintragen.'],
       ['Was kostet es?', 'Nichts. Kostenlos und ohne Werbung. Wenn sie dir hilft, kannst du mich auf Ko-fi auf einen Kaffee einladen.'],
       ['Was ist beim Handywechsel?', 'Lege ein Backup in den Download-Ordner und stelle es auf dem neuen Handy wieder her, oder exportiere deine Sätze als CSV. Deinstallieren löscht die Daten, also vorher sichern.'],
@@ -724,7 +724,7 @@ export const FAQ = {
   fr: {
     title: ['Questions', 'qu’on pose.'],
     items: [
-      ['SetRack, c’est quoi ?', 'SetRack est un carnet de muscu gratuit pour Android qui fonctionne sans internet : sans publicité, sans compte, et tes séries restent sur ton téléphone. Il inclut 104 exercices, 3 programmes pour débuter, le 1RM estimé avec la formule de Brzycki et la sauvegarde dans Téléchargements en CSV. L’app et ce site sont en 11 langues.'],
+      ['SetRack, c’est quoi ?', 'SetRack est un carnet de muscu gratuit pour Android qui fonctionne sans internet : sans publicité, sans compte, et tes séries restent sur ton téléphone. Il inclut 130 exercices, 3 programmes pour débuter, le 1RM estimé avec la formule de Brzycki et la sauvegarde dans Téléchargements en CSV. L’app et ce site sont en 11 langues.'],
       ['Ça marche hors ligne ?', 'Oui. L’app n’a pas l’autorisation internet, elle note donc pareil dans un sous-sol sans réseau. Sa seule autorisation est la vibration, pour le petit retour quand tu notes une série.'],
       ['Ça coûte combien ?', 'Rien. C’est gratuit et sans publicité. Si elle te sert, tu peux m’offrir un café sur Ko-fi.'],
       ['Et si je change de téléphone ?', 'Enregistre une sauvegarde dans Téléchargements et restaure-la sur le nouveau, ou exporte tes séries en CSV. Désinstaller efface les données, donc sauvegarde avant.'],
@@ -734,7 +734,7 @@ export const FAQ = {
   it: {
     title: ['Domande', 'di sempre.'],
     items: [
-      ['Cos’è SetRack?', 'SetRack è un diario di palestra gratis per Android che funziona senza internet: niente pubblicità, niente account e le tue serie restano solo sul telefono. Include 104 esercizi, 3 programmi per iniziare, 1RM stimato con la formula di Brzycki e backup in Download con CSV. L’app e questo sito sono in 11 lingue.'],
+      ['Cos’è SetRack?', 'SetRack è un diario di palestra gratis per Android che funziona senza internet: niente pubblicità, niente account e le tue serie restano solo sul telefono. Include 130 esercizi, 3 programmi per iniziare, 1RM stimato con la formula di Brzycki e backup in Download con CSV. L’app e questo sito sono in 11 lingue.'],
       ['Funziona offline?', 'Sì. L’app non ha il permesso internet, quindi registra uguale in una cantina senza segnale. L’unico permesso è la vibrazione, per il piccolo feedback quando segni una serie.'],
       ['Quanto costa?', 'Niente. È gratis e senza pubblicità. Se ti è utile, puoi offrirmi un caffè su Ko-fi.'],
       ['Se cambio telefono?', 'Salva un backup in Download e ripristinalo sul nuovo, oppure esporta le tue serie in CSV. Disinstallare cancella i dati, quindi fai prima il backup.'],
@@ -744,7 +744,7 @@ export const FAQ = {
   pl: {
     title: ['Częste', 'pytania.'],
     items: [
-      ['Czym jest SetRack?', 'SetRack to darmowy dziennik treningowy na Androida, który działa bez internetu: nie ma reklam, nie wymaga konta i zapisuje serie tylko w telefonie. Zawiera 104 ćwiczenia, 3 programy na start, szacowany 1RM ze wzoru Brzyckiego oraz kopię w Pobranych z eksportem CSV. Aplikacja i ta strona są w 11 językach.'],
+      ['Czym jest SetRack?', 'SetRack to darmowy dziennik treningowy na Androida, który działa bez internetu: nie ma reklam, nie wymaga konta i zapisuje serie tylko w telefonie. Zawiera 130 ćwiczenia, 3 programy na start, szacowany 1RM ze wzoru Brzyckiego oraz kopię w Pobranych z eksportem CSV. Aplikacja i ta strona są w 11 językach.'],
       ['Czy działa bez internetu?', 'Tak. Aplikacja nie ma uprawnienia dostępu do internetu, więc zapisuje tak samo w piwnicy bez zasięgu. Jedynym uprawnieniem jest wibracja, która daje krótki sygnał przy zapisie serii.'],
       ['Ile to kosztuje?', 'Nic. Jest darmowa i bez reklam. Jeśli ci się przyda, możesz postawić mi kawę na Ko-fi.'],
       ['Co, jeśli zmienię telefon?', 'Zapisz kopię w folderze Pobrane i przywróć ją na nowym telefonie albo wyeksportuj serie do CSV. Odinstalowanie usuwa dane, więc zrób kopię wcześniej.'],
@@ -754,7 +754,7 @@ export const FAQ = {
   nl: {
     title: ['Veelgestelde', 'vragen.'],
     items: [
-      ['Wat is SetRack?', 'SetRack is een gratis trainingslogboek voor Android dat zonder internet werkt: geen advertenties, geen account en je sets blijven op je telefoon. Het bevat 104 oefeningen, 3 startersschema’s, geschatte 1RM met de formule van Brzycki en een back-up in Downloads met CSV-export. De app en deze site zijn allebei in 11 talen.'],
+      ['Wat is SetRack?', 'SetRack is een gratis trainingslogboek voor Android dat zonder internet werkt: geen advertenties, geen account en je sets blijven op je telefoon. Het bevat 130 oefeningen, 3 startersschema’s, geschatte 1RM met de formule van Brzycki en een back-up in Downloads met CSV-export. De app en deze site zijn allebei in 11 talen.'],
       ['Werkt het offline?', 'Ja. De app heeft geen internettoegang, dus je kunt ook in een kelder zonder bereik noteren. De enige toestemming is trillen, voor de tik bij het noteren van een set.'],
       ['Wat kost het?', 'Niets. Het is gratis en zonder advertenties. Als je het nuttig vindt, kun je me op Ko-fi op een koffie trakteren.'],
       ['Wat als ik een nieuwe telefoon krijg?', 'Sla een back-up op in Downloads en zet die terug op je nieuwe telefoon, of exporteer je sets naar CSV. De app verwijderen wist de gegevens, dus maak eerst een back-up.'],
@@ -764,7 +764,7 @@ export const FAQ = {
   ja: {
     title: ['よくある', '質問。'],
     items: [
-      ['SetRack とは？', 'SetRack は、インターネットなしで動く Android 向けの無料の筋トレ記録アプリです。広告なし、アカウント不要で、セットはスマホだけに保存されます。104種目、はじめるための3プログラム、Brzycki の式による推定1RM、「ダウンロード」へのバックアップと CSV 書き出しに対応しています。アプリもこのサイトも11言語です。'],
+      ['SetRack とは？', 'SetRack は、インターネットなしで動く Android 向けの無料の筋トレ記録アプリです。広告なし、アカウント不要で、セットはスマホだけに保存されます。130種目、はじめるための3プログラム、Brzycki の式による推定1RM、「ダウンロード」へのバックアップと CSV 書き出しに対応しています。アプリもこのサイトも11言語です。'],
       ['オフラインで使えますか？', 'はい。アプリにインターネットの権限はないので、電波の届かない地下でも同じように記録できます。権限はバイブレーションのみで、セットを記録するときの触覚フィードバックに使います。'],
       ['料金は？', '無料です。広告もありません。役に立ったら、Ko-fi でコーヒーをおごってもらえるとうれしいです。'],
       ['機種変更したら？', '「ダウンロード」にバックアップを保存し、新しいスマホで復元してください。セットを CSV に書き出すこともできます。アンインストールするとデータは消えるので、先にバックアップを。'],
@@ -774,7 +774,7 @@ export const FAQ = {
   ko: {
     title: ['자주 묻는', '질문.'],
     items: [
-      ['SetRack은 뭐예요?', 'SetRack은 인터넷 없이 작동하는 Android용 무료 헬스 운동 기록 앱이에요. 광고도, 계정도 없고 세트는 휴대폰에만 저장돼요. 104개 종목, 시작용 프로그램 3개, Brzycki 공식의 추정 1RM, 다운로드 폴더 백업과 CSV 내보내기를 지원해요. 앱과 이 사이트 모두 11개 언어예요.'],
+      ['SetRack은 뭐예요?', 'SetRack은 인터넷 없이 작동하는 Android용 무료 헬스 운동 기록 앱이에요. 광고도, 계정도 없고 세트는 휴대폰에만 저장돼요. 130개 종목, 시작용 프로그램 3개, Brzycki 공식의 추정 1RM, 다운로드 폴더 백업과 CSV 내보내기를 지원해요. 앱과 이 사이트 모두 11개 언어예요.'],
       ['오프라인에서도 되나요?', '네. 앱에 인터넷 권한이 없어서 신호가 없는 지하에서도 똑같이 기록할 수 있어요. 권한은 진동 하나뿐이고, 세트를 기록할 때 짧게 울리는 데 써요.'],
       ['얼마예요?', '무료예요. 광고도 없어요. 유용했다면 Ko-fi에서 커피 한 잔 사 주세요.'],
       ['휴대폰을 바꾸면요?', '다운로드 폴더에 백업을 저장해 새 휴대폰에서 복원하거나, 세트를 CSV로 내보내세요. 앱을 삭제하면 데이터가 지워지니 먼저 백업하세요.'],
@@ -784,7 +784,7 @@ export const FAQ = {
   'zh-Hant': {
     title: ['常見', '問題。'],
     items: [
-      ['SetRack 是什麼？', 'SetRack 是 Android 的免費健身紀錄 App，不需要網路：沒有廣告、不用帳號，每組訓練只存在手機裡。內建 104 個動作、3 個入門課表、Brzycki 公式的預估 1RM，以及存到「下載」的備份和 CSV 匯出。App 和這個網站都有 11 種語言。'],
+      ['SetRack 是什麼？', 'SetRack 是 Android 的免費健身紀錄 App，不需要網路：沒有廣告、不用帳號，每組訓練只存在手機裡。內建 130 個動作、3 個入門課表、Brzycki 公式的預估 1RM，以及存到「下載」的備份和 CSV 匯出。App 和這個網站都有 11 種語言。'],
       ['沒有網路也能用嗎？', '可以。App 沒有網路權限，在地下室沒訊號也照樣記錄。唯一的權限是震動，用於記錄每組時的震動回饋。'],
       ['要多少錢？', '免費，也沒有廣告。如果對你有幫助，可以在 Ko-fi 請我喝杯咖啡。'],
       ['換手機怎麼辦？', '把備份存到「下載」，在新手機還原，或把每組匯出成 CSV。移除 App 會刪除資料，所以先備份。'],
