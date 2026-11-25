@@ -56,7 +56,7 @@ puro: sin JS, y sin soporte el contenido se ve igual y completo. Con
 - Capturas: `assets/img/{lang}-sesion.webp` y `{lang}-selector.webp`, recortes de las series `SHOTS=1` de la app (640 px de ancho, webp q82). OG: `assets/og.jpg` (es) y `og-{lang}.jpg`, renderizadas desde la propia portada.
 
 ## Claims (prohibiciones)
-- Solo hechos verificados en el código o en `docs/play/ficha-play.md`: gratis, sin anuncios, sin cuenta, sin permiso de internet (único permiso: vibración), datos en el móvil, copia en Descargas y CSV, 130 ejercicios base + propios, tres programas de inicio con series calculadas, 1RM estimado (hasta 25 reps), 8 temas, 11 idiomas en la app y en la web, kg/lb. La versión que cita el JSON-LD (`softwareVersion`) es la de producción en Play.
+- Solo hechos verificados en el código o en `docs/play/ficha-play.md`: gratis, sin anuncios, sin cuenta, sin permiso de internet (único permiso: vibración), datos en el móvil, copia en Descargas y CSV, 140 ejercicios base + propios, tres programas de inicio con series calculadas, 1RM estimado (hasta 25 reps), 8 temas, 11 idiomas en la app y en la web, kg/lb. La versión que cita el JSON-LD (`softwareVersion`) es la de producción en Play.
 - Prohibido: temporizador de descanso, importar CSV y «qué discos cargar» (no hay calculadora de discos). El calentamiento son 3 aproximaciones calculadas sobre la última sesión.
 - Sin enlaces de descarga de APK. Play: `https://play.google.com/store/apps/details?id=com.setrack.app`. Ko-fi: `https://ko-fi.com/iggykimi`.
 - Cero peticiones externas: fuente, iconos e imágenes servidos desde el repo.
