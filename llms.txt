@@ -11,8 +11,8 @@
 
 ## Verifiable facts (checked 2026-11-26)
 
-- Version 1.0.17 on Google Play (versionCode 350).
-- How it works: pick a daily proposal (routine or learned split), a free session or a 2-tap Quick Log; log weight & reps (including unilateral L/R), timed sets with stopwatch, or 1-tap care/mobility checks.
+- Version 1.0.18 on Google Play (versionCode 351).
+- How it works: pick a daily proposal (routine or learned split), a free session or a 2-tap Quick Log; log weight & reps (including unilateral L/R), timed sets with stopwatch, or 1-tap care/mobility checks. Android launcher shortcuts open Train or History directly.
 - Sections: features, how it works, questions, data with the full policy, support.
 
 - The APK declares no INTERNET permission; its only system permission is VIBRATE (the tick when logging a set).
@@ -25,7 +25,7 @@
 - Estimated 1RM (continuous up to 25 reps); weekly strength view and progress by week, month, quarter or year.
 - Adaptive layout for phones, foldables and tablets (side rail and multi-pane views).
 - Suggests exercises by the sets each muscle still needs this week.
-- The app and this website are both in 11 languages (Spanish, English, Portuguese (Brazil), German, French, Italian, Polish, Dutch, Japanese, Korean, Traditional Chinese). Kilos or pounds.
+- The app is in 17 languages (Spanish, English, Portuguese (Brazil), German, French, Italian, Polish, Dutch, Indonesian, Turkish, Swedish, Norwegian, Danish, Czech, Japanese, Korean, Traditional Chinese); this website is in 11 languages. Kilos or pounds.
 - Status: available on Google Play: https://play.google.com/store/apps/details?id=com.setrack.app
 
 ## Contact

@@ -37,7 +37,7 @@ export const LANGS = {
       ['Si empiezas, te guía', 'En la primera sesión; si ya entrenas, va directo y sin pistas.'],
       ['8 temas de color', 'Dos de ellos claros.'],
       ['Copia y CSV', 'A Descargas, cuando tú quieras.'],
-      ['11 idiomas', 'En kilos o en libras.'],
+      ['17 idiomas', 'En kilos o en libras.'],
     ],
     altSession: 'Sesión en curso: press banca con una serie de 75 kg por 8 y los controles de peso y repeticiones.',
     altPicker: 'Añadir ejercicio: sugerencias con las series que le faltan a cada músculo esta semana.',
@@ -98,7 +98,7 @@ export const LANGS = {
       ['Starting out, it guides you', 'Through your first session; already training, no tips, straight in.'],
       ['8 colour themes', 'Two of them light.'],
       ['Backup and CSV', 'Saved to Downloads, whenever you want.'],
-      ['11 languages', 'In kilos or pounds.'],
+      ['17 languages', 'In kilos or pounds.'],
     ],
     altSession: 'Session in progress: bench press with one set of 75 kg for 8 and the weight and rep controls.',
     altPicker: 'Add exercise: suggestions with the sets each muscle still needs this week.',
@@ -159,7 +159,7 @@ export const LANGS = {
       ['Se está começando, ele guia', 'O primeiro treino; se já treina, vai direto, sem dicas.'],
       ['8 temas de cores', 'Dois deles claros.'],
       ['Backup e CSV', 'Na pasta Downloads, quando você quiser.'],
-      ['11 idiomas', 'Em quilos ou libras.'],
+      ['17 idiomas', 'Em quilos ou libras.'],
     ],
     altSession: 'Treino em andamento: supino com uma série de 75 kg por 8 e os controles de peso e repetições.',
     altPicker: 'Adicionar exercício: sugestões com as séries que faltam para cada músculo nesta semana.',
@@ -220,7 +220,7 @@ export const LANGS = {
       ['Für Einsteiger geführt', 'Die erste Session; wer schon trainiert, startet direkt, ohne Tipps.'],
       ['8 Farbthemen', 'Zwei davon hell.'],
       ['Backup und CSV', 'In den Download-Ordner, wann du willst.'],
-      ['11 Sprachen', 'In Kilo oder Pfund.'],
+      ['17 Sprachen', 'In Kilo oder Pfund.'],
     ],
     altSession: 'Laufende Session: Bankdrücken mit einem Satz 75 kg × 8 und den Reglern für Gewicht und Wiederholungen.',
     altPicker: 'Übung hinzufügen: Vorschläge mit den Sätzen, die jedem Muskel diese Woche noch fehlen.',
@@ -281,7 +281,7 @@ export const LANGS = {
       ['Si tu débutes, elle te guide', 'Dans ta première séance ; si tu t’entraînes déjà, c’est direct, sans astuces.'],
       ['8 thèmes de couleur', 'Dont deux clairs.'],
       ['Sauvegarde et CSV', 'Dans Téléchargements, quand tu veux.'],
-      ['11 langues', 'En kilos ou en livres.'],
+      ['17 langues', 'En kilos ou en livres.'],
     ],
     altSession: 'Séance en cours : développé couché avec une série de 75 kg × 8 et les réglages de charge et de répétitions.',
     altPicker: 'Ajouter un exercice : suggestions avec les séries qui manquent à chaque muscle cette semaine.',
@@ -342,7 +342,7 @@ export const LANGS = {
       ['Se inizi, ti guida', 'Nel primo allenamento; se ti alleni già, vai dritto, senza suggerimenti.'],
       ['8 temi di colore', 'Due chiari.'],
       ['Backup e CSV', 'Nella cartella Download, quando vuoi.'],
-      ['11 lingue', 'In chili o in libbre.'],
+      ['17 lingue', 'In chili o in libbre.'],
     ],
     altSession: 'Allenamento in corso: panca piana con una serie da 75 kg × 8 e i comandi di carico e ripetizioni.',
     altPicker: 'Aggiungi esercizio: suggerimenti con le serie che mancano a ogni muscolo questa settimana.',
@@ -403,7 +403,7 @@ export const LANGS = {
       ['Na start poprowadzi', 'Przez pierwszy trening; jeśli już trenujesz, od razu do rzeczy.'],
       ['8 motywów kolorystycznych', 'Dwa jasne.'],
       ['Kopia i CSV', 'W Pobranych, kiedy chcesz.'],
-      ['11 języków', 'W kilogramach lub funtach.'],
+      ['17 języków', 'W kilogramach lub funtach.'],
     ],
     altSession: 'Trening w toku: wyciskanie sztangi leżąc z serią 75 kg × 8 i kontrolkami ciężaru i powtórzeń.',
     altPicker: 'Dodaj ćwiczenie: propozycje z seriami, których brakuje każdemu mięśniowi w tym tygodniu.',
@@ -464,7 +464,7 @@ export const LANGS = {
       ['Als je begint, leidt het je', 'Door je eerste training; train je al, dan ga je meteen door, zonder tips.'],
       ['8 kleurthema’s', 'Twee ervan licht.'],
       ['Back-up en CSV', 'Naar Downloads, wanneer je wilt.'],
-      ['11 talen', 'In kilo’s of ponden.'],
+      ['17 talen', 'In kilo’s of ponden.'],
     ],
     altSession: 'Training bezig: bankdrukken met één set van 75 kg × 8 en de knoppen voor gewicht en herhalingen.',
     altPicker: 'Oefening toevoegen: suggesties met de sets die elke spier deze week nog mist.',
@@ -525,7 +525,7 @@ export const LANGS = {
       ['初心者にはガイド', '最初のワークアウトで案内します。経験者はそのまま、ヒントなしで。'],
       ['8つのカラーテーマ', 'うち2つはライト。'],
       ['バックアップと CSV', '「ダウンロード」へ、好きなときに。'],
-      ['11言語', 'キロでもポンドでも。'],
+      ['17言語', 'キロでもポンドでも。'],
     ],
     altSession: 'ワークアウト中: ベンチプレスで 75 kg × 8 を1セット記録し、重量と回数の調整ボタンが表示されている画面。',
     altPicker: '種目を追加: 今週それぞれの部位に足りないセット数つきの提案。',
@@ -586,7 +586,7 @@ export const LANGS = {
       ['처음이면 안내해요', '첫 세션에서 안내하고, 이미 운동한다면 팁 없이 바로 시작해요.'],
       ['컬러 테마 8가지', '그중 두 가지는 밝은 테마예요.'],
       ['백업과 CSV', '원할 때 다운로드 폴더에 저장해요.'],
-      ['11개 언어', '킬로그램 또는 파운드로 볼 수 있어요.'],
+      ['17개 언어', '킬로그램 또는 파운드로 볼 수 있어요.'],
     ],
     altSession: '운동 중: 벤치프레스 75kg × 8 한 세트와 무게·횟수 조절 버튼이 보이는 화면.',
     altPicker: '종목 추가: 이번 주 각 부위에 부족한 세트 수를 보여 주는 제안.',
@@ -647,7 +647,7 @@ export const LANGS = {
       ['剛開始會帶你', '第一次訓練；已經在練就直接開始，不給提示。'],
       ['8 種顏色主題', '其中兩種是淺色。'],
       ['備份與 CSV', '隨時存到「下載」。'],
-      ['11 種語言', '公斤或磅。'],
+      ['17 種語言', '公斤或磅。'],
     ],
     altSession: '訓練進行中：臥推一組 75 公斤 × 8，以及重量和次數的調整按鈕。',
     altPicker: '新增動作：依本週各肌群還缺的組數給出建議。',
@@ -684,7 +684,7 @@ export const FAQ = {
   es: {
     title: ['Preguntas', 'frecuentes.'],
     items: [
-      ['¿Qué es SetRack?', 'SetRack es un diario de gimnasio gratis para Android que funciona sin internet: no tiene anuncios, no pide cuenta y guarda tus series solo en tu móvil. Incluye 140 ejercicios, 3 programas, 1RM estimado (hasta 25 repeticiones), seguimiento corporal opcional (peso y medidas) y copia en Descargas con CSV. La app está en 11 idiomas; esta web también.'],
+      ['¿Qué es SetRack?', 'SetRack es un diario de gimnasio gratis para Android que funciona sin internet: no tiene anuncios, no pide cuenta y guarda tus series solo en tu móvil. Incluye 140 ejercicios, 3 programas, 1RM estimado (hasta 25 repeticiones), seguimiento corporal opcional (peso y medidas) y copia en Descargas con CSV. La app está en 17 idiomas; esta web, en 11.'],
       ['¿Funciona sin internet?', 'Sí. La app no tiene permiso de internet, así que apunta igual en un sótano sin cobertura. El único permiso que usa es la vibración, para el toque al apuntar una serie.'],
       ['¿Cuánto cuesta?', 'Nada. Es gratis y sin anuncios. Si te resulta útil, puedes invitarme a un café en Ko-fi.'],
       ['¿Qué pasa si cambio de móvil?', 'Guarda una copia en Descargas y restáurala en el nuevo, o exporta tus series a CSV. Desinstalar la app borra los datos, así que haz la copia antes.'],
@@ -694,7 +694,7 @@ export const FAQ = {
   en: {
     title: ['Questions', 'people ask.'],
     items: [
-      ['What is SetRack?', 'SetRack is a free gym log for Android that works with no internet: it has no ads, needs no account and keeps your sets only on your phone. It includes 140 exercises, 3 starter programs, estimated 1RM (up to 25 reps), optional body tracking (weight trend and measurements) and backup to Downloads with CSV export. The app and this site are both in 11 languages.'],
+      ['What is SetRack?', 'SetRack is a free gym log for Android that works with no internet: it has no ads, needs no account and keeps your sets only on your phone. It includes 140 exercises, 3 starter programs, estimated 1RM (up to 25 reps), optional body tracking (weight trend and measurements) and backup to Downloads with CSV export. The app is in 17 languages; this site is in 11.'],
       ['Does it work offline?', 'Yes. The app declares no internet permission, so it logs the same in a basement with no signal. Its only permission is vibration, for the tick when you log a set.'],
       ['How much does it cost?', 'Nothing. It is free, with no ads. If you find it useful, you can buy me a coffee on Ko-fi.'],
       ['What if I change phones?', 'Save a backup to Downloads and restore it on the new phone, or export your sets to CSV. Uninstalling deletes the data, so back up first.'],
@@ -704,7 +704,7 @@ export const FAQ = {
   pt: {
     title: ['Perguntas', 'de sempre.'],
     items: [
-      ['O que é o SetRack?', 'O SetRack é um diário de academia gratuito para Android que funciona sem internet: não tem anúncios, não pede conta e guarda suas séries só no seu celular. Inclui 140 exercícios, 3 programas iniciais, 1RM estimado (até 25 repetições), acompanhamento corporal opcional (peso e medidas) e backup em Downloads com CSV. O app e este site estão em 11 idiomas.'],
+      ['O que é o SetRack?', 'O SetRack é um diário de academia gratuito para Android que funciona sem internet: não tem anúncios, não pede conta e guarda suas séries só no seu celular. Inclui 140 exercícios, 3 programas iniciais, 1RM estimado (até 25 repetições), acompanhamento corporal opcional (peso e medidas) e backup em Downloads com CSV. O app está em 17 idiomas; este site, em 11.'],
       ['Funciona sem internet?', 'Sim. O app não tem permissão de internet, então anota igual num porão sem sinal. A única permissão é a vibração, no toque ao registrar uma série.'],
       ['Quanto custa?', 'Nada. É gratuito e sem anúncios. Se for útil, você pode me pagar um café no Ko-fi.'],
       ['E se eu trocar de celular?', 'Salve um backup em Downloads e restaure no novo, ou exporte suas séries para CSV. Desinstalar apaga os dados, então faça o backup antes.'],
@@ -714,7 +714,7 @@ export const FAQ = {
   de: {
     title: ['Fragen,', 'die kommen.'],
     items: [
-      ['Was ist SetRack?', 'SetRack ist ein kostenloses Trainingstagebuch für Android, das ohne Internet läuft: keine Werbung, kein Konto, und deine Sätze bleiben nur auf deinem Handy. Es enthält 140 Übungen, 3 Startprogramme, geschätztes 1RM (bis 25 Wiederholungen), optionales Körper-Tracking (Gewicht und Maße) und Backup in den Download-Ordner mit CSV. Die App und diese Seite sind in 11 Sprachen verfügbar.'],
+      ['Was ist SetRack?', 'SetRack ist ein kostenloses Trainingstagebuch für Android, das ohne Internet läuft: keine Werbung, kein Konto, und deine Sätze bleiben nur auf deinem Handy. Es enthält 140 Übungen, 3 Startprogramme, geschätztes 1RM (bis 25 Wiederholungen), optionales Körper-Tracking (Gewicht und Maße) und Backup in den Download-Ordner mit CSV. Die App ist in 17 Sprachen verfügbar, diese Seite in 11.'],
       ['Geht das offline?', 'Ja. Die App hat keine Internetberechtigung, also trägt sie im Keller ohne Empfang genauso ein. Die einzige Berechtigung ist Vibration, für das kurze Feedback beim Eintragen.'],
       ['Was kostet es?', 'Nichts. Kostenlos und ohne Werbung. Wenn sie dir hilft, kannst du mich auf Ko-fi auf einen Kaffee einladen.'],
       ['Was ist beim Handywechsel?', 'Lege ein Backup in den Download-Ordner und stelle es auf dem neuen Handy wieder her, oder exportiere deine Sätze als CSV. Deinstallieren löscht die Daten, also vorher sichern.'],
@@ -724,7 +724,7 @@ export const FAQ = {
   fr: {
     title: ['Questions', 'qu’on pose.'],
     items: [
-      ['SetRack, c’est quoi ?', 'SetRack est un carnet de muscu gratuit pour Android qui fonctionne sans internet : sans publicité, sans compte, et tes séries restent sur ton téléphone. Il inclut 140 exercices, 3 programmes pour débuter, le 1RM estimé (jusqu’à 25 répétitions), un suivi corporel optionnel (poids et mensurations) et la sauvegarde dans Téléchargements avec export CSV. L’app et ce site sont en 11 langues.'],
+      ['SetRack, c’est quoi ?', 'SetRack est un carnet de muscu gratuit pour Android qui fonctionne sans internet : sans publicité, sans compte, et tes séries restent sur ton téléphone. Il inclut 140 exercices, 3 programmes pour débuter, le 1RM estimé (jusqu’à 25 répétitions), un suivi corporel optionnel (poids et mensurations) et la sauvegarde dans Téléchargements avec export CSV. L’app est en 17 langues et ce site en 11.'],
       ['Ça marche hors ligne ?', 'Oui. L’app n’a pas l’autorisation internet, elle note donc pareil dans un sous-sol sans réseau. Sa seule autorisation est la vibration, pour le petit retour quand tu notes une série.'],
       ['Ça coûte combien ?', 'Rien. C’est gratuit et sans publicité. Si elle te sert, tu peux m’offrir un café sur Ko-fi.'],
       ['Et si je change de téléphone ?', 'Enregistre une sauvegarde dans Téléchargements et restaure-la sur le nouveau, ou exporte tes séries en CSV. Désinstaller efface les données, donc sauvegarde avant.'],
@@ -734,7 +734,7 @@ export const FAQ = {
   it: {
     title: ['Domande', 'di sempre.'],
     items: [
-      ['Cos’è SetRack?', 'SetRack è un diario di palestra gratis per Android che funziona senza internet: niente pubblicità, niente account e le tue serie restano solo sul telefono. Include 140 esercizi, 3 programmi per iniziare, 1RM stimato (fino a 25 ripetizioni), monitoraggio corporeo opzionale (peso e misure) e backup in Download con CSV. L’app e questo sito sono in 11 lingue.'],
+      ['Cos’è SetRack?', 'SetRack è un diario di palestra gratis per Android che funziona senza internet: niente pubblicità, niente account e le tue serie restano solo sul telefono. Include 140 esercizi, 3 programmi per iniziare, 1RM stimato (fino a 25 ripetizioni), monitoraggio corporeo opzionale (peso e misure) e backup in Download con CSV. L’app è in 17 lingue e questo sito in 11.'],
       ['Funziona offline?', 'Sì. L’app non ha il permesso internet, quindi registra uguale in una cantina senza segnale. L’unico permesso è la vibrazione, per il piccolo feedback quando segni una serie.'],
       ['Quanto costa?', 'Niente. È gratis e senza pubblicità. Se ti è utile, puoi offrirmi un caffè su Ko-fi.'],
       ['Se cambio telefono?', 'Salva un backup in Download e ripristinalo sul nuovo, oppure esporta le tue serie in CSV. Disinstallare cancella i dati, quindi fai prima il backup.'],
@@ -744,7 +744,7 @@ export const FAQ = {
   pl: {
     title: ['Częste', 'pytania.'],
     items: [
-      ['Czym jest SetRack?', 'SetRack to darmowy dziennik treningowy na Androida, który działa bez internetu: nie ma reklam, nie wymaga konta i zapisuje serie tylko w telefonie. Zawiera 140 ćwiczeń, 3 programy na start, szacowany 1RM (do 25 powtórzeń), opcjonalne śledzenie wagi i wymiarów oraz kopię w Pobranych z eksportem CSV. Aplikacja i ta strona są w 11 językach.'],
+      ['Czym jest SetRack?', 'SetRack to darmowy dziennik treningowy na Androida, który działa bez internetu: nie ma reklam, nie wymaga konta i zapisuje serie tylko w telefonie. Zawiera 140 ćwiczeń, 3 programy na start, szacowany 1RM (do 25 powtórzeń), opcjonalne śledzenie wagi i wymiarów oraz kopię w Pobranych z eksportem CSV. Aplikacja jest w 17 językach, a ta strona w 11.'],
       ['Czy działa bez internetu?', 'Tak. Aplikacja nie ma uprawnienia dostępu do internetu, więc zapisuje tak samo w piwnicy bez zasięgu. Jedynym uprawnieniem jest wibracja, która daje krótki sygnał przy zapisie serii.'],
       ['Ile to kosztuje?', 'Nic. Jest darmowa i bez reklam. Jeśli ci się przyda, możesz postawić mi kawę na Ko-fi.'],
       ['Co, jeśli zmienię telefon?', 'Zapisz kopię w folderze Pobrane i przywróć ją na nowym telefonie albo wyeksportuj serie do CSV. Odinstalowanie usuwa dane, więc zrób kopię wcześniej.'],
@@ -754,7 +754,7 @@ export const FAQ = {
   nl: {
     title: ['Veelgestelde', 'vragen.'],
     items: [
-      ['Wat is SetRack?', 'SetRack is een gratis trainingslogboek voor Android dat zonder internet werkt: geen advertenties, geen account en je sets blijven op je telefoon. Het bevat 140 oefeningen, 3 startersschema’s, geschatte 1RM (tot 25 herhalingen), optionele lichaamsmetingen (gewicht en omtrekken) en een back-up in Downloads met CSV-export. De app en deze site zijn allebei in 11 talen.'],
+      ['Wat is SetRack?', 'SetRack is een gratis trainingslogboek voor Android dat zonder internet werkt: geen advertenties, geen account en je sets blijven op je telefoon. Het bevat 140 oefeningen, 3 startersschema’s, geschatte 1RM (tot 25 herhalingen), optionele lichaamsmetingen (gewicht en omtrekken) en een back-up in Downloads met CSV-export. De app is in 17 talen en deze site in 11.'],
       ['Werkt het offline?', 'Ja. De app heeft geen internettoegang, dus je kunt ook in een kelder zonder bereik noteren. De enige toestemming is trillen, voor de tik bij het noteren van een set.'],
       ['Wat kost het?', 'Niets. Het is gratis en zonder advertenties. Als je het nuttig vindt, kun je me op Ko-fi op een koffie trakteren.'],
       ['Wat als ik een nieuwe telefoon krijg?', 'Sla een back-up op in Downloads en zet die terug op je nieuwe telefoon, of exporteer je sets naar CSV. De app verwijderen wist de gegevens, dus maak eerst een back-up.'],
@@ -764,7 +764,7 @@ export const FAQ = {
   ja: {
     title: ['よくある', '質問。'],
     items: [
-      ['SetRack とは？', 'SetRack は、インターネットなしで動く Android 向けの無料の筋トレ記録アプリです。広告なし、アカウント不要で、セットはスマホだけに保存されます。140種目、はじめるための3プログラム、推定1RM（最大25回対応）、任意の体重・サイズ記録、「ダウンロード」へのバックアップと CSV 書き出しに対応しています。アプリもこのサイトも11言語です。'],
+      ['SetRack とは？', 'SetRack は、インターネットなしで動く Android 向けの無料の筋トレ記録アプリです。広告なし、アカウント不要で、セットはスマホだけに保存されます。140種目、はじめるための3プログラム、推定1RM（最大25回対応）、任意の体重・サイズ記録、「ダウンロード」へのバックアップと CSV 書き出しに対応しています。アプリは17言語、このサイトは11言語に対応しています。'],
       ['オフラインで使えますか？', 'はい。アプリにインターネットの権限はないので、電波の届かない地下でも同じように記録できます。権限はバイブレーションのみで、セットを記録するときの触覚フィードバックに使います。'],
       ['料金は？', '無料です。広告もありません。役に立ったら、Ko-fi でコーヒーをおごってもらえるとうれしいです。'],
       ['機種変更したら？', '「ダウンロード」にバックアップを保存し、新しいスマホで復元してください。セットを CSV に書き出すこともできます。アンインストールするとデータは消えるので、先にバックアップを。'],
@@ -774,7 +774,7 @@ export const FAQ = {
   ko: {
     title: ['자주 묻는', '질문.'],
     items: [
-      ['SetRack은 뭐예요?', 'SetRack은 인터넷 없이 작동하는 Android용 무료 헬스 운동 기록 앱이에요. 광고도, 계정도 없고 세트는 휴대폰에만 저장돼요. 140개 종목, 시작용 프로그램 3개, 추정 1RM(최대 25회 지원), 선택형 체중·신체 치수 기록, 다운로드 폴더 백업과 CSV 내보내기를 지원해요. 앱과 이 사이트 모두 11개 언어예요.'],
+      ['SetRack은 뭐예요?', 'SetRack은 인터넷 없이 작동하는 Android용 무료 헬스 운동 기록 앱이에요. 광고도, 계정도 없고 세트는 휴대폰에만 저장돼요. 140개 종목, 시작용 프로그램 3개, 추정 1RM(최대 25회 지원), 선택형 체중·신체 치수 기록, 다운로드 폴더 백업과 CSV 내보내기를 지원해요. 앱은 17개 언어, 이 사이트는 11개 언어예요.'],
       ['오프라인에서도 되나요?', '네. 앱에 인터넷 권한이 없어서 신호가 없는 지하에서도 똑같이 기록할 수 있어요. 권한은 진동 하나뿐이고, 세트를 기록할 때 짧게 울리는 데 써요.'],
       ['얼마예요?', '무료예요. 광고도 없어요. 유용했다면 Ko-fi에서 커피 한 잔 사 주세요.'],
       ['휴대폰을 바꾸면요?', '다운로드 폴더에 백업을 저장해 새 휴대폰에서 복원하거나, 세트를 CSV로 내보내세요. 앱을 삭제하면 데이터가 지워지니 먼저 백업하세요.'],
@@ -784,7 +784,7 @@ export const FAQ = {
   'zh-Hant': {
     title: ['常見', '問題。'],
     items: [
-      ['SetRack 是什麼？', 'SetRack 是 Android 的免費健身紀錄 App，不需要網路：沒有廣告、不用帳號，每組訓練只存在手機裡。內建 140 個動作、3 個入門課表、預估 1RM（最高支援 25 次）、選用體重與圍度追蹤，以及存到「下載」的備份和 CSV 匯出。App 和這個網站都有 11 種語言。'],
+      ['SetRack 是什麼？', 'SetRack 是 Android 的免費健身紀錄 App，不需要網路：沒有廣告、不用帳號，每組訓練只存在手機裡。內建 140 個動作、3 個入門課表、預估 1RM（最高支援 25 次）、選用體重與圍度追蹤，以及存到「下載」的備份和 CSV 匯出。App 支援 17 種語言，這個網站支援 11 種。'],
       ['沒有網路也能用嗎？', '可以。App 沒有網路權限，在地下室沒訊號也照樣記錄。唯一的權限是震動，用於記錄每組時的震動回饋。'],
       ['要多少錢？', '免費，也沒有廣告。如果對你有幫助，可以在 Ko-fi 請我喝杯咖啡。'],
       ['換手機怎麼辦？', '把備份存到「下載」，在新手機還原，或把每組匯出成 CSV。移除 App 會刪除資料，所以先備份。'],

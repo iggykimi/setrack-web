@@ -47,7 +47,7 @@ for (const code of CODES) {
   if (t.description.length < 30 || t.description.length > 170) fail(`${code}: description is ${t.description.length} chars`)
   if (t.features.length !== 8) fail(`${code}: expected 8 features, found ${t.features.length}`)
   if (FAQ[code].items.length !== 5) fail(`${code}: expected 5 questions, found ${FAQ[code].items.length}`)
-  if (!FAQ[code].items[0][1].includes('11')) fail(`${code}: first answer does not state the 11 languages`)
+  if (!FAQ[code].items[0][1].includes('17')) fail(`${code}: first answer does not state the 17 app languages`)
   for (const [q, a] of FAQ[code].items) {
     if (!q.trim() || !a.trim()) fail(`${code}: empty question or answer`)
     if (a.length < 20) fail(`${code}: answer too short: ${q}`)
@@ -211,7 +211,7 @@ for (const code of CODES) {
   if (!llms.includes(home)) fail(`llms.txt: missing ${home}`)
   if (!llms.includes(privacy)) fail(`llms.txt: missing ${privacy}`)
 }
-if (!llms.includes('11')) fail('llms.txt: does not state the 11 languages')
+if (!llms.includes('17')) fail('llms.txt: does not state the 17 app languages')
 if (!llms.includes(UPDATED)) fail(`llms.txt: not dated ${UPDATED}`)
 
 const css = read('assets/site.css')

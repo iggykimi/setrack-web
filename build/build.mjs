@@ -193,7 +193,7 @@ ${header({ t, code, path: t.path, kind: 'home' })}
         </ul>
       </div>
       <div class="acciones">
-        <a class="play" href="${LINKS.play}&amp;hl=${t.htmlLang}">${esc(t.play)}</a>
+        <a class="play" href="${LINKS.play}&amp;hl=${t.htmlLang}&amp;referrer=utm_source%3Dsetrack_web%26utm_medium%3Dlanding%26utm_campaign%3Dhero">${esc(t.play)}</a>
         <a class="cafe" href="${LINKS.kofi}">${esc(t.kofi)}</a>
       </div>
     </div>
@@ -237,7 +237,7 @@ ${header({ t, code, path: t.path, kind: 'home' })}
     <div class="apoyo-texto">
       <p>${esc(t.supportLead)}</p>
       <div class="acciones">
-        <a class="play" href="${LINKS.play}&amp;hl=${t.htmlLang}">${esc(t.play)}</a>
+        <a class="play" href="${LINKS.play}&amp;hl=${t.htmlLang}&amp;referrer=utm_source%3Dsetrack_web%26utm_medium%3Dlanding%26utm_campaign%3Dfooter">${esc(t.play)}</a>
         <a class="cafe" href="${LINKS.kofi}">${esc(t.kofi)}</a>
       </div>
     </div>
