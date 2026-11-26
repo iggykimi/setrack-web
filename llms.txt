@@ -2,26 +2,28 @@
 
 > Android gym log. Fully offline: no account, no ads, no trackers and no internet
 > permission. Data lives only on the phone. Free.
-> Last reviewed: 2026-11-25.
+> Last reviewed: 2026-11-26.
 
 ## Pages
 
 - [Español](https://iggykimi.github.io/setrack-web/) · [English](https://iggykimi.github.io/setrack-web/en/) · [Português](https://iggykimi.github.io/setrack-web/pt/) · [Deutsch](https://iggykimi.github.io/setrack-web/de/) · [Français](https://iggykimi.github.io/setrack-web/fr/) · [Italiano](https://iggykimi.github.io/setrack-web/it/) · [Polski](https://iggykimi.github.io/setrack-web/pl/) · [Nederlands](https://iggykimi.github.io/setrack-web/nl/) · [日本語](https://iggykimi.github.io/setrack-web/ja/) · [한국어](https://iggykimi.github.io/setrack-web/ko/) · [繁體中文](https://iggykimi.github.io/setrack-web/zh-tw/)
-- Privacy policy: [es](https://iggykimi.github.io/setrack-web/privacidad/) · [en](https://iggykimi.github.io/setrack-web/en/privacy/) · [pt](https://iggykimi.github.io/setrack-web/pt/privacidade/) · [de](https://iggykimi.github.io/setrack-web/de/datenschutz/) · [fr](https://iggykimi.github.io/setrack-web/fr/confidentialite/) · [it](https://iggykimi.github.io/setrack-web/it/privacy/) · [pl](https://iggykimi.github.io/setrack-web/pl/prywatnosc/) · [nl](https://iggykimi.github.io/setrack-web/nl/privacy/) · [ja](https://iggykimi.github.io/setrack-web/ja/privacy/) · [ko](https://iggykimi.github.io/setrack-web/ko/privacy/) · [zh](https://iggykimi.github.io/setrack-web/zh-tw/privacy/). Each home page also carries the full text (#privacidad).
+- Privacy policy: [es](https://iggykimi.github.io/setrack-web/privacidad/) · [en](https://iggykimi.github.io/setrack-web/en/privacy/) · [pt](https://iggykimi.github.io/setrack-web/pt/privacidade/) · [de](https://iggykimi.github.io/setrack-web/de/datenschutz/) · [fr](https://iggykimi.github.io/setrack-web/fr/confidentialite/) · [it](https://iggykimi.github.io/setrack-web/it/privacy/) · [pl](https://iggykimi.github.io/setrack-web/pl/prywatnosc/) · [nl](https://iggykimi.github.io/setrack-web/nl/privacy/) · [ja](https://iggykimi.github.io/setrack-web/ja/privacy/) · [ko](https://iggykimi.github.io/setrack-web/ko/privacy/) · [zh-tw](https://iggykimi.github.io/setrack-web/zh-tw/privacy/). Each home page also carries the full text (#privacidad).
 
-## Verifiable facts (checked 2026-11-25)
+## Verifiable facts (checked 2026-11-26)
 
-- Version 1.0.12 on Google Play (versionCode 345).
+- Version 1.0.17 on Google Play (versionCode 350).
 - How it works: pick a daily proposal (routine or learned split), a free session or a 2-tap Quick Log; log weight & reps (including unilateral L/R), timed sets with stopwatch, or 1-tap care/mobility checks.
 - Sections: features, how it works, questions, data with the full policy, support.
 
 - The APK declares no INTERNET permission; its only system permission is VIBRATE (the tick when logging a set).
-- Exercises, sets and weights are stored only in local storage.
-- Manual backup file in Downloads, restore from that file, and CSV export.
+- Exercises, sets, weights and optional body measurements are stored only in local storage.
+- Manual backup file in Downloads, restore from that file, and CSV export (sets and body measurements).
+- Optional Body tracking (off by default): body weight with smoothed trend line, optional weight goal with estimated date, waist (and waist-to-height ratio), chest, arms, forearms, thighs and calves (L/R), plus relative strength (× bodyweight) on exercise charts.
 - 140 base exercises (gym, home bodyweight, timed holds, rotator cuff/mobility and cardio) with muscle and equipment; users can add their own.
 - 8 colour themes, two of them light.
 - Three starter programs (Upper/Lower, Push/Pull/Legs, Full body) with planned sets per exercise.
-- Estimated 1RM (continuous up to 25 reps); consistency calendar heatmap, weekly strength view and progress by week, month, quarter or year.
+- Estimated 1RM (continuous up to 25 reps); weekly strength view and progress by week, month, quarter or year.
+- Adaptive layout for phones, foldables and tablets (side rail and multi-pane views).
 - Suggests exercises by the sets each muscle still needs this week.
 - The app and this website are both in 11 languages (Spanish, English, Portuguese (Brazil), German, French, Italian, Polish, Dutch, Japanese, Korean, Traditional Chinese). Kilos or pounds.
 - Status: available on Google Play: https://play.google.com/store/apps/details?id=com.setrack.app
