@@ -20,7 +20,7 @@ Llano y modesto: describe lo que hace la app como lo contaría quien la hizo par
 
 ## Composición
 1. **Portada**: titular en dos líneas (la segunda en `--faint`) → barra SVG a todo el ancho → entradilla + 4 chips de confianza (Gratis, Sin conexión, Sin cuenta, Sin anuncios) + Play + Ko-fi. La cabecera lleva navegación por secciones (Funciones, Preguntas, Datos) y el selector de idioma.
-2. **Cómo funciona**: titular + 3 pasos (Elige, Apunta, Mira) en el orden de una sesión.
+2. **Cómo funciona**: titular + 3 pasos (Elige, Apunta, Mira) en el orden de una sesión + vídeo demo autoalojado de 22 s (`assets/video/demo-{es,en}.mp4`, WebP `poster`, subtítulos WebVTT, `loading="lazy"` + `preload="none"`, cero JS y cero peticiones externas).
 3. **La app** (`#app`): titular + lista de 8 funciones con la forma de las filas de la app (número condensado y texto; sin disco de color: los colores de los discos solo marcan datos). Al lado van dos recortes reales superpuestos: la sesión delante y el selector asomando por la izquierda. En móvil las pantallas van primero.
 4. **Preguntas** (`#preguntas`): titular + 5 respuestas en dos columnas en escritorio.
 5. **Tus datos** (`#privacidad`): titular + entradilla. La política íntegra (`#politica`) va al lado en escritorio y debajo en móvil.

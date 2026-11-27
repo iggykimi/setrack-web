@@ -178,6 +178,8 @@ function home(code) {
     return `<img src="${base}${file}" alt="${esc(alt)}" width="${width}" height="${height}" loading="lazy" decoding="async">`
   }
   const features = t.features.map(([f, d], i) => `<li><span class="n" aria-hidden="true">${i + 1}</span><span><strong>${esc(f)}</strong> ${esc(d)}</span></li>`).join('\n      ')
+  const vLang = code === 'es' ? 'es' : 'en'
+  const vTrackLabel = vLang === 'es' ? 'Español' : 'English'
   return `${head({ t, code, path: t.path, kind: 'home', title: t.title, description: t.description })}
 <body>
 ${header({ t, code, path: t.path, kind: 'home' })}
@@ -204,6 +206,13 @@ ${header({ t, code, path: t.path, kind: 'home' })}
     <ol class="pasos">
       ${t.how.map(([title, text], i) => `<li><span class="n" aria-hidden="true">0${i + 1}</span><strong>${esc(title)}</strong><p>${esc(text)}</p></li>`).join('\n      ')}
     </ol>
+    <figure class="demo">
+      <video controls loading="lazy" preload="none" playsinline width="1920" height="1080" poster="${base}assets/video/poster-${vLang}.webp" aria-describedby="demo-pie">
+        <source src="${base}assets/video/demo-${vLang}.mp4" type="video/mp4">
+        <track src="${base}assets/video/demo-${vLang}.vtt" kind="captions" srclang="${vLang}" label="${vTrackLabel}">
+      </video>
+      <figcaption id="demo-pie">${esc(t.videoCaption)}</figcaption>
+    </figure>
   </section>
 
   <section class="app envoltura" id="app" aria-labelledby="t-app">

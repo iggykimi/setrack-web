@@ -56,7 +56,7 @@ for (const code of CODES) {
 
 function checkLinks(html, pageRel) {
   const dir = dirname(join(ROOT, pageRel))
-  for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
+  for (const match of html.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
     const raw = match[1]
     if (/^(https?:|mailto:|#|data:)/.test(raw)) continue
     const clean = raw.split('#')[0].split('?')[0]
@@ -69,7 +69,7 @@ function checkLinks(html, pageRel) {
 }
 
 function checkMarkup(html, pageRel) {
-  for (const tag of ['div', 'section', 'article', 'main', 'header', 'footer', 'nav', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'details', 'summary', 'p']) {
+  for (const tag of ['div', 'section', 'article', 'main', 'header', 'footer', 'nav', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'details', 'summary', 'figure', 'figcaption', 'video', 'p']) {
     const open = (html.match(new RegExp(`<${tag}(\\s|>)`, 'g')) ?? []).length
     const close = (html.match(new RegExp(`</${tag}>`, 'g')) ?? []).length
     if (open !== close) fail(`${pageRel}: <${tag}> ${open} open, ${close} close`)
@@ -149,6 +149,14 @@ function verifyPage(code, kind) {
     if ((trust.match(/<li>/g) ?? []).length !== 4) fail(`${rel}: expected 4 trust chips`)
     const steps = html.match(/<ol class="pasos">([\s\S]*?)<\/ol>/)?.[1] ?? ''
     if ((steps.match(/<li>/g) ?? []).length !== 3) fail(`${rel}: expected 3 how-to steps`)
+    const videoTag = html.match(/<video\s[^>]*>/)?.[0] ?? ''
+    if (!videoTag) fail(`${rel}: missing demo <video>`)
+    else {
+      if (!/\sloading="lazy"/.test(videoTag)) fail(`${rel}: demo <video> missing loading="lazy"`)
+      if (!/\spreload="none"/.test(videoTag)) fail(`${rel}: demo <video> missing preload="none"`)
+      if (!/\swidth="\d+"/.test(videoTag) || !/\sheight="\d+"/.test(videoTag)) fail(`${rel}: demo <video> missing explicit integer width/height`)
+      if (!html.includes('kind="captions"')) fail(`${rel}: demo <video> missing captions <track>`)
+    }
     const ld = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)
     if (!ld) fail(`${rel}: missing JSON-LD`)
     else {

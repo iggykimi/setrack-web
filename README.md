@@ -19,15 +19,15 @@ Your data lives in the phone's local storage. You can save a backup file to Down
 
 It is free. There are no ads, no subscription and no analytics.
 
-It suggests exercises by the sets each muscle still needs this week. A primary muscle counts a full set and a secondary one counts half. Estimated 1RM uses the Brzycki formula, and sets above 12 reps are left out because the formula overestimates there.
+It suggests exercises by the sets each muscle still needs this week. A primary muscle counts a full set and a secondary one counts half. Estimated 1RM works continuously up to 25 reps (Brzycki + Epley blend above 10 reps).
 
-It ships with 104 built-in exercises and three starter programs, and you can add your own exercises. The interface is in 11 languages, in kilos or pounds.
+It ships with 140 built-in exercises, three starter programs and optional body tracking (smoothed weight trend, waist and measurements), and you can add your own exercises. The app is in 17 languages (the website in 11), in kilos or pounds.
 
 ## How it is built
 
 The app is an offline-first PWA wrapped as a native Android app with Capacitor 8. It uses React 19, TypeScript, Vite and Dexie on IndexedDB. Its code is in a private repository.
 
-The last full run before release 1.0.9 (11 November 2026) passed 271 unit and integration tests (Vitest) and 186 end-to-end tests (Playwright on a mobile Chromium profile). Release 1.0.11 (13 November 2026) shipped with the same suite green on CI.
+Release 1.0.18 (November 2026) ships with full Vitest unit/database coverage and Playwright end-to-end checks (including overflow/clipping guards across all 17 languages and adaptive layouts for phones, foldables and tablets). A self-hosted 22-second walkthrough of the live app is embedded on the website (`#como`).
 
 ESLint rejects any function with cyclomatic complexity above 6, more than 40 lines or more than 3 parameters. CI runs it on every push to `master`, with the type check, both test suites and an unused-code check (knip). The end-to-end suite includes detectors for text that overflows, gets cut or overlaps. They run the app in all 11 languages at 360 and 300 px wide; 300 px stands in for a large system font.
 

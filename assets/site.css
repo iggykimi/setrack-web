@@ -234,6 +234,13 @@ body:lang(zh-Hant) .portada h1 { font-size: clamp(40px, 8vw, 116px); }
 }
 .pasos strong { display: block; margin-top: 16px; font-size: 19px; }
 .pasos p { color: var(--dust); font-size: 15.5px; line-height: 1.5; margin-top: 8px; text-wrap: pretty; }
+.demo { grid-column: 1 / -1; margin-top: clamp(8px, 2vh, 20px); }
+.demo video {
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
+  border-radius: 26px; background: var(--surface);
+  box-shadow: var(--bevel), 0 0 0 1px var(--line), 0 30px 60px -20px #000;
+}
+.demo figcaption { margin-top: 14px; color: var(--faint); font-size: 14px; text-wrap: pretty; }
 
 /* ── The app: what you get, as a set list, next to two real screens ── */
 .app {
@@ -395,6 +402,7 @@ body:lang(zh-Hant) .apoyo h2 { line-height: 1.12; }
   .marca { font-size: 19px; }
   .pantalla.principal { width: 72%; }
   .pantalla.segunda { width: 62%; margin-top: 26%; }
+  .demo video { border-radius: 18px; }
 }
 @media (max-width: 400px) {
   .marca span { display: none; }

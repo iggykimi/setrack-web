@@ -29,6 +29,7 @@ export const LANGS = {
       ['Apunta', 'Peso y repeticiones. El calentamiento sale de tu última sesión.'],
       ['Mira', 'Qué músculo te falta esta semana y cómo avanza cada ejercicio.'],
     ],
+    videoCaption: 'Recorrido de 22 segundos por la app real: apuntar una serie, ver el 1RM, peso y medidas, temas y vista en tablet.',
     features: [
       ['Rutina o sesión libre', 'Te propone lo que le falta a cada músculo esta semana.'],
       ['Calentamiento', 'Tres aproximaciones calculadas sobre tu última sesión.'],
@@ -62,7 +63,7 @@ export const LANGS = {
     },
     supportTitle: 'Es gratis.',
     supportLead: 'La hice para entrenar yo y la comparto. Si te resulta útil, puedes invitarme a un café.',
-    footer: { issues: 'Incidencias', privacy: 'Privacidad', note: 'Hecho por iggykimi. Actualizado el 26 de noviembre de 2026.' },
+    footer: { issues: 'Incidencias', privacy: 'Privacidad', note: 'Hecho por iggykimi. Actualizado el 27 de noviembre de 2026.' },
   },
 
   en: {
@@ -90,6 +91,7 @@ export const LANGS = {
       ['Log', 'Weight and reps. The warm-up is worked out from your last session.'],
       ['Check', 'Which muscle still needs work this week and how each exercise is progressing.'],
     ],
+    videoCaption: 'A 22-second walkthrough of the real app: logging a set, checking 1RM, body tracking, themes and tablet layout.',
     features: [
       ['Routine or free session', 'It suggests what each muscle still needs this week.'],
       ['Warm-up', 'Three ramp-up sets worked out from your last session.'],
@@ -123,7 +125,7 @@ export const LANGS = {
     },
     supportTitle: 'It’s free.',
     supportLead: 'I made it for my own training and I’m sharing it. If you find it useful, you can buy me a coffee.',
-    footer: { issues: 'Issues', privacy: 'Privacy', note: 'Made by iggykimi. Updated 26 November 2026.' },
+    footer: { issues: 'Issues', privacy: 'Privacy', note: 'Made by iggykimi. Updated 27 November 2026.' },
   },
 
   pt: {
@@ -151,6 +153,7 @@ export const LANGS = {
       ['Anote', 'Peso e repetições. O aquecimento vem do seu último treino.'],
       ['Veja', 'Qual músculo ainda falta nesta semana e como cada exercício evolui.'],
     ],
+    videoCaption: 'Tour de 22 segundos pelo app real: registrar uma série, ver o 1RM, peso e medidas, temas e tela em tablet.',
     features: [
       ['Rotina ou treino livre', 'Sugere o que falta para cada músculo nesta semana.'],
       ['Aquecimento', 'Três séries de aproximação calculadas a partir do seu último treino.'],
@@ -184,7 +187,7 @@ export const LANGS = {
     },
     supportTitle: 'É gratuito.',
     supportLead: 'Fiz para os meus treinos e estou compartilhando. Se for útil para você, pode me pagar um café.',
-    footer: { issues: 'Problemas', privacy: 'Privacidade', note: 'Feito por iggykimi. Atualizado em 26 de novembro de 2026.' },
+    footer: { issues: 'Problemas', privacy: 'Privacidade', note: 'Feito por iggykimi. Atualizado em 27 de novembro de 2026.' },
   },
 
   de: {
@@ -212,6 +215,7 @@ export const LANGS = {
       ['Eintragen', 'Gewicht und Wiederholungen. Das Aufwärmen kommt aus deiner letzten Session.'],
       ['Prüfen', 'Welchem Muskel diese Woche noch etwas fehlt und wie sich jede Übung entwickelt.'],
     ],
+    videoCaption: '22 Sekunden echte App: Satz eintragen, 1RM prüfen, Körper-Tracking, Farbthemen und Tablet-Ansicht.',
     features: [
       ['Trainingsplan oder freies Training', 'Schlägt vor, was jedem Muskel diese Woche noch fehlt.'],
       ['Aufwärmen', 'Drei Aufwärmsätze, berechnet aus deiner letzten Session.'],
@@ -245,7 +249,7 @@ export const LANGS = {
     },
     supportTitle: 'Es ist kostenlos.',
     supportLead: 'Ich habe sie für mein eigenes Training gebaut und teile sie. Wenn sie dir hilft, kannst du mich auf einen Kaffee einladen.',
-    footer: { issues: 'Probleme melden', privacy: 'Datenschutz', note: 'Von iggykimi. Aktualisiert am 26. November 2026.' },
+    footer: { issues: 'Probleme melden', privacy: 'Datenschutz', note: 'Von iggykimi. Aktualisiert am 27. November 2026.' },
   },
 
   fr: {
@@ -273,6 +277,7 @@ export const LANGS = {
       ['Note', 'Charge et répétitions. L’échauffement vient de ta dernière séance.'],
       ['Regarde', 'Le muscle qui manque cette semaine et la progression de chaque exercice.'],
     ],
+    videoCaption: '22 secondes dans l’app réelle : noter une série, voir le 1RM, suivi corporel, thèmes et vue tablette.',
     features: [
       ['Programme ou séance libre', 'Te propose ce qui manque à chaque muscle cette semaine.'],
       ['Échauffement', 'Trois séries d’approche calculées sur ta dernière séance.'],
@@ -306,7 +311,7 @@ export const LANGS = {
     },
     supportTitle: 'C’est gratuit.',
     supportLead: 'Je l’ai faite pour mes propres séances et je la partage. Si elle t’est utile, tu peux m’offrir un café.',
-    footer: { issues: 'Signaler un problème', privacy: 'Confidentialité', note: 'Fait par iggykimi. Mis à jour le 26 novembre 2026.' },
+    footer: { issues: 'Signaler un problème', privacy: 'Confidentialité', note: 'Fait par iggykimi. Mis à jour le 27 novembre 2026.' },
   },
 
   it: {
@@ -334,6 +339,7 @@ export const LANGS = {
       ['Segna', 'Carico e ripetizioni. Il riscaldamento arriva dall’ultimo allenamento.'],
       ['Guarda', 'Quale muscolo manca questa settimana e come progredisce ogni esercizio.'],
     ],
+    videoCaption: '22 secondi nell’app reale: segnare una serie, vedere l’1RM, peso e misure, temi e vista tablet.',
     features: [
       ['Scheda o allenamento libero', 'Ti propone ciò che manca a ogni muscolo questa settimana.'],
       ['Riscaldamento', 'Tre serie di avvicinamento calcolate sul tuo ultimo allenamento.'],
@@ -367,7 +373,7 @@ export const LANGS = {
     },
     supportTitle: 'È gratis.',
     supportLead: 'L’ho fatta per i miei allenamenti e la condivido. Se ti è utile, puoi offrirmi un caffè.',
-    footer: { issues: 'Segnalazioni', privacy: 'Privacy', note: 'Fatto da iggykimi. Aggiornato il 26 novembre 2026.' },
+    footer: { issues: 'Segnalazioni', privacy: 'Privacy', note: 'Fatto da iggykimi. Aggiornato il 27 novembre 2026.' },
   },
 
   pl: {
@@ -395,6 +401,7 @@ export const LANGS = {
       ['Zapisz', 'Ciężar i powtórzenia. Rozgrzewka wynika z ostatniego treningu.'],
       ['Sprawdź', 'Któremu mięśniowi brakuje w tym tygodniu serii i jak idzie każde ćwiczenie.'],
     ],
+    videoCaption: '22 sekundy prawdziwej aplikacji: zapis serii, szacowany 1RM, waga i wymiary, motywy i widok na tablecie.',
     features: [
       ['Plan lub trening dowolny', 'Podpowiada, czego w tym tygodniu brakuje każdemu mięśniowi.'],
       ['Rozgrzewka', 'Trzy serie rozgrzewkowe wyliczone z ostatniego treningu.'],
@@ -428,7 +435,7 @@ export const LANGS = {
     },
     supportTitle: 'Jest darmowy.',
     supportLead: 'Zrobiłem go na swoje treningi i dzielę się nim. Jeśli ci się przyda, możesz postawić mi kawę.',
-    footer: { issues: 'Zgłoszenia', privacy: 'Prywatność', note: 'Autor: iggykimi. Aktualizacja: 26 listopada 2026.' },
+    footer: { issues: 'Zgłoszenia', privacy: 'Prywatność', note: 'Autor: iggykimi. Aktualizacja: 27 listopada 2026.' },
   },
 
   nl: {
@@ -456,6 +463,7 @@ export const LANGS = {
       ['Noteer', 'Gewicht en herhalingen. De warming-up komt uit je vorige training.'],
       ['Kijk', 'Welke spier deze week nog wat mist en hoe elke oefening vordert.'],
     ],
+    videoCaption: '22 seconden in de echte app: een set noteren, 1RM bekijken, gewicht en maten, thema’s en tabletweergave.',
     features: [
       ['Schema of vrije training', 'Het stelt voor wat elke spier deze week nog nodig heeft.'],
       ['Warming-up', 'Drie opwarmsets berekend uit je vorige training.'],
@@ -489,7 +497,7 @@ export const LANGS = {
     },
     supportTitle: 'Het is gratis.',
     supportLead: 'Ik maakte het voor mijn eigen training en deel het. Als je er iets aan hebt, kun je me op een koffie trakteren.',
-    footer: { issues: 'Meldingen', privacy: 'Privacy', note: 'Gemaakt door iggykimi. Bijgewerkt op 26 november 2026.' },
+    footer: { issues: 'Meldingen', privacy: 'Privacy', note: 'Gemaakt door iggykimi. Bijgewerkt op 27 November 2026.' },
   },
 
   ja: {
@@ -517,6 +525,7 @@ export const LANGS = {
       ['記録する', '重量と回数。ウォームアップは前回の記録から計算します。'],
       ['見る', '今週足りない部位と、種目ごとの伸びを確認できます。'],
     ],
+    videoCaption: '実際のアプリを22秒で紹介：セット記録、推定1RM、体重・サイズ、テーマ、タブレット表示。',
     features: [
       ['ルーティンもルーティンなしのワークアウトも', '今週足りていない部位を提案します。'],
       ['ウォームアップ', '前回の記録から計算した3セットのウォームアップ。'],
@@ -550,7 +559,7 @@ export const LANGS = {
     },
     supportTitle: '無料です。',
     supportLead: '自分のトレーニング用に作り、公開しています。役に立ったら、コーヒーをおごってもらえるとうれしいです。',
-    footer: { issues: '不具合報告', privacy: 'プライバシー', note: '作成: iggykimi。2026年11月26日更新。' },
+    footer: { issues: '不具合報告', privacy: 'プライバシー', note: '作成: iggykimi。2026年11月27日更新。' },
   },
 
   ko: {
@@ -578,6 +587,7 @@ export const LANGS = {
       ['기록하기', '무게와 횟수. 워밍업은 지난 세션을 기준으로 계산해요.'],
       ['확인하기', '이번 주 부족한 부위와 종목별 성장을 볼 수 있어요.'],
     ],
+    videoCaption: '실제 앱 22초 둘러보기: 세트 기록, 추정 1RM, 체중·치수, 테마, 태블릿 화면.',
     features: [
       ['루틴 또는 자유 세션', '이번 주에 부위별로 부족한 걸 제안해요.'],
       ['워밍업', '지난 세션을 기준으로 계산한 3세트예요.'],
@@ -611,7 +621,7 @@ export const LANGS = {
     },
     supportTitle: '무료예요.',
     supportLead: '제 운동 기록을 위해 만들고 공유하고 있어요. 유용했다면 Ko-fi에서 커피 한 잔 사 주세요.',
-    footer: { issues: '문제 신고', privacy: '개인정보', note: '만든 사람: iggykimi. 2026년 11월 26일 업데이트.' },
+    footer: { issues: '문제 신고', privacy: '개인정보', note: '만든 사람: iggykimi. 2026년 11월 27일 업데이트.' },
   },
 
   'zh-Hant': {
@@ -639,6 +649,7 @@ export const LANGS = {
       ['記', '重量和次數。熱身依上次訓練計算。'],
       ['看', '本週還缺哪些肌群，以及每個動作的進步。'],
     ],
+    videoCaption: '22 秒實際畫面示範：記錄一組、查看預估 1RM、體重與尺寸、主題與平板介面。',
     features: [
       ['課表或自由訓練', '依本週各肌群還缺的組數給建議。'],
       ['熱身', '依上次訓練算出的三組熱身。'],
@@ -672,7 +683,7 @@ export const LANGS = {
     },
     supportTitle: '免費。',
     supportLead: '這是我為自己的訓練做的，分享給大家。如果對你有幫助，可以請我喝杯咖啡。',
-    footer: { issues: '問題回報', privacy: '隱私權', note: '由 iggykimi 製作。2026 年 11 月 26 日更新。' },
+    footer: { issues: '問題回報', privacy: '隱私權', note: '由 iggykimi 製作。2026 年 11 月 27 日更新。' },
   },
 }
 

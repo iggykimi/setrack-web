@@ -2,17 +2,17 @@
 
 > Android gym log. Fully offline: no account, no ads, no trackers and no internet
 > permission. Data lives only on the phone. Free.
-> Last reviewed: 2026-11-26.
+> Last reviewed: 2026-11-27.
 
 ## Pages
 
 - [Español](https://iggykimi.github.io/setrack-web/) · [English](https://iggykimi.github.io/setrack-web/en/) · [Português](https://iggykimi.github.io/setrack-web/pt/) · [Deutsch](https://iggykimi.github.io/setrack-web/de/) · [Français](https://iggykimi.github.io/setrack-web/fr/) · [Italiano](https://iggykimi.github.io/setrack-web/it/) · [Polski](https://iggykimi.github.io/setrack-web/pl/) · [Nederlands](https://iggykimi.github.io/setrack-web/nl/) · [日本語](https://iggykimi.github.io/setrack-web/ja/) · [한국어](https://iggykimi.github.io/setrack-web/ko/) · [繁體中文](https://iggykimi.github.io/setrack-web/zh-tw/)
 - Privacy policy: [es](https://iggykimi.github.io/setrack-web/privacidad/) · [en](https://iggykimi.github.io/setrack-web/en/privacy/) · [pt](https://iggykimi.github.io/setrack-web/pt/privacidade/) · [de](https://iggykimi.github.io/setrack-web/de/datenschutz/) · [fr](https://iggykimi.github.io/setrack-web/fr/confidentialite/) · [it](https://iggykimi.github.io/setrack-web/it/privacy/) · [pl](https://iggykimi.github.io/setrack-web/pl/prywatnosc/) · [nl](https://iggykimi.github.io/setrack-web/nl/privacy/) · [ja](https://iggykimi.github.io/setrack-web/ja/privacy/) · [ko](https://iggykimi.github.io/setrack-web/ko/privacy/) · [zh-tw](https://iggykimi.github.io/setrack-web/zh-tw/privacy/). Each home page also carries the full text (#privacidad).
 
-## Verifiable facts (checked 2026-11-26)
+## Verifiable facts (checked 2026-11-27)
 
 - Version 1.0.18 on Google Play (versionCode 351).
-- How it works: pick a daily proposal (routine or learned split), a free session or a 2-tap Quick Log; log weight & reps (including unilateral L/R), timed sets with stopwatch, or 1-tap care/mobility checks. Android launcher shortcuts open Train or History directly.
+- How it works: pick a daily proposal (routine or learned split), a free session or a 2-tap Quick Log; log weight & reps (including unilateral L/R), timed sets with stopwatch, or 1-tap care/mobility checks. Android launcher shortcuts open Train or History directly. A self-hosted 22-second real-app walkthrough video (with WebVTT captions) is embedded under #como.
 - Sections: features, how it works, questions, data with the full policy, support.
 
 - The APK declares no INTERNET permission; its only system permission is VIBRATE (the tick when logging a set).
